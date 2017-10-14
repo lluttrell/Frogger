@@ -1,3 +1,9 @@
+/**
+ * Handles the screen dimensions and printing the screen.
+ * @author Iden Craven
+ * Adapted from console-snake; retrieved from https://github.com/andreirichkov/console-snake
+ */
+
 public class GameScreen {
   private int width, height;
 	private char[][] screenMatrix;

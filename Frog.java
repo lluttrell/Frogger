@@ -1,4 +1,12 @@
+/**
+ * Handles setting walls around the GameScreen.
+ * @author andreirichkov
+ * retrieved from https://github.com/andreirichkov/console-snake
+ */
+
 public class Frog extends GameObject {
+
+	private int lives = 3;
 
 	public Frog(char symbol, int xStartingLocation, int yStartingLocation) {
 		setSymbol(symbol);

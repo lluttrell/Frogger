@@ -1,3 +1,9 @@
+/**
+ * Handles setting walls around the GameScreen.
+ * @author andreirichkov
+ * retrieved from https://github.com/andreirichkov/console-snake
+ */
+
 public class Wall extends GameObject {
 
 	public Wall() {

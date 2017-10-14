@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Main class handles running the Frogger game.
+ * @author Iden Craven
+ * Adapted from console-snake; retrieved from https://github.com/andreirichkov/console-snake
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -32,24 +38,27 @@ public class Main {
 		char input;
 
 		// The game logic starts here
-		boolean isRunning = true;
+		boolean running = true;
 
-		while (isRunning) {
+		//Game loop
+		while (running) {
 			screen.PrintScreen();
 			// Get input from player and do something
-			switch (input = scanner.nextLine().charAt(0)) {
-			case 'a':
-				frog.moveLeft(screen, frog);
-				break;
-			case 'd':
-				frog.moveRight(screen, frog);
-				break;
-			case 'w':
+			char keyPressed = scanner.nextLine().charAt(0);
+			if (keyPressed == 'w') {
 				frog.moveUp(screen, frog);
-				break;
-			case 's':
+				if (frog.getY() < 1) {
+					running = false;
+					System.out.println("\n**YOU WIN**");
+				}
+			}else if (keyPressed == 's' && frog.getY() > FROG_STARTING_Y) {
 				frog.moveDown(screen, frog);
-				break;
+			}else if (keyPressed == 'a' && frog.getX()  > SCREEN_WIDTH - (SCREEN_WIDTH - 1)) {
+				frog.moveLeft(screen, frog);
+			}else if (keyPressed == 'd' && frog.getX() < SCREEN_WIDTH - 2) {
+				frog.moveRight(screen, frog);
+			}else {
+				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
 		}
 	}
