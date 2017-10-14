@@ -23,16 +23,17 @@ public class Main {
 		screen.InitScreen();
 
 		// Init walls
-		Wall wall = new Wall('#');
+		Wall wall = new Wall();
 		wall.addWallsRow(screen, wall, 0); // First row
 		wall.addWallsRow(screen, wall, screen.getScreenHeight() - 1); // Last row
 		wall.addWallsColumn(screen, wall, 0); // First column
 		wall.addWallsColumn(screen, wall, screen.getScreenWidth() - 1); // Last column
 
-		// Init player
+		// Init player & cars
 		Frog frog = new Frog('F', FROG_STARTING_X, FROG_STARTING_Y);
 		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-
+		Car car1 = new Car(3, screen.getScreenWidth() - 3, 4);
+		car1.initCar(screen, car1);
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
 		char input;
@@ -51,7 +52,7 @@ public class Main {
 					running = false;
 					System.out.println("\n**YOU WIN**");
 				}
-			}else if (keyPressed == 's' && frog.getY() > FROG_STARTING_Y) {
+			}else if (keyPressed == 's' && frog.getY() < FROG_STARTING_Y) {
 				frog.moveDown(screen, frog);
 			}else if (keyPressed == 'a' && frog.getX()  > SCREEN_WIDTH - (SCREEN_WIDTH - 1)) {
 				frog.moveLeft(screen, frog);
@@ -60,6 +61,7 @@ public class Main {
 			}else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
+			car1.moveLeft(screen, car1);
 		}
 	}
 }
