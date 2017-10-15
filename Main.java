@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 
 public class Main {
-
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to Frogger\n");
@@ -32,7 +31,7 @@ public class Main {
 		// Init player & cars
 		Frog frog = new Frog('F', FROG_STARTING_X, FROG_STARTING_Y);
 		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-		Car car1 = new Car(3, screen.getScreenWidth() - 3, 4);
+		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
 		car1.initCar(screen, car1);
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
@@ -44,11 +43,13 @@ public class Main {
 		//Game loop & logic
 		while (running) {
 			screen.PrintScreen();
+			System.out.println("Lives remaining:" + frog.getLives());
 			// Get input from player and do something
 			char keyPressed = scanner.nextLine().charAt(0);
 			if (keyPressed == 'w') {
 				frog.moveUp(screen, frog);
 				if (frog.getY() < 1) {
+					//win state
 					running = false;
 					System.out.println("\n**YOU WIN**");
 				}
@@ -61,9 +62,19 @@ public class Main {
 			}else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
+			if (car1.overlapsWith(frog)) {
+				frog.die();
+				frog.setX(FROG_STARTING_X);
+				frog.setY(FROG_STARTING_Y);
+				screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
+				if (frog.getLives() == 0) {
+					running = false;
+					System.out.println("\n**GAME OVER**");
+				}
+			}
 			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
 				car1.moveLeft(screen, car1);
-			}else {
+			}else { //Car hits left wall
 				car1.resetRight(screen, car1, wall);
 			}
 		}

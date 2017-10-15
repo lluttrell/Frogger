@@ -37,4 +37,12 @@ public class Frog extends GameObject {
 		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
 		screen.ClearScreenLocation(frog.getX(), frog.getY() - 1);
 	}
+
+	public int getLives() {
+		return this.lives;
+	}
+
+	public void die() {
+		this.lives--;
+	}
 }

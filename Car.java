@@ -24,6 +24,7 @@ public class Car extends GameObject {
     }
     car.setX(screen.getScreenWidth() - 3);
     car.initCar(screen,car);
+    //redraw wall
     screen.setObjectOnLocation(wall, 0, car.getY());
   }
 
@@ -47,5 +48,14 @@ public class Car extends GameObject {
 		    screen.setObjectOnLocation(car, i, car.getY());
     }
 		screen.ClearScreenLocation(car.getX() - 2, car.getY());
+	}
+
+  public boolean overlapsWith(Frog frog) {
+    for (int i = -1; i < this.getLength();i++) {
+      if (this.getX() - i == frog.getX() && this.getY() == frog.getY()) {
+        return true;
+      }
+    }
+		return false;
 	}
 }
