@@ -41,7 +41,7 @@ public class Main {
 		// The game logic starts here
 		boolean running = true;
 
-		//Game loop
+		//Game loop & logic
 		while (running) {
 			screen.PrintScreen();
 			// Get input from player and do something
@@ -61,7 +61,11 @@ public class Main {
 			}else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
-			car1.moveLeft(screen, car1);
+			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
+				car1.moveLeft(screen, car1);
+			}else {
+				car1.resetRight(screen, car1, wall);
+			}
 		}
 	}
 }
