@@ -11,51 +11,51 @@ public class GameObject {
 
 	// Getters
 	/**
-	* Returns the x coordinate of the GameObject.
-	* @return x Coordinate of the GameObject
-	*/
+	 * Returns the x coordinate of the GameObject.
+	 * @return x Coordinate of the GameObject
+	 */
 	public int getX() {
-		return this.x;
+			return this.x;
 	}
 
 	/**
-	* Returns the y coordinate of the GameObject.
-	* @return y Coordinate of the GameObject
-	*/
+	 * Returns the y coordinate of the GameObject.
+	 * @return y Coordinate of the GameObject
+	 */
 	public int getY() {
-		return this.y;
+			return this.y;
 	}
 
 	/**
-	* Returns the character used to represent the GameObject
-	* @return char used to represent the GambeObject
-	*/
+	 * Returns the character used to represent the GameObject
+	 * @return char used to represent the GambeObject
+	 */
 	public char getSymbol() {
-		return symbol;
+			return symbol;
 	}
 
 	// Setters
 	/**
-	* Sets the x coordinate of the GameObject.
-	* @param newLocation New x coordinate
-	*/
+	 * Sets the x coordinate of the GameObject.
+	 * @param newLocation New x coordinate
+	 */
 	public void setX(int newLocation) {
-		this.x = newLocation;
+			this.x = newLocation;
 	}
 
 	/**
-	* Sets the x coordinate of the GameObject.
-	* @param newLocation New y coordinate
-	*/
+	 * Sets the x coordinate of the GameObject.
+	 * @param newLocation New y coordinate
+	 */
 	public void setY(int newLocation) {
-		this.y = newLocation;
+			this.y = newLocation;
 	}
 
 	/**
-	* Sets the text character used to draw the GameObject.
-	* @param newSymbol New character
-	*/
+	 * Sets the text character used to draw the GameObject.
+	 * @param newSymbol New character
+	 */
 	public void setSymbol(char newSymbol) {
-		this.symbol = newSymbol;
+			this.symbol = newSymbol;
 	}
 }
