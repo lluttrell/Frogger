@@ -16,6 +16,7 @@ public class Main {
 		final int SCREEN_HEIGHT = 14; // Rows
 		final int FROG_STARTING_X = 6;
 		final int FROG_STARTING_Y = SCREEN_HEIGHT - 2;
+		final int RIVER_STARTING_Y = SCREEN_HEIGHT - 7;
 
 		// Init screen
 		GameScreen screen = new GameScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -32,7 +33,9 @@ public class Main {
 		Frog frog = new Frog('F', FROG_STARTING_X, FROG_STARTING_Y);
 		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
 		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
+		Log log1 = new Log(3, screen.getScreenWidth() - 3, RIVER_STARTING_Y);
 		car1.initCar(screen, car1);
+		log1.initLog(screen, log1);
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
 		char input;
@@ -72,10 +75,28 @@ public class Main {
 					System.out.println("\n**GAME OVER**");
 				}
 			}
+			if (frog.getY() == RIVER_STARTING_Y && !log1.overlapsWith(frog)) {
+				frog.die();
+				screen.ClearScreenLocation(frog.getX(),frog.getY());
+				frog.setX(FROG_STARTING_X);
+				frog.setY(FROG_STARTING_Y);
+				screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
+				if (frog.getLives() == 0) {
+					running = false;
+					System.out.println("\n**GAME OVER**");
+				}
+			}
+
 			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
 				car1.moveLeft(screen, car1);
-			}else { //Car hits left wall
+			} else { //Car hits left wall
 				car1.resetRight(screen, car1, wall);
+			}
+
+			if (log1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
+				log1.moveLeft(screen, log1);
+			} else { //Log hits left wall
+				log1.resetRight(screen, log1, wall);
 			}
 		}
 	}
