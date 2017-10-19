@@ -6,7 +6,7 @@ public class GameObstical extends GameObject {
 
   private int length;
 
-  public void resetRight(GameScreen screen, Obstical obstical, Wall wall) {
+  public void resetRight(GameScreen screen, GameObstical obstical, Wall wall) {
     for (int i = -1; i < obstical.getLength();i++) {
       screen.ClearScreenLocation(getX() - i, obstical.getY());
     }
@@ -16,13 +16,13 @@ public class GameObstical extends GameObject {
     screen.setObjectOnLocation(wall, 0, obstical.getY());
   }
 
-  public void initObstical(GameScreen screen, Obstical obstical) {
+  public void initObstical(GameScreen screen, GameObstical obstical) {
     for (int i = getX() - 1 ; i < (getX() - 1) + this.length; i++) {
 		    screen.setObjectOnLocation(obstical, i, obstical.getY());
     }
   }
 
-  public void moveLeft(GameScreen screen, Obstical obstical) {
+  public void moveLeft(GameScreen screen, GameObstical obstical) {
 		obstical.setX(getX() - 1);
     for (int i = getX() - 1 ; i < (getX() - 1) + this.length; i++) {
 		    screen.setObjectOnLocation(obstical, i, obstical.getY());
@@ -30,7 +30,7 @@ public class GameObstical extends GameObject {
 		screen.ClearScreenLocation(obstical.getX() + 2, obstical.getY());
 	}
 
-  public void moveRight(GameScreen screen, Obstical obstical) {
+  public void moveRight(GameScreen screen, GameObstical obstical) {
 		obstical.setX(getX() + 1);
     for (int i = getX() + 1 ; i > (getX() + 1) - this.length; i--) {
 		    screen.setObjectOnLocation(obstical, i, obstical.getY());
