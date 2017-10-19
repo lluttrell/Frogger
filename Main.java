@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to Frogger\n");
-
+		// this is a comment
 		// Constants
 		final int SCREEN_WIDTH = 14; // Columns
 		final int SCREEN_HEIGHT = 14; // Rows
