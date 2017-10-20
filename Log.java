@@ -3,7 +3,7 @@
  * @author Iden Craven
  */
 
-public class Log extends GameObstical {
+public class Log extends GameObstacle {
 
   /**
   * Constructor for Log Object

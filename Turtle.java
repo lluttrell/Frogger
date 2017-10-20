@@ -1,4 +1,4 @@
-public class Turtle extends GameObstical {
+public class Turtle extends GameObstacle {
   
   /**
   * Constructor for Turtle Object

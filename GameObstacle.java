@@ -1,41 +1,41 @@
 /**
- * Handles obstical movement and initalization.
+ * Handles obstacle movement and initalization.
  * @author Iden Craven
  */
 public class GameObstacle extends GameObject {
 
   private int length;
 
-  public void resetRight(GameScreen screen, GameObstacle obstical, Wall wall) {
-  		for (int i = -1; i < obstical.getLength(); i++) {
-  				screen.ClearScreenLocation(getX() - i, obstical.getY());
+  public void resetRight(GameScreen screen, GameObstacle obstacle, Wall wall) {
+  		for (int i = -1; i < obstacle.getLength(); i++) {
+  				screen.ClearScreenLocation(getX() - i, obstacle.getY());
   		}
-  		obstical.setX(screen.getScreenWidth() - 3);
-  		obstical.initObstacle(screen,obstical);
+  		obstacle.setX(screen.getScreenWidth() - 3);
+  		obstacle.initObstacle(screen,obstacle);
   		//redraw wall
-  		screen.setObjectOnLocation(wall, 0, obstical.getY());
+  		screen.setObjectOnLocation(wall, 0, obstacle.getY());
   }
 
-  public void initObstacle(GameScreen screen, GameObstacle obstical) {
+  public void initObstacle(GameScreen screen, GameObstacle obstacle) {
   		for (int i = getX() - 1; i < (getX() - 1) + this.length; i++) {
-  				screen.setObjectOnLocation(obstical, i, obstical.getY());
+  				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
   		}
   }
 
-  public void moveLeft(GameScreen screen, GameObstacle obstical) {
-  		obstical.setX(getX() - 1);
+  public void moveLeft(GameScreen screen, GameObstacle obstacle) {
+  		obstacle.setX(getX() - 1);
   		for (int i = getX() - 1; i < (getX() - 1) + this.length; i++) {
-  				screen.setObjectOnLocation(obstical, i, obstical.getY());
+  				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
   		}
-  		screen.ClearScreenLocation(obstical.getX() + 2, obstical.getY());
+  		screen.ClearScreenLocation(obstacle.getX() + 2, obstacle.getY());
   }
 
-  public void moveRight(GameScreen screen, GameObstacle obstical) {
-  		obstical.setX(getX() + 1);
+  public void moveRight(GameScreen screen, GameObstacle obstacle) {
+  		obstacle.setX(getX() + 1);
   		for (int i = getX() + 1; i > (getX() + 1) - this.length; i--) {
-  				screen.setObjectOnLocation(obstical, i, obstical.getY());
+  				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
   		}
-  		screen.ClearScreenLocation(obstical.getX() - 2, obstical.getY());
+  		screen.ClearScreenLocation(obstacle.getX() - 2, obstacle.getY());
   }
 
   public boolean overlapsWith(Frog frog) {

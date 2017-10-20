@@ -3,7 +3,7 @@
  * @author Iden Craven
  */
 
-public class Car extends GameObstical {
+public class Car extends GameObstacle {
 
   /**
   * Constructor for Car Object

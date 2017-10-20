@@ -34,8 +34,8 @@ public class Main {
 		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
 		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
 		Log log1 = new Log(3, screen.getScreenWidth() - 3, RIVER_STARTING_Y);
-		car1.initObstical(screen, car1);
-		log1.initObstical(screen, log1);
+		car1.initObstacle(screen, car1);
+		log1.initObstacle(screen, log1);
 
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
