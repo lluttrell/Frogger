@@ -78,25 +78,19 @@ public class Main {
 				frog.die();
 				frog.setX(FROG_STARTING_X);
 				frog.setY(FROG_STARTING_Y);
-				screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-				if (frog.getLives() == 0) {
-					running = false;
-					System.out.println("\n**GAME OVER**");
-				}
 			}
 
 			// check if frog is in the river and if it overlaps with log. Kill
 			// frog if it doesn't
 			if (frog.getY() == RIVER_STARTING_Y && !log1.overlapsWith(frog)) {
 				frog.die();
-				screen.ClearScreenLocation(frog.getX(),frog.getY());
 				frog.setX(FROG_STARTING_X);
 				frog.setY(FROG_STARTING_Y);
-				screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-				if (frog.getLives() == 0) {
-					running = false;
-					System.out.println("\n**GAME OVER**");
-				}
+			}
+
+			if (frog.getLives() == 0) {
+				running = false;
+				System.out.println("\n**GAME OVER**");
 			}
 
 			// reset car to right side of screen if it hits the wall
