@@ -19,6 +19,13 @@ public class GameScreen {
 		this.screenMatrix = new char[this.height][this.width];
 	}
 
+  public void printObjectsToScreen(GameObstacle[] obstacles, Frog frog) {
+    for (GameObstacle o : obstacles) {
+      setObjectOnLocation(o,o.getX(),o.getY());
+    }
+    setObjectOnLocation(frog,frog.getX(),frog.getY());
+  }
+
   /**
   * Fills screenMatrix (play area) with default characters
   */
@@ -88,6 +95,9 @@ public class GameScreen {
   * @param y y coordinate of GameObject
   */
 	public void setObjectOnLocation(GameObject object, int x, int y) {
-		this.screenMatrix[y][x] = object.getSymbol();
+    for (int i = x - object.getLength()/2; i <= x + object.getLength()/2; i++) {
+      this.screenMatrix[y][i] = object.getSymbol();
+    }
+
 	}
 }

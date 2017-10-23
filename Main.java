@@ -20,7 +20,15 @@ public class Main {
 
 		// Init screen
 		GameScreen screen = new GameScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
-		screen.InitScreen();
+
+		//Init player
+		Frog frog = new Frog('F', FROG_STARTING_X, FROG_STARTING_Y);
+
+		//Init obstacles
+		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
+		Car car2 = new Car(2, screen.getScreenWidth() - 4, 8);
+		Log log1 = new Log(3, screen.getScreenWidth() - 3, RIVER_STARTING_Y);
+		GameObstacle[] gameObstacles = {car1,car2,log1};
 
 		// Init walls
 		Wall wall = new Wall();
@@ -28,12 +36,6 @@ public class Main {
 		wall.addWallsRow(screen, wall, screen.getScreenHeight() - 1); // Last row
 		wall.addWallsColumn(screen, wall, 0); // First column
 		wall.addWallsColumn(screen, wall, screen.getScreenWidth() - 1); // Last column
-
-		// Init player & cars
-		Frog frog = new Frog('F', FROG_STARTING_X, FROG_STARTING_Y);
-		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
-		Log log1 = new Log(3, screen.getScreenWidth() - 3, RIVER_STARTING_Y);
 
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
@@ -44,7 +46,6 @@ public class Main {
 
 		//Game loop & logic
 		while (running) {
-			screen.PrintScreen();
 			System.out.println("Lives remaining:" + frog.getLives());
 
 			// Get input from player and do something
@@ -60,6 +61,10 @@ public class Main {
 			}else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
+
+			screen.InitScreen();
+			screen.printObjectsToScreen(gameObstacles,frog);
+			screen.PrintScreen();
 
 			// check if frog has made to to the finish area
 			if (frog.getY() < 1) {

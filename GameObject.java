@@ -8,6 +8,7 @@ public class GameObject {
 
 	private int x, y;
 	private char symbol;
+	private int length;
 
 	// Getters
 	/**
@@ -34,6 +35,10 @@ public class GameObject {
 		return symbol;
 	}
 
+	public int getLength() {
+		return length;
+	}
+
 	// Setters
 	/**
 	* Sets the x coordinate of the GameObject.
@@ -49,6 +54,10 @@ public class GameObject {
 	*/
 	public void setY(int newLocation) {
 		this.y = newLocation;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
 	}
 
 	/**

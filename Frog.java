@@ -12,6 +12,7 @@ public class Frog extends GameObject {
 		setSymbol(symbol);
 		setX(xStartingLocation);
 		setY(yStartingLocation);
+		setLength(1);
 	}
 
 	public void moveLeft(Frog frog) {

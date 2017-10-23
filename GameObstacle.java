@@ -4,8 +4,6 @@
  */
 public class GameObstacle extends GameObject {
 
-  private int length;
-
   public void resetRight(GameScreen screen, GameObstacle obstacle, Wall wall) {
   		for (int i = -1; i < obstacle.getLength(); i++) {
   				screen.ClearScreenLocation(getX() - i, obstacle.getY());
@@ -30,13 +28,5 @@ public class GameObstacle extends GameObject {
   				}
   		}
   		return false;
-  }
-
-  public void setLength(int length) {
-  		this.length = length;
-  }
-
-  public int getLength() {
-  		return this.length;
   }
 }
