@@ -11,31 +11,16 @@ public class GameObstacle extends GameObject {
   				screen.ClearScreenLocation(getX() - i, obstacle.getY());
   		}
   		obstacle.setX(screen.getScreenWidth() - 3);
-  		obstacle.initObstacle(screen,obstacle);
   		//redraw wall
   		screen.setObjectOnLocation(wall, 0, obstacle.getY());
   }
 
-  public void initObstacle(GameScreen screen, GameObstacle obstacle) {
-  		for (int i = getX() - 1; i < (getX() - 1) + this.length; i++) {
-  				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
-  		}
-  }
-
   public void moveLeft(GameScreen screen, GameObstacle obstacle) {
   		obstacle.setX(getX() - 1);
-  		for (int i = getX() - 1; i < (getX() - 1) + this.length; i++) {
-  				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
-  		}
-  		screen.ClearScreenLocation(obstacle.getX() + 2, obstacle.getY());
   }
 
   public void moveRight(GameScreen screen, GameObstacle obstacle) {
   		obstacle.setX(getX() + 1);
-  		for (int i = getX() + 1; i > (getX() + 1) - this.length; i--) {
-  				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
-  		}
-  		screen.ClearScreenLocation(obstacle.getX() - 2, obstacle.getY());
   }
 
   public boolean overlapsWith(Frog frog) {

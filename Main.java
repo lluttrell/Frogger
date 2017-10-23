@@ -34,8 +34,6 @@ public class Main {
 		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
 		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
 		Log log1 = new Log(3, screen.getScreenWidth() - 3, RIVER_STARTING_Y);
-		car1.initObstacle(screen, car1);
-		log1.initObstacle(screen, log1);
 
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
@@ -52,13 +50,13 @@ public class Main {
 			// Get input from player and do something
 			char keyPressed = scanner.nextLine().charAt(0);
 			if (keyPressed == 'w') {
-				frog.moveUp(screen, frog);
+				frog.moveUp(frog);
 			} else if (keyPressed == 's' && frog.getY() < FROG_STARTING_Y) {
-				frog.moveDown(screen, frog);
+				frog.moveDown(frog);
 			} else if (keyPressed == 'a' && frog.getX()  > SCREEN_WIDTH - (SCREEN_WIDTH - 1)) {
-				frog.moveLeft(screen, frog);
+				frog.moveLeft(frog);
 			}else if (keyPressed == 'd' && frog.getX() < SCREEN_WIDTH - 2) {
-				frog.moveRight(screen, frog);
+				frog.moveRight(frog);
 			}else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
