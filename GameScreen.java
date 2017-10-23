@@ -19,8 +19,8 @@ public class GameScreen {
 		this.screenMatrix = new char[this.height][this.width];
 	}
 
-  public void printObjectsToScreen(GameObstacle[] obstacles, Frog frog) {
-    for (GameObstacle o : obstacles) {
+  public void printObjectsToScreen(GameObject[] gameObject, Frog frog) {
+    for (GameObject o : gameObject) {
       setObjectOnLocation(o,o.getX(),o.getY());
     }
     setObjectOnLocation(frog,frog.getX(),frog.getY());

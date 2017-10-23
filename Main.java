@@ -28,14 +28,15 @@ public class Main {
 		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
 		Car car2 = new Car(2, screen.getScreenWidth() - 4, 8);
 		Log log1 = new Log(3, screen.getScreenWidth() - 3, RIVER_STARTING_Y);
-		GameObstacle[] gameObstacles = {car1,car2,log1};
-
-		// Init walls
 		Wall wall = new Wall();
 		wall.addWallsRow(screen, wall, 0); // First row
 		wall.addWallsRow(screen, wall, screen.getScreenHeight() - 1); // Last row
 		wall.addWallsColumn(screen, wall, 0); // First column
 		wall.addWallsColumn(screen, wall, screen.getScreenWidth() - 1); // Last column
+		GameObject[] gameObjects = {wall,car1,car2,log1};
+
+		// Init walls
+
 
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
@@ -63,7 +64,7 @@ public class Main {
 			}
 
 			screen.InitScreen();
-			screen.printObjectsToScreen(gameObstacles,frog);
+			screen.printObjectsToScreen(gameObjects,frog);
 			screen.PrintScreen();
 
 			// check if frog has made to to the finish area
