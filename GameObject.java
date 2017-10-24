@@ -4,7 +4,7 @@
  * retrieved from https://github.com/andreirichkov/console-snake
  */
 
-public class GameObject {
+public class GameObject extends World {
 
 	private int x, y;
 	private char symbol;
