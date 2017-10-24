@@ -97,14 +97,14 @@ public class Main {
 			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
 				car1.moveLeft(screen, car1);
 			} else { //Car hits left wall
-				car1.resetRight(screen, car1, wall);
+				car1.resetRight(screen, car1);
 			}
 
 			// reset log to right side of screen if it hits the wall
 			if (log1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
 				log1.moveLeft(screen, log1);
 			} else { //Log hits left wall
-				log1.resetRight(screen, log1, wall);
+				log1.resetRight(screen, log1);
 			}
 		}
 	}
