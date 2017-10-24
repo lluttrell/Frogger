@@ -20,20 +20,24 @@ public class Main {
 		//Init player
 		Frog frog = new Frog('F', world.getFrogStartingX(), world.getFrogStartingY());
 
+		//Init static objects eg.rivers
+		GameObject[] gameObjects = {
+			new River(world.getRiverStartingY()),
+			new River(world.getRiverStartingY()- 1),
+			new River(world.getRiverStartingY()- 2),
+			new River(world.getRiverStartingY()- 3),
+			new River(world.getRiverStartingY()- 4),
+			new River(world.getRiverStartingY()- 5)
+		};
+
 		//Init obstacles
-		Car car1 = new Car(3, screen.getScreenWidth() - 3, 10);
-		Car car2 = new Car(2, screen.getScreenWidth() - 4, 8);
-		Log log1 = new Log(3, screen.getScreenWidth() - 3, world.getRiverStartingY());
-		River river1 = new River(world.getRiverStartingY());
-		Wall wall = new Wall();
-		wall.addWallsRow(screen, wall, 0); // First row
-		wall.addWallsRow(screen, wall, screen.getScreenHeight() - 1); // Last row
-		wall.addWallsColumn(screen, wall, 0); // First column
-		wall.addWallsColumn(screen, wall, screen.getScreenWidth() - 1); // Last column
-		GameObject[] gameObjects = {river,car1,car2,log1};
-
-		// Init walls
-
+		GameObstacle[] gameObstacles = {
+		new Car(3, screen.getScreenWidth() - 3, 10),
+		new Car(2, screen.getScreenWidth() - 4, 8),
+		new Log(3, screen.getScreenWidth() - 3, world.getRiverStartingY()),
+		new Log(3, screen.getScreenWidth() - 4, world.getRiverStartingY()- 1),
+		new Log(3, screen.getScreenWidth() - 5, world.getRiverStartingY()- 2)
+	};
 
 		// Input from player
 		Scanner scanner = new Scanner(System.in);
@@ -54,14 +58,15 @@ public class Main {
 				frog.moveDown(frog);
 			} else if (keyPressed == 'a' && frog.getX()  > world.getScreenWidth() - (world.getScreenWidth() - 1)) {
 				frog.moveLeft(frog);
-			}else if (keyPressed == 'd' && frog.getX() < world.getScreenWidth() - 2) {
+			} else if (keyPressed == 'd' && frog.getX() < world.getScreenWidth() - 2) {
 				frog.moveRight(frog);
-			}else {
+			} else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
 
 			screen.InitScreen();
 			screen.printObjectsToScreen(gameObjects,frog);
+			screen.printObjectsToScreen(gameObstacles,frog);
 			screen.PrintScreen();
 
 			// check if frog has made to to the finish area
@@ -70,6 +75,10 @@ public class Main {
 				System.out.println("\n**YOU WIN**");
 			}
 
+			for (GameObstacle g: gameObstacles) {
+				g.moveObstacle(screen,g);
+			}
+			/*
 			// check if frog overlaps with car. Kill frog if it does.
 			if (car1.overlapsWith(frog)) {
 				frog.die();
@@ -92,6 +101,7 @@ public class Main {
 			car1.moveObstacle(screen,car1);
 			car2.moveObstacle(screen,car2);
 			log1.moveObstacle(screen,log1);
+			*/
 		}
 	}
 }
