@@ -6,14 +6,13 @@ public class GameObstacle extends GameObject {
 
   private int length;
 
-  public void resetRight(GameScreen screen, GameObstacle obstacle, Wall wall) {
+  public void resetRight(GameScreen screen, GameObstacle obstacle) {
   		for (int i = -1; i < obstacle.getLength(); i++) {
   				screen.ClearScreenLocation(getX() - i, obstacle.getY());
   		}
   		obstacle.setX(screen.getScreenWidth() - 3);
   		obstacle.initObstacle(screen,obstacle);
   		//redraw wall
-  		screen.setObjectOnLocation(wall, 0, obstacle.getY());
   }
 
   public void initObstacle(GameScreen screen, GameObstacle obstacle) {
