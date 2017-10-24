@@ -9,6 +9,7 @@ public class GameObject extends World {
 	private int x, y;
 	private char symbol;
 	private int length;
+	private boolean dangerous;
 
 	// Getters
 	/**
@@ -25,6 +26,10 @@ public class GameObject extends World {
 	*/
 	public int getY() {
 		return this.y;
+	}
+
+	public boolean isDangerous() {
+		return dangerous;
 	}
 
 	/**
@@ -56,6 +61,9 @@ public class GameObject extends World {
 		this.y = newLocation;
 	}
 
+	public void setDangerous(boolean dangerous) {
+		this.dangerous = dangerous;
+	}
 	public void setLength(int length) {
 		this.length = length;
 	}

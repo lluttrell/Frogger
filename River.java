@@ -5,5 +5,6 @@ public class River extends GameObject{
     setLength(super.getScreenWidth()-1);
     setX(super.getScreenWidth()/2-1);
     setY(y);
+    setDangerous(true);
 	}
 }

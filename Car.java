@@ -16,5 +16,6 @@ public class Car extends GameObstacle {
     setX(startingX);
     setY(startingY);
     setLength(length);
+    setDangerous(true);
   }
 }

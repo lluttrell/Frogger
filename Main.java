@@ -75,33 +75,25 @@ public class Main {
 				System.out.println("\n**YOU WIN**");
 			}
 
+			// check if frog overlaps with dangerous obstacles. Kill it if it does.
+			for (GameObstacle g: gameObstacles) {
+				if (g.overlapsWith(frog) && g.isDangerous()) {
+					frog.die();
+					frog.setX(world.getFrogStartingX());
+					frog.setY(world.getFrogStartingY());
+				}
+			}
+
+			// move the obstacles
 			for (GameObstacle g: gameObstacles) {
 				g.moveObstacle(screen,g);
 			}
-			/*
-			// check if frog overlaps with car. Kill frog if it does.
-			if (car1.overlapsWith(frog)) {
-				frog.die();
-				frog.setX(world.getFrogStartingX());
-				frog.setY(world.getFrogStartingY());
-			}
 
-			// check if frog is in the river and if it overlaps with log. Kill
-			// frog if it doesn't
-			if (frog.getY() == world.getRiverStartingY() && !log1.overlapsWith(frog)) {
-				frog.die();
-				frog.setX(world.getFrogStartingX());
-				frog.setY(world.getFrogStartingY());
-			}
-
+			// check if frog is dead.
 			if (frog.getLives() == 0) {
 				running = false;
 				System.out.println("\n**GAME OVER**");
 			}
-			car1.moveObstacle(screen,car1);
-			car2.moveObstacle(screen,car2);
-			log1.moveObstacle(screen,log1);
-			*/
 		}
 	}
 }
