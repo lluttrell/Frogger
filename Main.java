@@ -30,7 +30,7 @@ public class Main {
 		new River(world.getRiverStartingY()- 5),
 		new Car(3, screen.getScreenWidth() - 3, 10),
 		new Car(2, screen.getScreenWidth() - 4, 8),
-		new Log(3, screen.getScreenWidth() - 3, world.getRiverStartingY()),
+		new Log(3, screen.getScreenWidth() - 7, world.getRiverStartingY()),
 		new Log(3, screen.getScreenWidth() - 4, world.getRiverStartingY()- 1),
 		new Log(3, screen.getScreenWidth() - 5, world.getRiverStartingY()- 2)
 	};
