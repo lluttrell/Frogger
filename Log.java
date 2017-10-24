@@ -17,4 +17,7 @@ public class Log extends GameObstacle {
     setY(startingY);
     setLength(length);
   }
+  
+  
+  
 }

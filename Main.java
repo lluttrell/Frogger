@@ -28,6 +28,10 @@ public class Main {
 		wall.addWallsRow(screen, wall, screen.getScreenHeight() - 1); // Last row
 		wall.addWallsColumn(screen, wall, 0); // First column
 		wall.addWallsColumn(screen, wall, screen.getScreenWidth() - 1); // Last column
+		
+		//Init river 
+		River river = new River();
+		river.addRiver( screen, river, 7);
 
 		// Init player & cars
 		Frog frog = new Frog('F', FROG_STARTING_X, FROG_STARTING_Y);
@@ -81,11 +85,25 @@ public class Main {
 				}
 			}
 
+			// reset car to right side of screen if it hits the wall
+			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
+				car1.moveLeft(screen, car1,'*');
+			} else { //Car hits left wall
+				car1.resetRight(screen, car1, wall, '*');
+			}
+
+			// reset log to right side of screen if it hits the wall
+			if (log1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
+				log1.moveLeft(screen, log1, '^');
+			} else { //Log hits left wall
+				log1.resetRight(screen, log1, wall, '^');
+			}
+			
 			// check if frog is in the river and if it overlaps with log. Kill
 			// frog if it doesn't
 			if (frog.getY() == RIVER_STARTING_Y && !log1.overlapsWith(frog)) {
 				frog.die();
-				screen.ClearScreenLocation(frog.getX(),frog.getY());
+				screen.ClearScreenLocation(frog.getX(),frog.getY(), '^');
 				frog.setX(FROG_STARTING_X);
 				frog.setY(FROG_STARTING_Y);
 				screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
@@ -93,21 +111,11 @@ public class Main {
 					running = false;
 					System.out.println("\n**GAME OVER**");
 				}
+			}else if(log1.overlapsWith(frog)){
+				System.out.println("frog on log");
+				screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
 			}
 
-			// reset car to right side of screen if it hits the wall
-			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
-				car1.moveLeft(screen, car1);
-			} else { //Car hits left wall
-				car1.resetRight(screen, car1, wall);
-			}
-
-			// reset log to right side of screen if it hits the wall
-			if (log1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
-				log1.moveLeft(screen, log1);
-			} else { //Log hits left wall
-				log1.resetRight(screen, log1, wall);
-			}
 		}
 	}
 }

@@ -6,9 +6,9 @@ public class GameObstacle extends GameObject {
 
   private int length;
 
-  public void resetRight(GameScreen screen, GameObstacle obstacle, Wall wall) {
+  public void resetRight(GameScreen screen, GameObstacle obstacle, Wall wall, char symbol) {
   		for (int i = -1; i < obstacle.getLength(); i++) {
-  				screen.ClearScreenLocation(getX() - i, obstacle.getY());
+  				screen.ClearScreenLocation(getX() - i, obstacle.getY(), symbol);
   		}
   		obstacle.setX(screen.getScreenWidth() - 3);
   		obstacle.initObstacle(screen,obstacle);
@@ -22,20 +22,20 @@ public class GameObstacle extends GameObject {
   		}
   }
 
-  public void moveLeft(GameScreen screen, GameObstacle obstacle) {
+  public void moveLeft(GameScreen screen, GameObstacle obstacle, char symbol) {
   		obstacle.setX(getX() - 1);
   		for (int i = getX() - 1; i < (getX() - 1) + this.length; i++) {
   				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
   		}
-  		screen.ClearScreenLocation(obstacle.getX() + 2, obstacle.getY());
+  		screen.ClearScreenLocation(obstacle.getX() + 2, obstacle.getY(), symbol);
   }
 
-  public void moveRight(GameScreen screen, GameObstacle obstacle) {
+  public void moveRight(GameScreen screen, GameObstacle obstacle, char symbol) {
   		obstacle.setX(getX() + 1);
   		for (int i = getX() + 1; i > (getX() + 1) - this.length; i--) {
   				screen.setObjectOnLocation(obstacle, i, obstacle.getY());
   		}
-  		screen.ClearScreenLocation(obstacle.getX() - 2, obstacle.getY());
+  		screen.ClearScreenLocation(obstacle.getX() - 2, obstacle.getY(), symbol);
   }
 
   public boolean overlapsWith(Frog frog) {

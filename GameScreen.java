@@ -46,9 +46,10 @@ public class GameScreen {
   * Resets a character in the screenMatrix at a specified location to default.
   * @param x x coordinate
   * @param y y coordinate
+  * @param symbol Symbol printed on screen
   */
-	public void ClearScreenLocation(int x, int y) {
-		this.screenMatrix[y][x] = '*';
+	public void ClearScreenLocation(int x, int y, char symbol) {
+		this.screenMatrix[y][x] = symbol;
 	}
 
 	// Getters
