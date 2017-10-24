@@ -8,11 +8,11 @@ public class GameObstacle extends GameObject {
   		obstacle.setX(screen.getScreenWidth() - 3);
   }
 
-  public void moveLeft(GameScreen screen, GameObstacle obstacle) {
+  public void moveLeft(GameObstacle obstacle) {
   		obstacle.setX(getX() - 1);
   }
 
-  public void moveRight(GameScreen screen, GameObstacle obstacle) {
+  public void moveRight(GameObstacle obstacle) {
   		obstacle.setX(getX() + 1);
   }
 

@@ -95,17 +95,25 @@ public class Main {
 
 			// reset car to right side of screen if it hits the wall
 			if (car1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
-				car1.moveLeft(screen, car1);
+				car1.moveLeft(car1);
 			} else { //Car hits left wall
 				car1.resetRight(screen, car1);
 			}
 
 			// reset log to right side of screen if it hits the wall
 			if (log1.getX() > SCREEN_WIDTH - (SCREEN_WIDTH - 2)) {
-				log1.moveLeft(screen, log1);
+				log1.moveLeft(log1);
 			} else { //Log hits left wall
 				log1.resetRight(screen, log1);
 			}
+		}
+	}
+	public void moveObstacle(GameScreen screen, GameObstacle obstacle) {
+		int width = screen.getScreenWidth();
+		if (obstacle.getX() > width - (width -2)) {
+			obstacle.moveLeft(obstacle);
+		} else {
+			obstacle.resetRight(screen,obstacle);
 		}
 	}
 }
