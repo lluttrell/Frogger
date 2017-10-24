@@ -1,4 +1,4 @@
-public class River extends GameObject{
+public class River extends GameObstacle{
 
 	public River(int y) {
 		setSymbol('^');
@@ -7,4 +7,10 @@ public class River extends GameObject{
     setY(y);
     setDangerous(true);
 	}
+  // override the move method so they remain still.
+  public void moveLeft(GameObstacle obstacle) {
+  }
+
+  public void moveRight(GameObstacle obstacle) {
+  }
 }

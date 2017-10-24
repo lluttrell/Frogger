@@ -20,18 +20,14 @@ public class Main {
 		//Init player
 		Frog frog = new Frog('F', world.getFrogStartingX(), world.getFrogStartingY());
 
-		//Init static objects eg.rivers
-		GameObject[] gameObjects = {
-			new River(world.getRiverStartingY()),
-			new River(world.getRiverStartingY()- 1),
-			new River(world.getRiverStartingY()- 2),
-			new River(world.getRiverStartingY()- 3),
-			new River(world.getRiverStartingY()- 4),
-			new River(world.getRiverStartingY()- 5)
-		};
-
 		//Init obstacles
 		GameObstacle[] gameObstacles = {
+		new River(world.getRiverStartingY()),
+		new River(world.getRiverStartingY()- 1),
+		new River(world.getRiverStartingY()- 2),
+		new River(world.getRiverStartingY()- 3),
+		new River(world.getRiverStartingY()- 4),
+		new River(world.getRiverStartingY()- 5),
 		new Car(3, screen.getScreenWidth() - 3, 10),
 		new Car(2, screen.getScreenWidth() - 4, 8),
 		new Log(3, screen.getScreenWidth() - 3, world.getRiverStartingY()),
@@ -65,7 +61,6 @@ public class Main {
 			}
 
 			screen.InitScreen();
-			screen.printObjectsToScreen(gameObjects,frog);
 			screen.printObjectsToScreen(gameObstacles,frog);
 			screen.PrintScreen();
 
