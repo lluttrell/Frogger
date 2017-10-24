@@ -46,6 +46,10 @@ public class Main {
 		while (running) {
 			System.out.println("Lives remaining:" + frog.getLives());
 
+			screen.InitScreen();
+			screen.printObjectsToScreen(gameObstacles,frog);
+			screen.PrintScreen();
+
 			// Get input from player and do something
 			char keyPressed = scanner.nextLine().charAt(0);
 			if (keyPressed == 'w') {
@@ -59,10 +63,6 @@ public class Main {
 			} else {
 				System.out.println("\nPlease use wasd or stay within game walls.");
 			}
-
-			screen.InitScreen();
-			screen.printObjectsToScreen(gameObstacles,frog);
-			screen.PrintScreen();
 
 			// check if frog has made to to the finish area
 			if (frog.getY() < 1) {
