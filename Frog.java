@@ -1,41 +1,24 @@
-/**
- * Handles setting walls around the GameScreen.
- * @author andreirichkov
- * retrieved from https://github.com/andreirichkov/console-snake
- */
+import java.awt.Graphics;
 
 public class Frog extends GameObject {
 
-	private int lives = 3;
+  private int lives;
+  private Game game;
 
-	public Frog(char symbol, int xStartingLocation, int yStartingLocation) {
-		setSymbol(symbol);
-		setX(xStartingLocation);
-		setY(yStartingLocation);
-		setLength(1);
-	}
+  public Frog(Game game, float x, float y) {
+    super(x, y);
+    lives = 3;
+    this.game = game;
+  }
 
-	public void moveLeft(Frog frog) {
-		frog.setX(getX() - 1);
-	}
+  public void tick() {
+    if(game.getKeyManager().up) {
+      y -= 3;
+    }
+  }
 
-	public void moveRight(Frog frog) {
-		frog.setX(getX() + 1);
-	}
+  public void render(Graphics g) {
+    g.drawImage(Assets.frog, (int) x, (int) y, null);
+  }
 
-	public void moveUp(Frog frog) {
-		frog.setY(getY() - 1);
-	}
-
-	public void moveDown(Frog frog) {
-		frog.setY(getY() + 1);
-	}
-
-	public int getLives() {
-		return this.lives;
-	}
-
-	public void die() {
-		this.lives--;
-	}
 }
