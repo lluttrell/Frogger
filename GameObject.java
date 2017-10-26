@@ -7,14 +7,29 @@ import java.awt.Graphics;
 
 public abstract class GameObject {
 
+	public static final float DEFAULT_SPEED = 3.0f;
+	public static final int DEFAULT_HEIGHT = 32;
+
 	protected float x, y;
 	protected char symbol;
-	protected float length;
-	protected boolean dangerous;
+	protected int height;
+	protected int length;
+	protected float speed;
+	protected float xMove, yMove;
 
-	public GameObject(float x, float y) {
+	public GameObject(float x, float y, int length) {
 		this.x = x;
 		this.y = y;
+		this.length = length;
+		speed = DEFAULT_SPEED;
+		height = DEFAULT_HEIGHT;
+		xMove = 0;
+		yMove = 0;
+	}
+
+	public void move() {
+		x += xMove;
+		y += yMove;
 	}
 
 	public abstract void tick();
@@ -22,12 +37,25 @@ public abstract class GameObject {
 	public abstract void render(Graphics g);
 
 	// Getters
+
+	public int getHeight() {
+		return this.height;
+	}
+
+	public float getXMove() {
+		return this.xMove;
+	}
+
+	public float getYMove() {
+		return this.yMove;
+	}
+
 	/**
 	 * Returns the x coordinate of the GameObject.
 	 * @return x Coordinate of the GameObject
 	 */
 	public float getX() {
-			return this.x;
+		return x;
 	}
 
 	/**
@@ -35,11 +63,7 @@ public abstract class GameObject {
 	 * @return y Coordinate of the GameObject
 	 */
 	public float getY() {
-			return this.y;
-	}
-
-	public boolean isDangerous() {
-			return dangerous;
+		return y;
 	}
 
 	/**
@@ -47,20 +71,29 @@ public abstract class GameObject {
 	 * @return char used to represent the GambeObject
 	 */
 	public char getSymbol() {
-			return symbol;
+		return symbol;
 	}
 
 	public float getLength() {
-			return length;
+		return length;
 	}
 
 	// Setters
+
+	public void setXMove(float xMove) {
+		this.xMove = xMove;
+	}
+
+	public void setYMove(float yMove) {
+		this.yMove = yMove;
+	}
+
 	/**
 	 * Sets the x coordinate of the GameObject.
 	 * @param newLocation New x coordinate
 	 */
 	public void setX(float newLocation) {
-			this.x = newLocation;
+		x = newLocation;
 	}
 
 	/**
@@ -68,15 +101,11 @@ public abstract class GameObject {
 	 * @param newLocation New y coordinate
 	 */
 	public void setY(float newLocation) {
-			this.y = newLocation;
+		y = newLocation;
 	}
 
-	public void setDangerous(boolean dangerous) {
-			this.dangerous = dangerous;
-	}
-
-	public void setLength(float length) {
-			this.length = length;
+	public void setLength(int length) {
+		this.length = length;
 	}
 
 	/**
@@ -84,6 +113,6 @@ public abstract class GameObject {
 	 * @param newSymbol New character
 	 */
 	public void setSymbol(char newSymbol) {
-			this.symbol = newSymbol;
+		symbol = newSymbol;
 	}
 }

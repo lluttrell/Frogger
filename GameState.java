@@ -6,7 +6,7 @@ public class GameState extends State {
 
   public GameState(Game game) {
     super(game);
-    frog = new Frog(game, 100, 100);
+    frog = new Frog(game, 100, 100, 32);
   }
 
   public void tick() {

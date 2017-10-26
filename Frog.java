@@ -2,23 +2,42 @@ import java.awt.Graphics;
 
 public class Frog extends GameObject {
 
-  private int lives;
+  public static final int DEFAULT_LIVES = 3;
+
+  protected int lives;
   private Game game;
 
-  public Frog(Game game, float x, float y) {
-    super(x, y);
-    lives = 3;
+  public Frog(Game game, float x, float y, int length) {
+    super(x, y, length);
+    lives = DEFAULT_LIVES;
     this.game = game;
   }
 
   public void tick() {
+    getInput();
+    move();
+  }
+
+  private void getInput() {
+    xMove = 0;
+    yMove = 0;
+
     if(game.getKeyManager().up) {
-      y -= 3;
+      yMove = -speed;
+    }
+    if(game.getKeyManager().down) {
+      yMove = speed;
+    }
+    if(game.getKeyManager().left) {
+      xMove = -speed;
+    }
+    if(game.getKeyManager().right) {
+      xMove = speed;
     }
   }
 
   public void render(Graphics g) {
-    g.drawImage(Assets.frog, (int) x, (int) y, null);
+    g.drawImage(Assets.frog, (int) x, (int) y, length, height, null);
   }
 
 }
