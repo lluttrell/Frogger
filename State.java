@@ -1,5 +1,9 @@
 import java.awt.Graphics;
 
+/**
+ * Abstract class for the game's different states. Used for menus
+ * and possibly text-based version.
+ */
 public abstract class State {
 
   private static State currentState = null;

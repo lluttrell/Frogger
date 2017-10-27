@@ -1,5 +1,8 @@
 import java.awt.Graphics;
 
+/**
+ * Frog handles the player of the game and their input. Inherits from GameObject.
+ */
 public class Frog extends GameObject {
 
   public static final int DEFAULT_LIVES = 3;
@@ -7,6 +10,14 @@ public class Frog extends GameObject {
   protected int lives;
   private Game game;
 
+  /**
+   * Default constructor.
+   * Calls parent GameObject class,
+   * @param game object to which the frog belongs to.
+   * @param x the frog's x co-ordinate on the screen.
+   * @param y the frog's y co-ordinate on the screen.
+   * @param length the frog's length.
+   */
   public Frog(Game game, float x, float y, int length) {
     super(x, y, length);
     lives = DEFAULT_LIVES;
@@ -18,20 +29,20 @@ public class Frog extends GameObject {
     move();
   }
 
+  /**
+   * Handles user input.
+   */
   private void getInput() {
     xMove = 0;
     yMove = 0;
 
     if(game.getKeyManager().up) {
       yMove = -speed;
-    }
-    if(game.getKeyManager().down) {
+    }else if(game.getKeyManager().down) {
       yMove = speed;
-    }
-    if(game.getKeyManager().left) {
+    }else if(game.getKeyManager().left) {
       xMove = -speed;
-    }
-    if(game.getKeyManager().right) {
+    }else if(game.getKeyManager().right) {
       xMove = speed;
     }
   }

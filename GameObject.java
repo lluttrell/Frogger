@@ -8,7 +8,7 @@ import java.awt.Graphics;
 public abstract class GameObject {
 
 	public static final float DEFAULT_SPEED = 3.0f;
-	public static final int DEFAULT_HEIGHT = 32;
+	public static final int DEFAULT_HEIGHT = 64;
 
 	protected float x, y;
 	protected char symbol;

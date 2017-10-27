@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 
+
+/**
+ * Core of the game. Handles game loop and game speed.
+ */
 public class Game implements Runnable {
 
   private Display display;
@@ -54,7 +58,7 @@ public class Game implements Runnable {
    */
   private void tick() {
   		keyManager.tick();
-      
+
   		if(State.getState() != null) {
   				State.getState().tick();
   		}
