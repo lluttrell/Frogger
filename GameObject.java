@@ -11,10 +11,10 @@ public class GameObject {
 
 	//Instance variables.
 	protected int dx, dy;
-	private int x, y;
-	private char symbol;
-	private boolean dangerous;
-	private Image image;
+	protected int x, y;
+	protected char symbol;
+	protected boolean dangerous;
+	protected Image image;
 
 	/**
 	 * Constructor for text version. Takes a char for the objects symbol.
@@ -28,8 +28,7 @@ public class GameObject {
 	/**
 	 * Constructor for GUI version. Takes an image path to represent the object.
 	 */
-	public GameObject(String path, int xStartingLocation, int yStartingLocation) {
-		setImage(path);
+	public GameObject(int xStartingLocation, int yStartingLocation) {
 		setX(xStartingLocation);
 		setY(yStartingLocation);
 	}

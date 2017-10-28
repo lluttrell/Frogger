@@ -17,9 +17,10 @@ public class Frog extends GameObject {
 	}
 
 	//GUI constructor
-	public Frog(String path, int xStartingLocation, int yStartingLocation, Board board) {
-		super(path, xStartingLocation, yStartingLocation);
+	public Frog(int xStartingLocation, int yStartingLocation, Board board) {
+		super(xStartingLocation, yStartingLocation);
 		this.board = board;
+		setImage("/frog.png");
 	}
 
 	/**

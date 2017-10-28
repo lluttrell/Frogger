@@ -9,20 +9,31 @@ public class GameObstacle extends GameObject {
   protected boolean dangerous;
   protected int width;
   protected int height;
+  protected boolean vis;
+  protected final int DEFAULT_SPEED = 1;
+  protected final int BOARD_WIDTH = 480;
 
-  public GameObstacle(char symbol, int xStartingLocation, int yStartingLocation, int width, int height) {
+  //text constructor
+  public GameObstacle(char symbol, int xStartingLocation, int yStartingLocation) {
     super(symbol, xStartingLocation, yStartingLocation);
-    this.width = width;
-    this.height = height;
+    vis = true;
   }
 
-  public GameObstacle(String path, int xStartingLocation, int yStartingLocation, int width, int height) {
-    super(path, xStartingLocation, yStartingLocation);
-    this.width = width;
-    this.height = height;
+  //GUI constructor
+  public GameObstacle(int xStartingLocation, int yStartingLocation) {
+    super(xStartingLocation, yStartingLocation);
+    vis= true;
   }
 
-  public void resetRight(GameScreen screen, GameObstacle obstacle) {
+  public void moveRight() {
+    x += DEFAULT_SPEED;
+
+    if (x > BOARD_WIDTH) {
+      x = 0;
+    }
+  }
+
+  /*public void resetRight(GameScreen screen, GameObstacle obstacle) {
   	obstacle.setX(screen.getScreenWidth() - 3);
   }
 
@@ -50,13 +61,30 @@ public class GameObstacle extends GameObject {
   		}
   	}
   	return false;
+  }*/
+
+  //Getters
+
+  public boolean isVisible() {
+    return vis;
   }
+
+  public boolean isDangerous() {
+  	return dangerous;
+  }
+
+  public void getImageDimensions() {
+		width = image.getWidth(null);
+		height = image.getHeight(null);
+	}
+
+  //Setters
 
   public void setDangerous(boolean dangerous) {
 		this.dangerous = dangerous;
 	}
 
-  public boolean isDangerous() {
-  	return dangerous;
+  public void setVisible(Boolean vis) {
+    this.vis = vis;
   }
 }

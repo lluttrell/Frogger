@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -17,6 +18,7 @@ public class Board extends JPanel implements ActionListener {
   private KeyManager keyManager;
   private final int DELAY = 10;
   private Image background;
+  private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
 
   public Board() {
 
@@ -29,9 +31,14 @@ public class Board extends JPanel implements ActionListener {
 
       addKeyListener(keyManager);
       setFocusable(true);
+      setDoubleBuffered(true);
+
       background = ImageLoader.loadImage("/background.png");
 
-      frog = new Frog(this, "/frog.png", 240, 420);
+      frog = new Frog(240, 420, this);
+      GameObstacle car = new GameObstacle(0, 180);
+      car.setImage("/ship1.png");
+      obstacles.add(car);
 
       timer = new Timer(DELAY, this);
       timer.start();
@@ -54,6 +61,9 @@ public class Board extends JPanel implements ActionListener {
 
       Graphics2D g2d = (Graphics2D) g;
       g2d.drawImage(frog.getImage(), frog.getX(), frog.getY(), this);
+      for(GameObstacle o : obstacles) {
+        g2d.drawImage(o.getImage(), o.getX(), o.getY(), this);
+      }
   }
 
   @Override
@@ -62,6 +72,9 @@ public class Board extends JPanel implements ActionListener {
       keyManager.tick();
       frog.getInput();
       frog.move();
+      for(GameObstacle o : obstacles) {
+        o.moveRight();
+      }
       repaint();
   }
 
