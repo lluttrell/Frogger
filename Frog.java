@@ -1,41 +1,43 @@
+import java.awt.event.KeyEvent;
+
 /**
- * Handles setting walls around the GameScreen.
- * @author andreirichkov
- * retrieved from https://github.com/andreirichkov/console-snake
+ * Handles the frog.
+ * adapted from https://github.com/andreirichkov/console-snake
  */
 
 public class Frog extends GameObject {
 
+	private KeyManager keymanager = new KeyManager();
 	private int lives = 3;
+	private Board board;
 
+	//text Constructor
 	public Frog(char symbol, int xStartingLocation, int yStartingLocation) {
-		setSymbol(symbol);
-		setX(xStartingLocation);
-		setY(yStartingLocation);
+		super(symbol, xStartingLocation, yStartingLocation);
 	}
 
-	public void moveLeft(GameScreen screen, Frog frog) {
-		frog.setX(getX() - 1);
-		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-		screen.ClearScreenLocation(frog.getX() + 1, frog.getY());
+	//GUI constructor
+	public Frog(String path, int xStartingLocation, int yStartingLocation, Board board) {
+		super(path, xStartingLocation, yStartingLocation);
+		this.board = board;
 	}
 
-	public void moveRight(GameScreen screen, Frog frog) {
-		frog.setX(getX() + 1);
-		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-		screen.ClearScreenLocation(frog.getX() - 1, frog.getY());
-	}
+	/**
+	 * Handles user input.
+	 */
+	public void getInput() {
+		dx = 0;
+		dy = 0;
 
-	public void moveUp(GameScreen screen, Frog frog) {
-		frog.setY(getY() - 1);
-		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-		screen.ClearScreenLocation(frog.getX(), frog.getY() + 1);
-	}
-
-	public void moveDown(GameScreen screen, Frog frog) {
-		frog.setY(getY() + 1);
-		screen.setObjectOnLocation(frog, frog.getX(), frog.getY());
-		screen.ClearScreenLocation(frog.getX(), frog.getY() - 1);
+		if(board.getKeyManager().up) {
+			dy -= 1;
+		}else if(board.getKeyManager().down) {
+			dy += 1;
+		}else if(board.getKeyManager().left) {
+			dx -= 1;
+		}else if(board.getKeyManager().right) {
+			dx += 1;
+		}
 	}
 
 	public int getLives() {

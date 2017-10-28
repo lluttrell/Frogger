@@ -1,61 +1,89 @@
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+
 /**
  * Handles setting walls around the GameScreen.
- * @author andreirichkov
- * retrieved from https://github.com/andreirichkov/console-snake
+ * Adapted from https://github.com/andreirichkov/console-snake
  */
 
 public class GameObject {
 
+	//Instance variables.
+	protected int dx, dy;
 	private int x, y;
 	private char symbol;
+	private boolean dangerous;
+	private Image image;
+
+	/**
+	 * Constructor for text version. Takes a char for the objects symbol.
+	 */
+	public GameObject(char symbol, int xStartingLocation, int yStartingLocation) {
+		setSymbol(symbol);
+		setX(xStartingLocation);
+		setY(yStartingLocation);
+	}
+
+	/**
+	 * Constructor for GUI version. Takes an image path to represent the object.
+	 */
+	public GameObject(String path, int xStartingLocation, int yStartingLocation) {
+		setImage(path);
+		setX(xStartingLocation);
+		setY(yStartingLocation);
+	}
+
+	public void move() {
+		x += dx;
+		y += dy;
+	}
 
 	// Getters
-	/**
-	* Returns the x coordinate of the GameObject.
-	* @return x Coordinate of the GameObject
-	*/
+
 	public int getX() {
 		return this.x;
 	}
 
-	/**
-	* Returns the y coordinate of the GameObject.
-	* @return y Coordinate of the GameObject
-	*/
 	public int getY() {
-		return this.y;
+		return y;
 	}
 
-	/**
-	* Returns the character used to represent the GameObject
-	* @return char used to represent the GambeObject
-	*/
+	public boolean isDangerous() {
+		return dangerous;
+	}
+
 	public char getSymbol() {
 		return symbol;
 	}
 
+	public Image getImage() {
+		return image;
+	}
+
 	// Setters
-	/**
-	* Sets the x coordinate of the GameObject.
-	* @param newLocation New x coordinate
-	*/
+
 	public void setX(int newLocation) {
-		this.x = newLocation;
+		x = newLocation;
 	}
 
-	/**
-	* Sets the x coordinate of the GameObject.
-	* @param newLocation New y coordinate
-	*/
 	public void setY(int newLocation) {
-		this.y = newLocation;
+		y = newLocation;
+	}
+
+	public void setDangerous(boolean dangerous) {
+		this.dangerous = dangerous;
 	}
 
 	/**
-	* Sets the text character used to draw the GameObject.
-	* @param newSymbol New character
-	*/
+	 * Sets the text character used to draw the GameObject.
+	 * @param newSymbol New character
+	 */
 	public void setSymbol(char newSymbol) {
-		this.symbol = newSymbol;
+		symbol = newSymbol;
+	}
+
+	public void setImage(String path) {
+		image = ImageLoader.loadImage(path);
 	}
 }
