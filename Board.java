@@ -19,6 +19,7 @@ public class Board extends JPanel implements ActionListener {
 
   private final int DELAY = 10;
   private final int BOARD_SIZE = 480;
+  private final int RIVER_STARTING_Y = 200;
 
   private boolean running;
 
@@ -56,6 +57,12 @@ public class Board extends JPanel implements ActionListener {
 
       Log log2 = new Log(480, 80, 'L');
       obstacles.add(log2);
+
+      Log log3 = new Log(32,180,'R');
+      obstacles.add(log3);
+
+      Log log4 = new Log(480,120,'L');
+      obstacles.add(log4);
 
       Car car1 = new Car(0, 260, 'L');
       obstacles.add(car1);
@@ -109,9 +116,21 @@ public class Board extends JPanel implements ActionListener {
  public void checkCollisions() {
     Rectangle player = frog.getBounds();
 
+    if (frog.getY() < RIVER_STARTING_Y) {
+      boolean overLap = false;
+      for (GameObstacle o: obstacles) {
+        Rectangle obs = o.getBounds();
+        if (player.intersects(obs) && !o.isDangerous()) {
+          overLap = true;
+        }
+      }
+      if (!overLap) {
+        frog.die();
+      }
+    }
+
     for (GameObstacle o : obstacles) {
       Rectangle obs = o.getBounds();
-
       if (player.intersects(obs) && o.isDangerous()) {
         frog.die();
       }
