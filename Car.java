@@ -5,5 +5,6 @@ public class Car extends GameObstacle {
 		setImage("images/asteroid.png");
     setSymbol('X');
     getImageDimensions();
+    setDangerous(true);
 	}
 }

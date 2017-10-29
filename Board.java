@@ -112,7 +112,7 @@ public class Board extends JPanel implements ActionListener {
     for (GameObstacle o : obstacles) {
       Rectangle obs = o.getBounds();
 
-      if (player.intersects(obs)) {
+      if (player.intersects(obs) && o.isDangerous()) {
         frog.die();
       }
     }

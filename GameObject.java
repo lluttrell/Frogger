@@ -14,7 +14,6 @@ public class GameObject {
 	protected int width;
   protected int height;
 	protected char symbol;
-	protected boolean dangerous;
 	protected Image image;
 
 	/**
@@ -48,10 +47,6 @@ public class GameObject {
 		return y;
 	}
 
-	public boolean isDangerous() {
-		return dangerous;
-	}
-
 	public char getSymbol() {
 		return symbol;
 	}
@@ -77,10 +72,6 @@ public class GameObject {
 
 	public void setY(int newLocation) {
 		y = newLocation;
-	}
-
-	public void setDangerous(boolean dangerous) {
-		this.dangerous = dangerous;
 	}
 
 	/**

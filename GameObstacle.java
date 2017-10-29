@@ -33,15 +33,6 @@ public class GameObstacle extends GameObject {
     }
   }
 
-  /*public boolean overlapsWith(Frog frog) {
-  	for (int i = -1; i < this.getLength(); i++) {
-  		if (this.getX() - i == frog.getX() && this.getY() == frog.getY()) {
-  			return true;
-  		}
-  	}
-  	return false;
-  }*/
-
   //Getters
 
   public boolean isDangerous() {
