@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Rectangle;
 import java.awt.Color;
 import java.awt.Image;
@@ -14,11 +16,12 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 
+  private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
   public static final int frogXStart = 240;
   public static final int frogYStart = 420;
 
   private final int DELAY = 10;
-  private final int BOARD_SIZE = 480;
+  private final int SCREEN_SIZE = 480;
   private final int RIVER_STARTING_Y = 200;
 
   private boolean running;
@@ -52,17 +55,23 @@ public class Board extends JPanel implements ActionListener {
 
   	frog = new Frog(this, frogXStart, frogYStart);
 
-  	Log log1 = new Log(0, RIVER_STARTING_Y, 'R');
+  	Log log1 = new Log(0, 180, 'R');
   	obstacles.add(log1);
 
-  	Log log2 = new Log(480, 166, 'L');
+  	Log log2 = new Log(480, 130, 'L');
   	obstacles.add(log2);
 
-  	Log log3 = new Log(32,132,'R');
+  	Log log3 = new Log(32, 80,'R');
   	obstacles.add(log3);
 
-  	Log log4 = new Log(480,98,'L');
+  	Log log4 = new Log(480, 30,'L');
   	obstacles.add(log4);
+
+    Log log5 = new Log(-200, 180,'R');
+  	obstacles.add(log5);
+
+    Log log6 = new Log(800, 130, 'L');
+  	obstacles.add(log6);
 
   	Car car1 = new Car(0, 260, 'L');
   	obstacles.add(car1);
@@ -91,6 +100,8 @@ public class Board extends JPanel implements ActionListener {
   		g2d.drawImage(o.getImage(), o.getX(), o.getY(), this);
   	}
 
+    drawScore(g2d);
+
   	g2d.drawImage(frog.getImage(), frog.getX(), frog.getY(), this);
   }
 
@@ -106,6 +117,15 @@ public class Board extends JPanel implements ActionListener {
   	keyManager.tick();
   	frog.getInput();
   	frog.move();
+
+    if (frog.getY() < 0) {
+      running = false;
+
+    }
+  }
+
+  public void showWinScreen(Graphics g) {
+    Graphics2D g2d = (Graphics2D) g;
   }
 
   public void updateObstacles() {
@@ -142,11 +162,25 @@ public class Board extends JPanel implements ActionListener {
   	}
   }
 
+  private void drawScore(Graphics2D g2d) {
+
+  	String s;
+
+  	g2d.setFont(smallFont);
+  	g2d.setColor(new Color(0, 0, 0));
+  	s = "Lives: " + frog.getLives();
+  	g2d.drawString(s, SCREEN_SIZE - 80, SCREEN_SIZE - 40);
+  }
+
   /**
    * Getter for keyManager
    * @return KeyManager the board's KeyManager
    */
   public KeyManager getKeyManager() {
   	return keyManager;
+  }
+
+  public int getScreenSize() {
+    return SCREEN_SIZE;
   }
 }

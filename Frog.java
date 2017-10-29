@@ -41,6 +41,26 @@ public class Frog extends GameObject {
 		}
 	}
 
+	public void move() {
+		super.move();
+
+		if (x < 1) {
+			x = 1;
+		}
+
+		if (y < 1) {
+			y = 1;
+		}
+
+		if (x > board.getScreenSize() - 35) {
+			x = board.getScreenSize() - 35;
+		}
+
+		if (y > board.getScreenSize() - 60) {
+			y = board.getScreenSize() - 60;
+		}
+	}
+
 	public int getLives() {
 		return this.lives;
 	}

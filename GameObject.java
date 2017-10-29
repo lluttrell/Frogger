@@ -27,20 +27,12 @@ public class GameObject {
 	public void move() {
 		x += dx;
 		y += dy;
-
-		if (x < 1) {
-			x = 1;
-		}
-
-		if (y < 1) {
-			y = 1;
-		}
 	}
 
 	// Getters
 
 	public int getX() {
-		return this.x;
+		return x;
 	}
 
 	public int getY() {
