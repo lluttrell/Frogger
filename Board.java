@@ -58,24 +58,30 @@ public class Board extends JPanel implements ActionListener {
   }
 
   private void doDrawing(Graphics g) {
-
       Graphics2D g2d = (Graphics2D) g;
-      g2d.drawImage(frog.getImage(), frog.getX(), frog.getY(), this);
       for(GameObstacle o : obstacles) {
         g2d.drawImage(o.getImage(), o.getX(), o.getY(), this);
       }
+      g2d.drawImage(frog.getImage(), frog.getX(), frog.getY(), this);
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-
-      keyManager.tick();
-      frog.getInput();
-      frog.move();
-      for(GameObstacle o : obstacles) {
-        o.moveRight();
-      }
+      updateObstacles();
+      updateFrog();
       repaint();
+  }
+
+  public void updateFrog() {
+    keyManager.tick();
+    frog.getInput();
+    frog.move();
+  }
+
+  public void updateObstacles() {
+    for(GameObstacle o : obstacles) {
+      o.moveRight();
+    }
   }
 
   public KeyManager getKeyManager() {
