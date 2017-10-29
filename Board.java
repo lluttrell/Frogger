@@ -36,9 +36,10 @@ public class Board extends JPanel implements ActionListener {
       background = ImageLoader.loadImage("/background.png");
 
       frog = new Frog(240, 420, this);
-      GameObstacle car = new GameObstacle(0, 180);
-      car.setImage("/ship1.png");
-      obstacles.add(car);
+
+      GameObstacle log = new GameObstacle(0, 180);
+      log.setImage("/ship1.png");
+      obstacles.add(log);
 
       timer = new Timer(DELAY, this);
       timer.start();
