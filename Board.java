@@ -14,6 +14,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Board handles the main game logic and game loop.
+ * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
+ * background image obtained from https://i.imgur.com/iFW8JM4.png
+ */
 public class Board extends JPanel implements ActionListener {
 
   private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
@@ -25,6 +30,7 @@ public class Board extends JPanel implements ActionListener {
   private final int RIVER_STARTING_Y = 200;
 
   private boolean running;
+  private boolean won;
 
   private Timer timer;
 
@@ -36,11 +42,17 @@ public class Board extends JPanel implements ActionListener {
 
   private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
 
+  /**
+   * Default constructor.
+   */
   public Board() {
 
   	initBoard();
   }
 
+  /**
+   * Initalizes all objects.
+   */
   private void initBoard() {
 
   	keyManager = new KeyManager();
@@ -51,7 +63,6 @@ public class Board extends JPanel implements ActionListener {
   	running = true;
 
   	background = ImageLoader.loadImage("images/background.png");
-  	ground = ImageLoader.loadImage("images/metal.png");
 
   	frog = new Frog(this, frogXStart, frogYStart);
 
@@ -88,7 +99,9 @@ public class Board extends JPanel implements ActionListener {
 
   	if (running) {
   		doDrawing(g);
-  	}
+  	} else if (won) {
+      showWinScreen(g);
+    }
 
   	Toolkit.getDefaultToolkit().sync();
   }
@@ -105,6 +118,9 @@ public class Board extends JPanel implements ActionListener {
   	g2d.drawImage(frog.getImage(), frog.getX(), frog.getY(), this);
   }
 
+  /**
+   * Game loop
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
   	updateObstacles();
@@ -118,14 +134,10 @@ public class Board extends JPanel implements ActionListener {
   	frog.getInput();
   	frog.move();
 
-    if (frog.getY() < 0) {
+    if (frog.getY() == 1) {
       running = false;
-
+      won = true;
     }
-  }
-
-  public void showWinScreen(Graphics g) {
-    Graphics2D g2d = (Graphics2D) g;
   }
 
   public void updateObstacles() {
@@ -146,7 +158,11 @@ public class Board extends JPanel implements ActionListener {
   			Rectangle obs = o.getBounds();
   			if (player.intersects(obs) && !o.isDangerous()) {
   				overLap = true;
-          frog.setX(o.getX());
+          if (o.getDirection() == 'R') {
+            frog.setX(frog.getX() + 1);
+          } else {
+            frog.setX(frog.getX() - 1);
+          }
   			}
   		}
   		if (!overLap) {
@@ -160,6 +176,23 @@ public class Board extends JPanel implements ActionListener {
   			frog.die();
   		}
   	}
+  }
+
+  private void showWinScreen(Graphics g) {
+    Graphics2D g2d = (Graphics2D) g;
+
+  	g2d.setColor(new Color(0, 32, 48));
+  	g2d.fillRect(50, SCREEN_SIZE / 2 - 30, SCREEN_SIZE - 100, 50);
+  	g2d.setColor(Color.white);
+  	g2d.drawRect(50, SCREEN_SIZE / 2 - 30, SCREEN_SIZE - 100, 50);
+
+  	String s = "You win!";
+  	Font small = new Font("Helvetica", Font.BOLD, 14);
+  	FontMetrics metr = this.getFontMetrics(small);
+
+  	g2d.setColor(Color.white);
+  	g2d.setFont(small);
+  	g2d.drawString(s, (SCREEN_SIZE - metr.stringWidth(s)) / 2, SCREEN_SIZE / 2);
   }
 
   private void drawScore(Graphics2D g2d) {
@@ -180,6 +213,10 @@ public class Board extends JPanel implements ActionListener {
   	return keyManager;
   }
 
+  /**
+   * Getter for screen size
+   * @return the size of the screen in pixels.
+   */
   public int getScreenSize() {
     return SCREEN_SIZE;
   }
