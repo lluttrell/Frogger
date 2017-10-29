@@ -100,7 +100,9 @@ public class Board extends JPanel implements ActionListener {
   	if (running) {
   		doDrawing(g);
   	} else if (won) {
-      showWinScreen(g);
+      showEndScreen(g, "You Win!");
+    } else {
+      showEndScreen(g, "You Lose :(");
     }
 
   	Toolkit.getDefaultToolkit().sync();
@@ -137,6 +139,10 @@ public class Board extends JPanel implements ActionListener {
     if (frog.getY() == 1) {
       running = false;
       won = true;
+    }
+
+    if (frog.getLives() == 0) {
+      running = false;
     }
   }
 
@@ -178,7 +184,7 @@ public class Board extends JPanel implements ActionListener {
   	}
   }
 
-  private void showWinScreen(Graphics g) {
+  private void showEndScreen(Graphics g, String s) {
     Graphics2D g2d = (Graphics2D) g;
 
   	g2d.setColor(new Color(0, 32, 48));
@@ -186,7 +192,6 @@ public class Board extends JPanel implements ActionListener {
   	g2d.setColor(Color.white);
   	g2d.drawRect(50, SCREEN_SIZE / 2 - 30, SCREEN_SIZE - 100, 50);
 
-  	String s = "You win!";
   	Font small = new Font("Helvetica", Font.BOLD, 14);
   	FontMetrics metr = this.getFontMetrics(small);
 
