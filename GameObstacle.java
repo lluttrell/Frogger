@@ -7,8 +7,6 @@ import java.awt.Graphics;
 public class GameObstacle extends GameObject {
 
   protected boolean dangerous;
-  protected int width;
-  protected int height;
   protected boolean vis;
   protected final int DEFAULT_SPEED = 1;
   protected final int BOARD_WIDTH = 480;
@@ -30,6 +28,14 @@ public class GameObstacle extends GameObject {
 
     if (x > BOARD_WIDTH) {
       x = 0;
+    }
+  }
+
+  public void moveLeft() {
+    x -= DEFAULT_SPEED;
+
+    if (x < BOARD_WIDTH) {
+      x = BOARD_WIDTH;
     }
   }
 
@@ -72,11 +78,6 @@ public class GameObstacle extends GameObject {
   public boolean isDangerous() {
   	return dangerous;
   }
-
-  public void getImageDimensions() {
-		width = image.getWidth(null);
-		height = image.getHeight(null);
-	}
 
   //Setters
 

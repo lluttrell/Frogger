@@ -37,9 +37,8 @@ public class Board extends JPanel implements ActionListener {
 
       frog = new Frog(240, 420, this);
 
-      GameObstacle log = new GameObstacle(0, 180);
-      log.setImage("/ship1.png");
-      obstacles.add(log);
+      Log log1 = new Log(0, 180);
+      obstacles.add(log1);
 
       timer = new Timer(DELAY, this);
       timer.start();

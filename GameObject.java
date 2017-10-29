@@ -12,6 +12,8 @@ public class GameObject {
 	//Instance variables.
 	protected int dx, dy;
 	protected int x, y;
+	protected int width;
+  protected int height;
 	protected char symbol;
 	protected boolean dangerous;
 	protected Image image;
@@ -58,6 +60,11 @@ public class GameObject {
 
 	public Image getImage() {
 		return image;
+	}
+
+	public void getImageDimensions() {
+		width = image.getWidth(null);
+		height = image.getHeight(null);
 	}
 
 	// Setters
