@@ -10,11 +10,14 @@ public class Frog extends GameObject {
 	private KeyManager keymanager = new KeyManager();
 	private int lives = 3;
 	private Board board;
+	private int startX, startY;
 
 	//GUI constructor
-	public Frog(int xStartingLocation, int yStartingLocation, Board board) {
+	public Frog(Board board, int xStartingLocation, int yStartingLocation) {
 		super(xStartingLocation, yStartingLocation);
 		this.board = board;
+		startX = xStartingLocation;
+		startY = yStartingLocation;
 		setImage("images/frog.png");
 		setSymbol('F');
 		getImageDimensions();
@@ -44,5 +47,7 @@ public class Frog extends GameObject {
 
 	public void die() {
 		this.lives--;
+		x = startX;
+		y = startY;
 	}
 }

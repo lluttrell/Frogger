@@ -12,5 +12,6 @@ public class Log extends GameObstacle {
       setImage("images/shipR.png");
     }
     setSymbol('L');
+    getImageDimensions();
   }
 }
