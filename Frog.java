@@ -2,7 +2,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * Handles the frog.
- * adapted from https://github.com/andreirichkov/console-snake
+ * adapted from http://zetcode.com/tutorials/javagamestutorial/collision/
  */
 
 public class Frog extends GameObject {
@@ -11,16 +11,13 @@ public class Frog extends GameObject {
 	private int lives = 3;
 	private Board board;
 
-	//text Constructor
-	public Frog(char symbol, int xStartingLocation, int yStartingLocation) {
-		super(symbol, xStartingLocation, yStartingLocation);
-	}
-
 	//GUI constructor
 	public Frog(int xStartingLocation, int yStartingLocation, Board board) {
 		super(xStartingLocation, yStartingLocation);
 		this.board = board;
-		setImage("/frog.png");
+		setImage("images/frog.png");
+		setSymbol('F');
+		getImageDimensions();
 	}
 
 	/**

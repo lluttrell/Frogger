@@ -1,6 +1,5 @@
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
+import java.awt.Rectangle;
 
 /**
  * Handles setting walls around the GameScreen.
@@ -19,15 +18,6 @@ public class GameObject {
 	protected Image image;
 
 	/**
-	 * Constructor for text version. Takes a char for the objects symbol.
-	 */
-	public GameObject(char symbol, int xStartingLocation, int yStartingLocation) {
-		setSymbol(symbol);
-		setX(xStartingLocation);
-		setY(yStartingLocation);
-	}
-
-	/**
 	 * Constructor for GUI version. Takes an image path to represent the object.
 	 */
 	public GameObject(int xStartingLocation, int yStartingLocation) {
@@ -38,6 +28,14 @@ public class GameObject {
 	public void move() {
 		x += dx;
 		y += dy;
+
+		if (x < 1) {
+			x = 1;
+		}
+
+		if (y < 1) {
+			y = 1;
+		}
 	}
 
 	// Getters
@@ -65,6 +63,10 @@ public class GameObject {
 	public void getImageDimensions() {
 		width = image.getWidth(null);
 		height = image.getHeight(null);
+	}
+
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
 	}
 
 	// Setters

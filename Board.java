@@ -33,12 +33,14 @@ public class Board extends JPanel implements ActionListener {
       setFocusable(true);
       setDoubleBuffered(true);
 
-      background = ImageLoader.loadImage("/background.png");
+      background = ImageLoader.loadImage("images/background.png");
 
       frog = new Frog(240, 420, this);
 
-      Log log1 = new Log(0, 180);
+      Log log1 = new Log(0, 180, 'R');
       obstacles.add(log1);
+
+      //Car car1 = new Car(0, 260)
 
       timer = new Timer(DELAY, this);
       timer.start();
@@ -80,7 +82,7 @@ public class Board extends JPanel implements ActionListener {
 
   public void updateObstacles() {
     for(GameObstacle o : obstacles) {
-      o.moveRight();
+      o.move();
     }
   }
 
