@@ -40,6 +40,9 @@ public class Board extends JPanel implements ActionListener {
       Log log1 = new Log(0, 180, 'R');
       obstacles.add(log1);
 
+      Log log2 = new Log(480, 80, 'L');
+      obstacles.add(log2);
+
       //Car car1 = new Car(0, 260)
 
       timer = new Timer(DELAY, this);

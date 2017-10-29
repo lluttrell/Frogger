@@ -21,7 +21,7 @@ public class GameObstacle extends GameObject {
     if (direction == 'L') {
       x -= DEFAULT_SPEED;
 
-    	if (x < BOARD_WIDTH) {
+    	if (x < 0) {
     		x = BOARD_WIDTH;
     	}
     } else if (direction == 'R') {
