@@ -18,6 +18,8 @@ import javax.swing.Timer;
  * Board handles the main game logic and game loop.
  * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
  * background image obtained from https://i.imgur.com/iFW8JM4.png
+ * @author Iden Craven
+ * @author Richard Williams
  */
 public class Board extends JPanel implements ActionListener {
 
@@ -78,10 +80,10 @@ public class Board extends JPanel implements ActionListener {
   	Log log4 = new Log(480, 30,'L');
   	obstacles.add(log4);
 
-    Log log5 = new Log(-200, 180,'R');
+  	Log log5 = new Log(-200, 180,'R');
   	obstacles.add(log5);
 
-    Log log6 = new Log(800, 130, 'L');
+  	Log log6 = new Log(800, 130, 'L');
   	obstacles.add(log6);
 
   	Car car1 = new Car(0, 260, 'L');
@@ -100,10 +102,10 @@ public class Board extends JPanel implements ActionListener {
   	if (running) {
   		doDrawing(g);
   	} else if (won) {
-      showEndScreen(g, "You Win!");
-    } else {
-      showEndScreen(g, "You Lose :(");
-    }
+  		showEndScreen(g, "You Win!");
+  	} else {
+  		showEndScreen(g, "You Lose :(");
+  	}
 
   	Toolkit.getDefaultToolkit().sync();
   }
@@ -115,7 +117,7 @@ public class Board extends JPanel implements ActionListener {
   		g2d.drawImage(o.getImage(), o.getX(), o.getY(), this);
   	}
 
-    drawScore(g2d);
+  	drawLives(g2d);
 
   	g2d.drawImage(frog.getImage(), frog.getX(), frog.getY(), this);
   }
@@ -136,14 +138,16 @@ public class Board extends JPanel implements ActionListener {
   	frog.getInput();
   	frog.move();
 
-    if (frog.getY() == 1) {
-      running = false;
-      won = true;
-    }
+  	//Player reaches top of the screen
+  	if (frog.getY() == 1) {
+  		running = false;
+  		won = true;
+  	}
 
-    if (frog.getLives() == 0) {
-      running = false;
-    }
+  	//If player runs out of lives
+  	if (frog.getLives() == 0) {
+  		running = false;
+  	}
   }
 
   public void updateObstacles() {
@@ -158,17 +162,18 @@ public class Board extends JPanel implements ActionListener {
   public void checkCollisions() {
   	Rectangle player = frog.getBounds();
 
+  	//If the player is on a log
   	if (frog.getY() < RIVER_STARTING_Y) {
   		boolean overLap = false;
   		for (GameObstacle o: obstacles) {
   			Rectangle obs = o.getBounds();
   			if (player.intersects(obs) && !o.isDangerous()) {
   				overLap = true;
-          if (o.getDirection() == 'R') {
-            frog.setX(frog.getX() + 1);
-          } else {
-            frog.setX(frog.getX() - 1);
-          }
+  				if (o.getDirection() == 'R') {
+  					frog.setX(frog.getX() + 1);
+  				} else {
+  					frog.setX(frog.getX() - 1);
+  				}
   			}
   		}
   		if (!overLap) {
@@ -176,6 +181,7 @@ public class Board extends JPanel implements ActionListener {
   		}
   	}
 
+  	//If car hits player.
   	for (GameObstacle o : obstacles) {
   		Rectangle obs = o.getBounds();
   		if (player.intersects(obs) && o.isDangerous()) {
@@ -184,8 +190,13 @@ public class Board extends JPanel implements ActionListener {
   	}
   }
 
+  /**
+   * Draws a box with a message inside it. Used to show win screen or game over.
+   * @param g the graphics object
+   * @param s The message inside the box.
+   */
   private void showEndScreen(Graphics g, String s) {
-    Graphics2D g2d = (Graphics2D) g;
+  	Graphics2D g2d = (Graphics2D) g;
 
   	g2d.setColor(new Color(0, 32, 48));
   	g2d.fillRect(50, SCREEN_SIZE / 2 - 30, SCREEN_SIZE - 100, 50);
@@ -200,7 +211,11 @@ public class Board extends JPanel implements ActionListener {
   	g2d.drawString(s, (SCREEN_SIZE - metr.stringWidth(s)) / 2, SCREEN_SIZE / 2);
   }
 
-  private void drawScore(Graphics2D g2d) {
+  /**
+   * Draws a the players current lives in bottom right of screen.
+   * @param g2d the 2d graphics object
+   */
+  private void drawLives(Graphics2D g2d) {
 
   	String s;
 
@@ -223,6 +238,6 @@ public class Board extends JPanel implements ActionListener {
    * @return the size of the screen in pixels.
    */
   public int getScreenSize() {
-    return SCREEN_SIZE;
+  	return SCREEN_SIZE;
   }
 }

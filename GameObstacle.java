@@ -2,7 +2,8 @@ import java.awt.Graphics;
 
 /**
  * Handles obstacle movement and initalization.
- * @author Iden Craven
+ * Inherits from GameObject.
+ * Parent to Log and Car.
  */
 public class GameObstacle extends GameObject {
 
@@ -14,23 +15,23 @@ public class GameObstacle extends GameObject {
   //GUI constructor
   public GameObstacle(int xStartingLocation, int yStartingLocation, char direction) {
   	super(xStartingLocation, yStartingLocation);
-    this.direction = direction;
+  	this.direction = direction;
   }
 
   public void move() {
-    if (direction == 'L') {
-      x -= DEFAULT_SPEED;
+  	if (direction == 'L') {
+  		x -= DEFAULT_SPEED;
 
-    	if (x < 0) {
-    		x = BOARD_WIDTH;
-    	}
-    } else if (direction == 'R') {
-      x += DEFAULT_SPEED;
+  		if (x < 0) {
+  			x = BOARD_WIDTH;
+  		}
+  	} else if (direction == 'R') {
+  		x += DEFAULT_SPEED;
 
-    	if (x > BOARD_WIDTH) {
-    		x = 0;
-    	}
-    }
+  		if (x > BOARD_WIDTH) {
+  			x = 0;
+  		}
+  	}
   }
 
   //Getters
@@ -40,7 +41,7 @@ public class GameObstacle extends GameObject {
   }
 
   public char getDirection() {
-    return direction;
+  	return direction;
   }
 
   //Setters
@@ -50,6 +51,6 @@ public class GameObstacle extends GameObject {
   }
 
   public void setDirection(char direction) {
-    this.direction = direction;
+  	this.direction = direction;
   }
 }

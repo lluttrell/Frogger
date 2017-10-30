@@ -2,7 +2,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 /**
- * Handles setting walls around the GameScreen.
+ * Handles Gameobjects in the game.
+ * Parent to Frog and GameObstacles.
  * Adapted from https://github.com/andreirichkov/console-snake
  */
 
@@ -12,7 +13,7 @@ public class GameObject {
 	protected int dx, dy;
 	protected int x, y;
 	protected int width;
-  protected int height;
+	protected int height;
 	protected char symbol;
 	protected Image image;
 
@@ -47,6 +48,9 @@ public class GameObject {
 		return image;
 	}
 
+	/**
+	 * sets gameobjects width and height to the image size.
+	 */
 	public void getImageDimensions() {
 		width = image.getWidth(null);
 		height = image.getHeight(null);
