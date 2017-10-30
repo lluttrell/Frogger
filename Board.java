@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Rectangle;
@@ -68,26 +71,7 @@ public class Board extends JPanel implements ActionListener {
 
   	frog = new Frog(this, frogXStart, frogYStart);
 
-  	Log log1 = new Log(0, 180, 'R');
-  	obstacles.add(log1);
-
-  	Log log2 = new Log(480, 130, 'L');
-  	obstacles.add(log2);
-
-  	Log log3 = new Log(32, 80,'R');
-  	obstacles.add(log3);
-
-  	Log log4 = new Log(480, 30,'L');
-  	obstacles.add(log4);
-
-  	Log log5 = new Log(-200, 180,'R');
-  	obstacles.add(log5);
-
-  	Log log6 = new Log(800, 130, 'L');
-  	obstacles.add(log6);
-
-  	Car car1 = new Car(0, 260, 'L');
-  	obstacles.add(car1);
+    readWorld("worlds/world1.txt");
 
   	timer = new Timer(DELAY, this);
   	timer.start();
@@ -223,6 +207,32 @@ public class Board extends JPanel implements ActionListener {
   	g2d.setColor(new Color(0, 0, 0));
   	s = "Lives: " + frog.getLives();
   	g2d.drawString(s, SCREEN_SIZE - 80, SCREEN_SIZE - 40);
+  }
+
+  private void readWorld(String path) {
+    try {
+      File file = new File(path);
+      Scanner sc = new Scanner(file);
+
+      while (sc.hasNext()) {
+        int numLog = sc.nextInt();
+        for (int i = 0; i < numLog; i++) {
+          int x = sc.nextInt();
+          int y = sc.nextInt();
+          char direction = sc.next().charAt(0);
+          obstacles.add(new Log(x, y, direction));
+        }
+        int numCar = sc.nextInt();
+        for (int i = 0; i < numCar; i++) {
+          int x = sc.nextInt();
+          int y = sc.nextInt();
+          char direction = sc.next().charAt(0);
+          obstacles.add(new Car(x, y, direction));
+        }
+      }
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
