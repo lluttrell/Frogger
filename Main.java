@@ -1,37 +1,37 @@
-import java.awt.EventQueue;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Handles JFrame and launching the game.
  */
 public class Main extends JFrame {
 
-  public Main() {
+    public Main() {
 
-  	initUI();
-  }
+        initUI();
+    }
 
-  private void initUI() {
+    public static void main(String[] args) {
 
-  	add(new Board());
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
 
-  	setSize(480, 480);
-  	setResizable(false);
+                Main game = new Main();
+                game.setVisible(true);
+            }
+        });
+    }
 
-  	setTitle("Frogger");
-  	setLocationRelativeTo(null);
-  	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  }
+    private void initUI() {
+        Board board = new Board();
+        add(board.getView());
 
-  public static void main(String[] args) {
+        setSize(480, 480);
+        setResizable(false);
 
-  	EventQueue.invokeLater(new Runnable() {
-  			@Override
-  			public void run() {
-
-  			  Main game = new Main();
-  			  game.setVisible(true);
-  			}
-  		});
-  }
+        setTitle("Frogger");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 }

@@ -1,84 +1,73 @@
-import java.awt.Image;
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
- * Handles Gameobjects in the game.
+ * Handles Game objects in the game.
  * Parent to Frog and GameObstacles.
  * Adapted from https://github.com/andreirichkov/console-snake
  */
 
 public class GameObject {
 
-	//Instance variables.
-	protected int dx, dy;
-	protected int x, y;
-	protected int width;
-	protected int height;
-	protected char symbol;
-	protected Image image;
+    //Instance variables.
+    protected int x, y;
+    protected int width;
+    protected int height;
+    protected char symbol;
+    protected Image image;
 
-	/**
-	 * Constructor for GUI version. Takes an image path to represent the object.
-	 */
-	public GameObject(int xStartingLocation, int yStartingLocation) {
-		setX(xStartingLocation);
-		setY(yStartingLocation);
-	}
+    /**
+     * Constructor for GUI version. Takes an image path to represent the object.
+     */
+    public GameObject(int xStartingLocation, int yStartingLocation) {
+        setX(xStartingLocation);
+        setY(yStartingLocation);
+    }
 
-	public void move() {
-		x += dx;
-		y += dy;
-	}
+    // Getters
 
-	// Getters
+    public int getX() {
+        return x;
+    }
 
-	public int getX() {
-		return x;
-	}
+    public void setX(int newLocation) {
+        x = newLocation;
+    }
 
-	public int getY() {
-		return y;
-	}
+    public int getY() {
+        return y;
+    }
 
-	public char getSymbol() {
-		return symbol;
-	}
+    public void setY(int newLocation) {
+        y = newLocation;
+    }
 
-	public Image getImage() {
-		return image;
-	}
+    public char getSymbol() {
+        return symbol;
+    }
 
-	/**
-	 * sets gameobjects width and height to the image size.
-	 */
-	public void getImageDimensions() {
-		width = image.getWidth(null);
-		height = image.getHeight(null);
-	}
+    public void setSymbol(char newSymbol) {
+        symbol = newSymbol;
+    }
 
-	public Rectangle getBounds() {
-		return new Rectangle(x, y, width, height);
-	}
+    // Setters
 
-	// Setters
+    public Image getImage() {
+        return image;
+    }
 
-	public void setX(int newLocation) {
-		x = newLocation;
-	}
+    public void setImage(String path) {
+        image = ImageLoader.loadImage(path);
+    }
 
-	public void setY(int newLocation) {
-		y = newLocation;
-	}
+    /**
+     * sets game objects width and height to the image size.
+     */
+    public void getImageDimensions() {
+        width = image.getWidth(null);
+        height = image.getHeight(null);
+    }
 
-	/**
-	 * Sets the text character used to draw the GameObject.
-	 * @param newSymbol New character
-	 */
-	public void setSymbol(char newSymbol) {
-		symbol = newSymbol;
-	}
-
-	public void setImage(String path) {
-		image = ImageLoader.loadImage(path);
-	}
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
 }

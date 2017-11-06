@@ -1,5 +1,5 @@
-import java.awt.Image;
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -7,13 +7,13 @@ import java.io.IOException;
  */
 public class ImageLoader {
 
-  public static Image loadImage(String path) {
-  	try {
-  		return ImageIO.read(ImageLoader.class.getResource(path));
-  	} catch (IOException e) {
-  		e.printStackTrace();
-  		System.exit(1);
-  	}
-  	return null;
-  }
+    public static Image loadImage(String path) {
+        try {
+            return ImageIO.read(ImageLoader.class.getResource(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return null;
+    }
 }
