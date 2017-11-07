@@ -1,16 +1,17 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Model {
+public class ModelText {
+
     private final int RIVER_STARTING_Y = 200;
     private Frog frog;
-    private Board board;
+    private ControllerText controllerText;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
 
-    public Model(Frog frog, ArrayList<GameObstacle> obstacles, Board board) {
+    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles, ControllerText controllerText) {
         this.frog = frog;
         this.obstacles = obstacles;
-        this.board = board;
+        this.controllerText = controllerText;
     }
 
     /**
@@ -21,12 +22,12 @@ public class Model {
         frog.move();
 
         if (frog.getY() == 1) {
-            board.setRunningFalse();
-            board.setWonFalse();
+            controllerText.setRunningFalse();
+            controllerText.setWonFalse();
         }
 
         if (frog.getLives() == 0) {
-            board.setRunningFalse();
+            controllerText.setRunningFalse();
         }
     }
 
@@ -44,13 +45,11 @@ public class Model {
      */
 
     public void checkCollisions() {
-        Rectangle player = frog.getBounds();
         if (frog.getY() < RIVER_STARTING_Y) {
             boolean overLap = false;
 
             for (GameObstacle o : obstacles) {
-                Rectangle obs = o.getBounds();
-                if (player.intersects(obs) && !o.isDangerous()) {
+                if (overlapsWith(frog, o) && !o.isDangerous()) {
                     overLap = true;
                     if (o.getDirection() == 'R') {
                         frog.setX(frog.getX() + 1);
@@ -65,11 +64,18 @@ public class Model {
         }
 
         for (GameObstacle o : obstacles) {
-            Rectangle obs = o.getBounds();
-
-            if (player.intersects(obs) && o.isDangerous()) {
+            if (overlapsWith(frog, o) && o.isDangerous()) {
                 frog.die();
             }
         }
+    }
+
+    public boolean overlapsWith(Frog frog, GameObstacle obstacle) {
+        for (int i = -1; i < obstacle.getWidth(); i++) { //How to deal with width between versions?
+            if (obstacle.getX() - i == frog.getX() && obstacle.getY() == frog.getY()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -24,8 +24,8 @@ public class Main extends JFrame {
     }
 
     private void initUI() {
-        Board board = new Board();
-        add(board.getView());
+        ControllerGUI controllerGUI = new ControllerGUI();
+        add(controllerGUI.getViewGUI());
 
         setSize(480, 480);
         setResizable(false);

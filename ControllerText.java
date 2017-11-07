@@ -6,21 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Board handles the main game logic and game loop.
- * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
- * background image obtained from https://i.imgur.com/iFW8JM4.png
- *
- * @author Iden Craven
- * @author Richard Williams
- */
-public class Board extends JFrame implements ActionListener {
-
-    private static final int frogXStart = 240;
-    private static final int frogYStart = 420;
-
+public class ControllerText implements ActionListener {
+    // Constants
+    private final int SCREEN_SIZE = 14;
+    private final int FROG_STARTING_X = 6;
+    private final int FROG_STARTING_Y = SCREEN_SIZE - 2;
+    private final int RIVER_STARTING_Y = SCREEN_SIZE - 7;
     private final int DELAY = 10;
-    private final int SCREEN_SIZE = 480;
 
     private boolean running;
     private boolean won = false;
@@ -28,15 +20,16 @@ public class Board extends JFrame implements ActionListener {
     private Timer timer;
     private Frog frog;
     private KeyManager keyManager;
-    private View view;
-    private Model model;
+    private ViewText viewText;
+    private ModelText modelText;
 
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
+
 
     /**
      * Default constructor.
      */
-    public Board() {
+    public ControllerText() {
         initBoard();
     }
 
@@ -46,13 +39,13 @@ public class Board extends JFrame implements ActionListener {
     private void initBoard() {
         keyManager = new KeyManager();
 
-        frog = new Frog(this, frogXStart, frogYStart);
-        view = new View(frog, obstacles, this);
-        model = new Model(frog, obstacles, this);
+        //frog = new Frog(this, FROG_STARTING_X, FROG_STARTING_Y);
+        //viewText = new ViewText(frog, obstacles, this);
+        modelText = new ModelText(frog, obstacles, this);
 
-        view.addKeyListener(keyManager);
-        view.setFocusable(true);
-        view.setDoubleBuffered(true);
+        viewText.addKeyListener(keyManager);
+        viewText.setFocusable(true);
+        viewText.setDoubleBuffered(true);
         running = true;
 
         readWorld("worlds/world1.txt");
@@ -67,12 +60,12 @@ public class Board extends JFrame implements ActionListener {
      * then repaint new objects
      */
     public void actionPerformed(ActionEvent e) {
-        model.updateObstacles();
+        modelText.updateObstacles();
         keyManager.tick();
         getInput();
-        model.updateFrog();
-        model.checkCollisions();
-        view.repaint();
+        modelText.updateFrog();
+        modelText.checkCollisions();
+        viewText.doDrawing();
     }
 
     /**
@@ -125,11 +118,8 @@ public class Board extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Getter for screen size
-     *
-     * @return the size of the screen in pixels.
-     */
+    //Getters
+
     public int getScreenSize() {
         return SCREEN_SIZE;
     }
@@ -142,9 +132,11 @@ public class Board extends JFrame implements ActionListener {
         return running;
     }
 
-    public View getView() {
-        return view;
+    public ViewText getViewText() {
+        return viewText;
     }
+
+    //Setters
 
     public void setWonFalse() {
         won = true;

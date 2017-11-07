@@ -10,13 +10,13 @@ public class GameObject {
 
     //Instance variables.
     protected int x, y;
-    protected int width;
-    protected int height;
-    protected char symbol;
-    protected Image image;
+    private int width;
+    private int height;
+    private char symbol;
+    private Image image;
 
     /**
-     * Constructor for GUI version. Takes an image path to represent the object.
+     * Constructor.
      */
     public GameObject(int xStartingLocation, int yStartingLocation) {
         setX(xStartingLocation);
@@ -29,34 +29,20 @@ public class GameObject {
         return x;
     }
 
-    public void setX(int newLocation) {
-        x = newLocation;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int newLocation) {
-        y = newLocation;
+    public int getWidth() {
+        return width;
     }
-
-    public char getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(char newSymbol) {
-        symbol = newSymbol;
-    }
-
-    // Setters
 
     public Image getImage() {
         return image;
     }
 
-    public void setImage(String path) {
-        image = ImageLoader.loadImage(path);
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
 
     /**
@@ -67,7 +53,30 @@ public class GameObject {
         height = image.getHeight(null);
     }
 
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+    public char getSymbol() {
+        return symbol;
     }
+
+    //Setters
+
+    public void setSymbol(char newSymbol) {
+        symbol = newSymbol;
+    }
+
+    public void setX(int newLocation) {
+        x = newLocation;
+    }
+
+    public void setY(int newLocation) {
+        y = newLocation;
+    }
+
+    public void setWidth(int newWidth) {
+        width = newWidth;
+    }
+
+    public void setImage(String path) {
+        image = ImageLoader.loadImage(path);
+    }
+
 }

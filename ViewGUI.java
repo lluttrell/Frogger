@@ -2,19 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class View extends JPanel {
+public class ViewGUI extends JPanel {
 
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
     private Image background;
     private Frog frog;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
-    private Board board;
+    private ControllerGUI controllerGUI;
 
-    public View(Frog frog, ArrayList<GameObstacle> obstacles, Board board) {
+    public ViewGUI(Frog frog, ArrayList<GameObstacle> obstacles, ControllerGUI controllerGUI) {
         background = ImageLoader.loadImage("images/background.png");
         this.frog = frog;
         this.obstacles = obstacles;
-        this.board = board;
+        this.controllerGUI = controllerGUI;
     }
 
     @Override
@@ -22,9 +22,9 @@ public class View extends JPanel {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (board.getRunning()) {
+        if (controllerGUI.getRunning()) {
             doDrawing(g);
-        } else if (board.getWon()) {
+        } else if (controllerGUI.getWon()) {
             showEndScreen(g, "You Win!");
         } else {
             showEndScreen(g, "You Lose :(");
@@ -57,7 +57,7 @@ public class View extends JPanel {
         g2d.setFont(smallFont);
         g2d.setColor(new Color(0, 0, 0));
         s = "Lives: " + frog.getLives();
-        g2d.drawString(s, board.getScreenSize() - 80, board.getScreenSize() - 40);
+        g2d.drawString(s, controllerGUI.getScreenSize() - 80, controllerGUI.getScreenSize() - 40);
     }
 
     /**
@@ -70,15 +70,15 @@ public class View extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(new Color(0, 32, 48));
-        g2d.fillRect(50, board.getScreenSize() / 2 - 30, board.getScreenSize() - 100, 50);
+        g2d.fillRect(50, controllerGUI.getScreenSize() / 2 - 30, controllerGUI.getScreenSize() - 100, 50);
         g2d.setColor(Color.white);
-        g2d.drawRect(50, board.getScreenSize() / 2 - 30, board.getScreenSize() - 100, 50);
+        g2d.drawRect(50, controllerGUI.getScreenSize() / 2 - 30, controllerGUI.getScreenSize() - 100, 50);
 
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = this.getFontMetrics(small);
 
         g2d.setColor(Color.white);
         g2d.setFont(small);
-        g2d.drawString(s, (board.getScreenSize() - metr.stringWidth(s)) / 2, board.getScreenSize() / 2);
+        g2d.drawString(s, (controllerGUI.getScreenSize() - metr.stringWidth(s)) / 2, controllerGUI.getScreenSize() / 2);
     }
 }
