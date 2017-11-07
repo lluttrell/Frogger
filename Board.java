@@ -146,11 +146,11 @@ public class Board extends JFrame implements ActionListener {
         return view;
     }
 
-    public void setWon() {
+    public void setWonFalse() {
         won = true;
     }
 
-    public void setRunning() {
+    public void setRunningFalse() {
         running = false;
     }
 }
