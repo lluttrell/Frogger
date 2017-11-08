@@ -35,8 +35,16 @@ public class GameObject {
         return x;
     }
 
+    public void setX(int newLocation) {
+        x = newLocation;
+    }
+
     public int getY() {
         return y;
+    }
+
+    public void setY(int newLocation) {
+        y = newLocation;
     }
 
     public int getWidth() {
@@ -46,6 +54,12 @@ public class GameObject {
     public Image getImage() {
         return image;
     }
+
+    public void setImage(String path) {
+        image = ImageLoader.loadImage(path);
+    }
+
+    //Setters
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
@@ -63,26 +77,8 @@ public class GameObject {
         return symbol;
     }
 
-    //Setters
-
     public void setSymbol(char newSymbol) {
         symbol = newSymbol;
-    }
-
-    public void setX(int newLocation) {
-        x = newLocation;
-    }
-
-    public void setY(int newLocation) {
-        y = newLocation;
-    }
-
-    public void setWidth(int newWidth) {
-        width = newWidth;
-    }
-
-    public void setImage(String path) {
-        image = ImageLoader.loadImage(path);
     }
 
 }

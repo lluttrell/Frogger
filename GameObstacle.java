@@ -7,7 +7,7 @@ public class GameObstacle extends GameObject {
 
     private final int DEFAULT_SPEED = 1;
     private boolean dangerous;
-    protected char direction;
+    private char direction;
 
     //GUI constructor
     public GameObstacle(int xStartingLocation, int yStartingLocation, char direction) {
@@ -43,17 +43,14 @@ public class GameObstacle extends GameObject {
         return dangerous;
     }
 
-    public char getDirection() {
-        return direction;
-    }
-
-    //Setters
-
     public void setDangerous(boolean dangerous) {
         this.dangerous = dangerous;
     }
 
-    public void setDirection(char direction) {
-        this.direction = direction;
+    //Setters
+
+    public char getDirection() {
+        return direction;
     }
+
 }

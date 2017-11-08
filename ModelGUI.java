@@ -2,7 +2,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ModelGUI {
-    private final int RIVER_STARTING_Y = 200;
     private Frog frog;
     private ControllerGUI controllerGUI;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -44,6 +43,7 @@ public class ModelGUI {
 
     public void checkCollisions() {
         Rectangle player = frog.getBounds();
+        int RIVER_STARTING_Y = 200;
         if (frog.getY() < RIVER_STARTING_Y) {
             boolean overLap = false;
 

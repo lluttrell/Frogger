@@ -1,14 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 /**
  * Handles JFrame and launching the game.
  */
 public class Main extends JFrame {
 
-    public Main() {
-
-        initText();
+    private Main() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter \"text\" or \"GUI\":");
+        String choice = sc.next();
+        while (!(choice.equalsIgnoreCase("text") || choice.equalsIgnoreCase("GUI"))) {
+            System.out.println("Incorrect input");
+            System.out.print("Enter \"text\" or \"GUI\":");
+            choice = sc.next();
+        }
+        if (choice.equalsIgnoreCase("text")) {
+            initText();
+        } else if (choice.equalsIgnoreCase("GUI")) {
+            initGUI();
+        }
     }
 
     public static void main(String[] args) {

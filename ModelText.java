@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class ModelText {
 
-    private final int RIVER_STARTING_Y = 7;
     private Frog frog;
     private ControllerText controllerText;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -43,6 +42,7 @@ public class ModelText {
      */
 
     public void checkCollisions() {
+        int RIVER_STARTING_Y = 7;
         if (frog.getY() < RIVER_STARTING_Y) {
             boolean overLap = false;
 
@@ -68,7 +68,7 @@ public class ModelText {
         }
     }
 
-    public boolean overlapsWith(GameObstacle obstacle) {
+    private boolean overlapsWith(GameObstacle obstacle) {
         for (int i = -1; i < obstacle.getWidth(); i++) {
             if (obstacle.getX() - i == frog.getX() && obstacle.getY() == frog.getY()) {
                 return true;

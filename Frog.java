@@ -6,9 +6,9 @@
 
 public class Frog extends GameObject {
 
-    private int lives = 3;
     private final int startX;
     private final int startY;
+    private int lives = 3;
 
     //GUI constructor
     public Frog(int startX, int startY) {
@@ -16,7 +16,6 @@ public class Frog extends GameObject {
         this.startX = startX;
         this.startY = startY;
         setImage("images/frog.png");
-        setSymbol('F');
         getImageDimensions();
     }
 

@@ -21,7 +21,7 @@ public class ViewText extends JPanel {
     /**
      * Fills screenMatrix (play area) with default characters
      */
-    public void InitScreen() {
+    private void InitScreen() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 screenMatrix[i][j] = '*';
@@ -32,7 +32,7 @@ public class ViewText extends JPanel {
     /**
      * Prints the screenMatrix to the console
      */
-    public void PrintScreen() {
+    private void PrintScreen() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 System.out.print(screenMatrix[i][j] + " ");
@@ -65,7 +65,7 @@ public class ViewText extends JPanel {
      * @param x      x coordinate of GameObject
      * @param y      y coordinate of GameObject
      */
-    public void setObjectOnLocation(GameObject object, int x, int y) {
+    private void setObjectOnLocation(GameObject object, int x, int y) {
         for (int i = x - object.getWidth() / 2; i <= x + object.getWidth() / 2; i++) {
             screenMatrix[y][i] = object.getSymbol();
         }

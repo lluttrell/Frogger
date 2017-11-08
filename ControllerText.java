@@ -154,6 +154,7 @@ public class ControllerText implements ActionListener {
     public int getScreenSize() {
         return SCREEN_SIZE;
     }
+
     //Setters
 
     public void setWonFalse() {
