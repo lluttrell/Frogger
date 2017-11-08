@@ -47,7 +47,7 @@ public class ControllerGUI extends JFrame implements ActionListener {
     private void initBoard() {
         keyManager = new KeyManager();
 
-        frog = new Frog(this, FROG_X_START, FROG_Y_START);
+        frog = new Frog(FROG_X_START, FROG_Y_START);
         viewGUI = new ViewGUI(frog, obstacles, this);
         modelGUI = new ModelGUI(frog, obstacles, this);
 
@@ -71,6 +71,7 @@ public class ControllerGUI extends JFrame implements ActionListener {
         modelGUI.updateObstacles();
         keyManager.tick();
         getInput();
+        move();
         modelGUI.updateFrog();
         modelGUI.checkCollisions();
         viewGUI.repaint();
@@ -97,6 +98,24 @@ public class ControllerGUI extends JFrame implements ActionListener {
             frog.setX(frog.getX() - 1);
         } else if (getKeyManager().right) {
             frog.setX(frog.getX() + 1);
+        }
+    }
+
+    public void move() {
+        if (frog.getX() < 1) {
+            frog.setX(1);
+        }
+
+        if (frog.getY() < 1) {
+            frog.setY(1);
+        }
+
+        if (frog.getX() > SCREEN_SIZE - 35) {
+            frog.setX(SCREEN_SIZE - 35);
+        }
+
+        if (frog.getY() > SCREEN_SIZE - 60) {
+            frog.setY(SCREEN_SIZE - 60);
         }
     }
 

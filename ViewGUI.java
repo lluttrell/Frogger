@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ViewGUI extends JPanel {
 
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
-    private Image background;
+    private final Image background;
     private Frog frog;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
     private ControllerGUI controllerGUI;

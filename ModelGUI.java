@@ -18,7 +18,6 @@ public class ModelGUI {
      * and check frog's y-coordinate to know whether game continues.
      */
     public void updateFrog() {
-        frog.move();
 
         if (frog.getY() == 1) {
             controllerGUI.setRunningFalse();
@@ -35,7 +34,7 @@ public class ModelGUI {
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
-            o.move();
+            o.move(controllerGUI.getScreenSize());
         }
     }
 

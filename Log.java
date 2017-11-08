@@ -4,8 +4,16 @@
  */
 public class Log extends GameObstacle {
 
+    //GUI constructor
     public Log(int xStartingLocation, int yStartingLocation, char direction) {
         super(xStartingLocation, yStartingLocation, direction);
+        initLog();
+        getImageDimensions();
+    }
+
+    //Text constructor
+    public Log(int width, int xStartingLocation, int yStartingLocation, char direction) {
+        super(width, xStartingLocation, yStartingLocation, direction);
         initLog();
     }
 
@@ -16,6 +24,5 @@ public class Log extends GameObstacle {
             setImage("images/shipR.png");
         }
         setSymbol('L');
-        getImageDimensions();
     }
 }

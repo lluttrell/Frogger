@@ -7,13 +7,12 @@
 public class Frog extends GameObject {
 
     private int lives = 3;
-    private ControllerGUI controllerGUI;
-    private int startX, startY;
+    private final int startX;
+    private final int startY;
 
     //GUI constructor
-    public Frog(ControllerGUI controllerGUI, int startX, int startY) {
+    public Frog(int startX, int startY) {
         super(startX, startY);
-        this.controllerGUI = controllerGUI;
         this.startX = startX;
         this.startY = startY;
         setImage("images/frog.png");
@@ -21,22 +20,12 @@ public class Frog extends GameObject {
         getImageDimensions();
     }
 
-    public void move() {
-        if (x < 1) {
-            x = 1;
-        }
-
-        if (y < 1) {
-            y = 1;
-        }
-
-        if (x > controllerGUI.getScreenSize() - 35) { //Somehow add screen collisions for text version.
-            x = controllerGUI.getScreenSize() - 35;
-        }
-
-        if (y > controllerGUI.getScreenSize() - 60) {
-            y = controllerGUI.getScreenSize() - 60;
-        }
+    //Text Constructor
+    public Frog(int width, int startX, int startY) {
+        super(width, startX, startY);
+        this.startX = startX;
+        this.startY = startY;
+        setSymbol('F');
     }
 
     public int getLives() {

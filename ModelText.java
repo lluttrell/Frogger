@@ -1,9 +1,8 @@
-import java.awt.*;
 import java.util.ArrayList;
 
 public class ModelText {
 
-    private final int RIVER_STARTING_Y = 200;
+    private final int RIVER_STARTING_Y = 7;
     private Frog frog;
     private ControllerText controllerText;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -19,7 +18,6 @@ public class ModelText {
      * and check frog's y-coordinate to know whether game continues.
      */
     public void updateFrog() {
-        frog.move();
 
         if (frog.getY() == 1) {
             controllerText.setRunningFalse();
@@ -36,7 +34,7 @@ public class ModelText {
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
-            o.move();
+            o.move(controllerText.getScreenSize());
         }
     }
 
@@ -49,7 +47,7 @@ public class ModelText {
             boolean overLap = false;
 
             for (GameObstacle o : obstacles) {
-                if (overlapsWith(frog, o) && !o.isDangerous()) {
+                if (overlapsWith(o) && !o.isDangerous()) {
                     overLap = true;
                     if (o.getDirection() == 'R') {
                         frog.setX(frog.getX() + 1);
@@ -64,14 +62,14 @@ public class ModelText {
         }
 
         for (GameObstacle o : obstacles) {
-            if (overlapsWith(frog, o) && o.isDangerous()) {
+            if (overlapsWith(o) && o.isDangerous()) {
                 frog.die();
             }
         }
     }
 
-    public boolean overlapsWith(Frog frog, GameObstacle obstacle) {
-        for (int i = -1; i < obstacle.getWidth(); i++) { //How to deal with width between versions?
+    public boolean overlapsWith(GameObstacle obstacle) {
+        for (int i = -1; i < obstacle.getWidth(); i++) {
             if (obstacle.getX() - i == frog.getX() && obstacle.getY() == frog.getY()) {
                 return true;
             }

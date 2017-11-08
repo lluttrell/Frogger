@@ -11,8 +11,7 @@ public class ControllerText implements ActionListener {
     private final int SCREEN_SIZE = 14;
     private final int FROG_STARTING_X = 6;
     private final int FROG_STARTING_Y = SCREEN_SIZE - 2;
-    private final int RIVER_STARTING_Y = SCREEN_SIZE - 7;
-    private final int DELAY = 10;
+    private final int DELAY = 600;
 
     private boolean running;
     private boolean won = false;
@@ -39,8 +38,8 @@ public class ControllerText implements ActionListener {
     private void initBoard() {
         keyManager = new KeyManager();
 
-        //frog = new Frog(this, FROG_STARTING_X, FROG_STARTING_Y);
-        //viewText = new ViewText(frog, obstacles, this);
+        frog = new Frog(1, FROG_STARTING_X, FROG_STARTING_Y);
+        viewText = new ViewText(frog, obstacles, SCREEN_SIZE, SCREEN_SIZE);
         modelText = new ModelText(frog, obstacles, this);
 
         viewText.addKeyListener(keyManager);
@@ -48,7 +47,7 @@ public class ControllerText implements ActionListener {
         viewText.setDoubleBuffered(true);
         running = true;
 
-        readWorld("worlds/world1.txt");
+        readWorld("worlds/world1Text.txt");
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -63,9 +62,17 @@ public class ControllerText implements ActionListener {
         modelText.updateObstacles();
         keyManager.tick();
         getInput();
+        move();
         modelText.updateFrog();
         modelText.checkCollisions();
-        viewText.doDrawing();
+
+        if (running) {
+            viewText.doDrawing();
+        } else if (won) {
+            System.out.println("\n**YOU WIN**");
+        } else {
+            System.out.println("\n**GAME OVER**");
+        }
     }
 
     /**
@@ -92,6 +99,24 @@ public class ControllerText implements ActionListener {
         }
     }
 
+    public void move() {
+        if (frog.getX() < 1) {
+            frog.setX(1);
+        }
+
+        if (frog.getY() < 1) {
+            frog.setY(1);
+        }
+
+        if (frog.getX() > SCREEN_SIZE) {
+            frog.setX(SCREEN_SIZE);
+        }
+
+        if (frog.getY() > SCREEN_SIZE) {
+            frog.setY(SCREEN_SIZE);
+        }
+    }
+
     private void readWorld(String path) {
         try {
             File file = new File(path);
@@ -100,17 +125,19 @@ public class ControllerText implements ActionListener {
             while (sc.hasNext()) {
                 int numLog = sc.nextInt();
                 for (int i = 0; i < numLog; i++) {
+                    int width = sc.nextInt();
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(x, y, direction));
+                    obstacles.add(new Log(width, x, y, direction));
                 }
                 int numCar = sc.nextInt();
                 for (int i = 0; i < numCar; i++) {
+                    int width = sc.nextInt();
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(x, y, direction));
+                    obstacles.add(new Car(width, x, y, direction));
                 }
             }
         } catch (IOException e) {
@@ -120,22 +147,13 @@ public class ControllerText implements ActionListener {
 
     //Getters
 
-    public int getScreenSize() {
-        return SCREEN_SIZE;
-    }
-
-    public boolean getWon() {
-        return won;
-    }
-
-    public boolean getRunning() {
-        return running;
-    }
-
     public ViewText getViewText() {
         return viewText;
     }
 
+    public int getScreenSize() {
+        return SCREEN_SIZE;
+    }
     //Setters
 
     public void setWonFalse() {

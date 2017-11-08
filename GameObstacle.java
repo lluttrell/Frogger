@@ -6,7 +6,6 @@
 public class GameObstacle extends GameObject {
 
     private final int DEFAULT_SPEED = 1;
-    private final int BOARD_WIDTH = 480;
     private boolean dangerous;
     protected char direction;
 
@@ -16,18 +15,24 @@ public class GameObstacle extends GameObject {
         this.direction = direction;
     }
 
-    public void move() {
+    //Text Constructor
+    public GameObstacle(int width, int xStartingLocation, int yStartingLocation, char direction) {
+        super(width, xStartingLocation, yStartingLocation);
+        this.direction = direction;
+    }
+
+    public void move(int boardWidth) {
         if (direction == 'L') {
             x -= DEFAULT_SPEED;
 
-            if (x < -120) {
-                x = BOARD_WIDTH;
+            if (x < boardWidth - (boardWidth - 3)) {
+                x = boardWidth - 3;
             }
         } else if (direction == 'R') {
             x += DEFAULT_SPEED;
 
-            if (x > BOARD_WIDTH) {
-                x = 0;
+            if (x > boardWidth - 2) {
+                x = 1;
             }
         }
     }

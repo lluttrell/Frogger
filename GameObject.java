@@ -23,6 +23,12 @@ public class GameObject {
         setY(yStartingLocation);
     }
 
+    public GameObject(int width, int xStartingLocation, int yStartingLocation) {
+        setX(xStartingLocation);
+        setY(yStartingLocation);
+        this.width = width;
+    }
+
     // Getters
 
     public int getX() {

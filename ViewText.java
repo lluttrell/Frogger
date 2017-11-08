@@ -2,17 +2,16 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ViewText extends JPanel {
-    private int width, height;
+    private final int width;
+    private final int height;
     private char[][] screenMatrix;
 
     private Frog frog;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
-    private ControllerText controllerText;
 
-    public ViewText(Frog frog, ArrayList<GameObstacle> obstacles, ControllerText controllerText, int width, int height) {
+    public ViewText(Frog frog, ArrayList<GameObstacle> obstacles, int width, int height) {
         this.frog = frog;
         this.obstacles = obstacles;
-        this.controllerText = controllerText;
         this.width = width;
         this.height = height;
         screenMatrix = new char[this.height][this.width];
@@ -34,19 +33,27 @@ public class ViewText extends JPanel {
      * Prints the screenMatrix to the console
      */
     public void PrintScreen() {
-        for (int i = 0; i < this.height; i++) {
-            for (int j = 0; j < this.width; j++) {
-                System.out.print(this.screenMatrix[i][j] + " ");
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.print(screenMatrix[i][j] + " ");
             }
             System.out.println();
         }
     }
 
+    /**
+     * doDrawing handles all of the drawing of objects for text based version.
+     */
     public void doDrawing() {
+        System.out.println("Lives remaining:" + frog.getLives());
+        InitScreen();
+
+        //Print objects to screen.
         for (GameObject o : obstacles) {
             setObjectOnLocation(o, o.getX(), o.getY());
         }
         setObjectOnLocation(frog, frog.getX(), frog.getY());
+
         PrintScreen();
     }
 

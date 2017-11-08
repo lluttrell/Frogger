@@ -8,7 +8,7 @@ public class Main extends JFrame {
 
     public Main() {
 
-        initUI();
+        initText();
     }
 
     public static void main(String[] args) {
@@ -23,11 +23,23 @@ public class Main extends JFrame {
         });
     }
 
-    private void initUI() {
+    private void initGUI() {
         ControllerGUI controllerGUI = new ControllerGUI();
         add(controllerGUI.getViewGUI());
 
         setSize(480, 480);
+        setResizable(false);
+
+        setTitle("Frogger");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void initText() {
+        ControllerText controllerText = new ControllerText();
+        add(controllerText.getViewText());
+
+        setSize(0, 0);
         setResizable(false);
 
         setTitle("Frogger");
