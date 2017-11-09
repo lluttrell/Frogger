@@ -1,7 +1,12 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Acts as the model for GUI version.
+ * Handles moving all entities in the game and checking win or loss state.
+ */
 public class ModelGUI {
+
     private Frog frog;
     private ControllerGUI controllerGUI;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();

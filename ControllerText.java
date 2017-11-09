@@ -62,7 +62,7 @@ public class ControllerText implements ActionListener {
         modelText.updateObstacles();
         keyManager.tick();
         getInput();
-        moveFrog();
+        checkBounds();
         modelText.updateFrog();
         modelText.checkCollisions();
 
@@ -101,7 +101,8 @@ public class ControllerText implements ActionListener {
         }
     }
 
-    public void moveFrog() {
+    //Constrains frog to screen.
+    public void checkBounds() {
         if (frog.getX() < 1) {
             frog.setX(1);
         }
@@ -119,8 +120,11 @@ public class ControllerText implements ActionListener {
         }
     }
 
-
-
+    /**
+     * Constructs obstacles based on text file.
+     *
+     * @param path path to the text file
+     */
     private void readWorld(String path) {
         try {
             File file = new File(path);

@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Handles View for GUI version.
+ * Inherits from JPanel
+ */
+
 public class ViewGUI extends JPanel {
 
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
@@ -17,6 +22,11 @@ public class ViewGUI extends JPanel {
         this.controllerGUI = controllerGUI;
     }
 
+    /**
+     * Handles drawing background and drawing based on game state.
+     *
+     * @param g Graphics object used to draw images.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -33,6 +43,9 @@ public class ViewGUI extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Draws game entities and lives.
+     */
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 

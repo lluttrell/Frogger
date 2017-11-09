@@ -1,7 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * Acts as the model for the text-based version of Frogger.
+ * Handles moving all entities in the game and checking win or loss state.
+ */
+
 public class ModelText {
-    private final int RIVER_STARTING_Y = 7;
+
+    private final int RIVER_STARTING_Y = 4;
     private Frog frog;
     private ControllerText controllerText;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -18,12 +24,12 @@ public class ModelText {
      */
     public void updateFrog() {
 
-        if (frog.getY() == 1) {
+        if (frog.getY() == 0) { //Reaches end
             controllerText.setRunningFalse();
             controllerText.setWonFalse();
         }
 
-        if (frog.getLives() == 0) {
+        if (frog.getLives() == 0) { //Runs out of lives
             controllerText.setRunningFalse();
         }
     }
@@ -41,7 +47,7 @@ public class ModelText {
      * Checks if the player collides with game obstacles.
      */
     public void checkCollisions() {
-        if (frog.getY() < RIVER_STARTING_Y) {
+        if (frog.getY() < RIVER_STARTING_Y) { //Frog on river
             boolean overLap = false;
 
             for (GameObstacle o : obstacles) {
@@ -59,6 +65,7 @@ public class ModelText {
             }
         }
 
+        //Checking for frog colliding with obstacle
         for (GameObstacle o : obstacles) {
             if (overlapsWith(o) && o.isDangerous()) {
                 frog.die();

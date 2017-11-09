@@ -4,9 +4,9 @@
  * Parent to Log and Car.
  */
 public class GameObstacle extends GameObject {
+    private final int DEFAULT_SPEED = 1;
     private int boardWidth;
     private int offScreenBuffer;
-    private final int DEFAULT_SPEED = 1;
     private boolean dangerous;
     private char direction;
 
@@ -26,6 +26,9 @@ public class GameObstacle extends GameObject {
         offScreenBuffer = boardWidth - (boardWidth - getWidth());
     }
 
+    /**
+     * Handles movement of Game Obstacles.
+     */
     public void move() {
         if (getDirection() == 'L') {
             setX(getX() - getSpeed());

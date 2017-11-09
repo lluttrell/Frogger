@@ -71,7 +71,7 @@ public class ControllerGUI extends JFrame implements ActionListener {
         modelGUI.updateObstacles();
         keyManager.tick();
         getInput();
-        move();
+        checkBounds();
         modelGUI.updateFrog();
         modelGUI.checkCollisions();
         viewGUI.repaint();
@@ -101,7 +101,8 @@ public class ControllerGUI extends JFrame implements ActionListener {
         }
     }
 
-    public void move() {
+    //Constrains frog to screen.
+    public void checkBounds() {
         if (frog.getX() < 1) {
             frog.setX(1);
         }
@@ -119,6 +120,11 @@ public class ControllerGUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Constructs obstacles based on text file.
+     *
+     * @param path path to the text file
+     */
     private void readWorld(String path) {
         try {
             File file = new File(path);
@@ -145,11 +151,7 @@ public class ControllerGUI extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Getter for screen size
-     *
-     * @return the size of the screen in pixels.
-     */
+    //Getters
     public int getScreenSize() {
         return SCREEN_SIZE;
     }
@@ -165,6 +167,8 @@ public class ControllerGUI extends JFrame implements ActionListener {
     public ViewGUI getViewGUI() {
         return viewGUI;
     }
+
+    //Setters
 
     public void setWonFalse() {
         won = true;

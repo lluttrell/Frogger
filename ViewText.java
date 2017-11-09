@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Handles View for Text version.
+ * Inherits from JPanel for timer and keyListener.
+ */
+
 public class ViewText extends JPanel {
     private final int width;
     private final int height;
