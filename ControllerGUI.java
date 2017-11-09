@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class ControllerGUI extends JFrame implements ActionListener {
 
-    private static final int FROG_X_START = 240;
+    private static final int FROG_X_START = 225;
     private static final int FROG_Y_START = 420;
 
     private final int DELAY = 10;

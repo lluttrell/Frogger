@@ -33,7 +33,23 @@ public class ModelText {
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
-            o.move(controllerText.getScreenSize());
+            move(controllerText.getScreenSize(), o);
+        }
+    }
+
+    private void move(int boardWidth, GameObstacle obstacle) {
+        if (obstacle.getDirection() == 'L') {
+            obstacle.setX(obstacle.getX() - obstacle.getSpeed());
+
+            if (obstacle.getX() < boardWidth - (boardWidth - 3)) {
+                obstacle.setX(boardWidth - 3);
+            }
+        } else if (obstacle.getDirection() == 'R') {
+            obstacle.setX(obstacle.getX() + obstacle.getSpeed());
+
+            if (obstacle.getX() > boardWidth - 2) {
+                obstacle.setX(1);
+            }
         }
     }
 

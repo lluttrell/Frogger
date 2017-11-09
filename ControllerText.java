@@ -117,6 +117,8 @@ public class ControllerText implements ActionListener {
         }
     }
 
+
+
     private void readWorld(String path) {
         try {
             File file = new File(path);
