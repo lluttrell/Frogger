@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class ModelText {
-
+    private final int RIVER_STARTING_Y = 7;
     private Frog frog;
     private ControllerText controllerText;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -56,9 +56,7 @@ public class ModelText {
     /**
      * Checks if the player collides with game obstacles.
      */
-
     public void checkCollisions() {
-        int RIVER_STARTING_Y = 7;
         if (frog.getY() < RIVER_STARTING_Y) {
             boolean overLap = false;
 
@@ -91,5 +89,9 @@ public class ModelText {
             }
         }
         return false;
+    }
+
+    public int getRiverStartingY() {
+        return RIVER_STARTING_Y;
     }
 }

@@ -4,16 +4,18 @@ import java.util.ArrayList;
 public class ViewText extends JPanel {
     private final int width;
     private final int height;
+    private final int riverStartingY;
     private char[][] screenMatrix;
 
     private Frog frog;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
 
-    public ViewText(Frog frog, ArrayList<GameObstacle> obstacles, int width, int height) {
+    public ViewText(Frog frog, ArrayList<GameObstacle> obstacles, int width, int height, int riverStartingY) {
         this.frog = frog;
         this.obstacles = obstacles;
         this.width = width;
         this.height = height;
+        this.riverStartingY = riverStartingY;
         screenMatrix = new char[this.height][this.width];
         InitScreen();
     }
@@ -27,6 +29,7 @@ public class ViewText extends JPanel {
                 screenMatrix[i][j] = '*';
             }
         }
+        addRiver();
     }
 
     /**
@@ -48,13 +51,21 @@ public class ViewText extends JPanel {
         System.out.println("Lives remaining:" + frog.getLives());
         InitScreen();
 
-        //Print objects to screen.
+        //Print obstacles to screen.
         for (GameObject o : obstacles) {
             setObjectOnLocation(o, o.getX(), o.getY());
         }
         setObjectOnLocation(frog, frog.getX(), frog.getY());
 
         PrintScreen();
+    }
+
+    private void addRiver() {
+        for (int i = 0; i < width; i++) {
+            for (int j = riverStartingY - 1; j >= 0; j--) {
+                screenMatrix[j][i] = '^';
+            }
+        }
     }
 
     /**
