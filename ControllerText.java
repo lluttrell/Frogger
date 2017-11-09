@@ -10,7 +10,7 @@ public class ControllerText implements ActionListener {
     // Constants
     private final int SCREEN_SIZE = 14;
     private final int FROG_STARTING_X = 6;
-    private final int FROG_STARTING_Y = SCREEN_SIZE - 2;
+    private final int FROG_STARTING_Y = SCREEN_SIZE - 1;
     private final int DELAY = 600;
 
     private boolean running;
@@ -62,7 +62,7 @@ public class ControllerText implements ActionListener {
         modelText.updateObstacles();
         keyManager.tick();
         getInput();
-        move();
+        moveFrog();
         modelText.updateFrog();
         modelText.checkCollisions();
 
@@ -101,7 +101,7 @@ public class ControllerText implements ActionListener {
         }
     }
 
-    public void move() {
+    public void moveFrog() {
         if (frog.getX() < 1) {
             frog.setX(1);
         }
@@ -133,7 +133,7 @@ public class ControllerText implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(width, x, y, direction));
+                    obstacles.add(new Log(width, x, y, direction, getScreenSize()));
                 }
                 int numCar = sc.nextInt();
                 for (int i = 0; i < numCar; i++) {
@@ -141,7 +141,7 @@ public class ControllerText implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(width, x, y, direction));
+                    obstacles.add(new Car(width, x, y, direction, getScreenSize()));
                 }
             }
         } catch (IOException e) {

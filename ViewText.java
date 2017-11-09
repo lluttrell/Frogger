@@ -26,7 +26,7 @@ public class ViewText extends JPanel {
     private void InitScreen() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                screenMatrix[i][j] = '*';
+                screenMatrix[i][j] = '.';
             }
         }
         addRiver();

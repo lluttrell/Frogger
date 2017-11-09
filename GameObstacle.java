@@ -4,21 +4,42 @@
  * Parent to Log and Car.
  */
 public class GameObstacle extends GameObject {
-
+    private int boardWidth;
+    private int offScreenBuffer;
     private final int DEFAULT_SPEED = 1;
     private boolean dangerous;
     private char direction;
 
     //GUI constructor
-    public GameObstacle(int xStartingLocation, int yStartingLocation, char direction) {
+    public GameObstacle(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation);
         this.direction = direction;
+        offScreenBuffer = -120;
+        this.boardWidth = boardWidth;
     }
 
     //Text Constructor
-    public GameObstacle(int width, int xStartingLocation, int yStartingLocation, char direction) {
+    public GameObstacle(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(width, xStartingLocation, yStartingLocation);
         this.direction = direction;
+        this.boardWidth = boardWidth;
+        offScreenBuffer = boardWidth - (boardWidth - getWidth());
+    }
+
+    public void move() {
+        if (getDirection() == 'L') {
+            setX(getX() - getSpeed());
+
+            if (getX() < offScreenBuffer - 2) {
+                setX(boardWidth - (getWidth() - 1));
+            }
+        } else if (getDirection() == 'R') {
+            setX(getX() + getSpeed());
+
+            if (getX() == boardWidth - 1) {
+                setX(1);
+            }
+        }
     }
 
     //Getters

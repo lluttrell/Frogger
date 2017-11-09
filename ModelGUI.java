@@ -33,23 +33,7 @@ public class ModelGUI {
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
-            move(controllerGUI.getScreenSize(), o);
-        }
-    }
-
-    private void move(int boardWidth, GameObstacle obstacle) {
-        if (obstacle.getDirection() == 'L') {
-            obstacle.setX(obstacle.getX() - obstacle.getSpeed());
-
-            if (obstacle.getX() < -120) {
-                obstacle.setX(boardWidth);
-            }
-        } else if (obstacle.getDirection() == 'R') {
-            obstacle.setX(obstacle.getX() + obstacle.getSpeed());
-
-            if (obstacle.getX() > boardWidth ) {
-                obstacle.setX(0);
-            }
+            o.move();
         }
     }
 

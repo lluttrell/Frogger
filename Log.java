@@ -5,8 +5,8 @@
 public class Log extends GameObstacle {
 
     //GUI constructor
-    public Log(int xStartingLocation, int yStartingLocation, char direction) {
-        super(xStartingLocation, yStartingLocation, direction);
+    public Log(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+        super(xStartingLocation, yStartingLocation, direction, boardWidth);
         if (direction == 'L') {
             setImage("images/shipL.png");
         } else if (direction == 'R') {
@@ -16,8 +16,8 @@ public class Log extends GameObstacle {
     }
 
     //Text constructor
-    public Log(int width, int xStartingLocation, int yStartingLocation, char direction) {
-        super(width, xStartingLocation, yStartingLocation, direction);
+    public Log(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+        super(width, xStartingLocation, yStartingLocation, direction, boardWidth);
         setSymbol('L');
     }
 }

@@ -130,14 +130,14 @@ public class ControllerGUI extends JFrame implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(x, y, direction));
+                    obstacles.add(new Log(x, y, direction, getScreenSize()));
                 }
                 int numCar = sc.nextInt();
                 for (int i = 0; i < numCar; i++) {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(x, y, direction));
+                    obstacles.add(new Car(x, y, direction, getScreenSize()));
                 }
             }
         } catch (IOException e) {
