@@ -4,6 +4,8 @@ import java.awt.*;
  * Handles Game objects in the game.
  * Parent to Frog and GameObstacles.
  * Adapted from https://github.com/andreirichkov/console-snake
+ * @author Iden Craven
+ * @author Richard Williams
  */
 
 public class GameObject {
@@ -16,13 +18,21 @@ public class GameObject {
     private Image image;
 
     /**
-     * Constructor.
+     * GameObject Constructor
+     * @param xStartingLocation Integer representing initial x position of GameObject
+     * @param yStartingLocation Integer representing initial y position of GameObject
      */
     public GameObject(int xStartingLocation, int yStartingLocation) {
         setX(xStartingLocation);
         setY(yStartingLocation);
     }
 
+    /**
+     * GameObject Constructor for text based version of GameObject
+     * @param width Integer representing the width of the GameObject
+     * @param xStartingLocation Integer representing initial x position of GameObject
+     * @param yStartingLocation Integer representing initial y position of GameObject
+     */
     public GameObject(int width, int xStartingLocation, int yStartingLocation) {
         setX(xStartingLocation);
         setY(yStartingLocation);
@@ -30,55 +40,94 @@ public class GameObject {
     }
 
     // Getters
-
+    /**
+    * Returns the x position of the GameObject
+    * @return Integer representing x position of GameObject
+    */
     public int getX() {
         return x;
     }
 
-    public void setX(int newLocation) {
-        x = newLocation;
-    }
-
+    /**
+    * Returns the y position of the GameObject
+    * @return Integer representing y position of GameObject
+    */
     public int getY() {
         return y;
     }
 
-    public void setY(int newLocation) {
-        y = newLocation;
-    }
-
+    /**
+    * Returns the width of the GameObject
+    * @return Integer representing width of GameObject
+    */
     public int getWidth() {
         return width;
     }
 
+    /**
+    * Returns char used to represent GameObject in text based version
+    * @return char used to represent GameObject
+    */
+    public char getSymbol() {
+        return symbol;
+    }
+
+    /**
+    * Returns the Image used to draw the GameObject
+    * @return Image representing the GameObject
+    */
     public Image getImage() {
         return image;
     }
 
-    public void setImage(String path) {
-        image = ImageLoader.loadImage(path);
-    }
-
-    //Setters
-
+    /**
+    * Returns a Rectangle representing the boundaries of the GameObject (for
+    * collision detection)
+    * @return Rectangle representing the spatial boundaries of the GameObject
+    */
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }
 
     /**
-     * sets game objects width and height to the image size.
+     * Sets game objects width and height to the image size.
      */
     public void getImageDimensions() {
         width = image.getWidth(null);
         height = image.getHeight(null);
     }
 
-    public char getSymbol() {
-        return symbol;
+    //Setters
+    /**
+    * Sets the x position of the GameObject
+    * @param newLocation new x location of GameObject
+    */
+    public void setX(int newLocation) {
+        x = newLocation;
     }
 
+    /**
+    * Sets the y position of the GameObject
+    * @param newLocation new y location of GameObject
+    */
+    public void setY(int newLocation) {
+        y = newLocation;
+    }
+
+    /**
+    * Sets the char used to represent GameObject in text based Version
+    * @param newSymbol char used to represent GameObject
+    */
     public void setSymbol(char newSymbol) {
         symbol = newSymbol;
+    }
+
+    /**
+    * Sets the Image used to represent GameObject in GUI based Version
+    * @param path String containing path to the image used to represent GameObject
+    */
+    public void setImage(String path) {
+        image = ImageLoader.loadImage(path);
     }
 
 }
