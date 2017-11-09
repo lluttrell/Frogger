@@ -39,8 +39,8 @@ public class ControllerText implements ActionListener {
         keyManager = new KeyManager();
 
         frog = new Frog(1, FROG_STARTING_X, FROG_STARTING_Y);
-        viewText = new ViewText(frog, obstacles, SCREEN_SIZE, SCREEN_SIZE);
         modelText = new ModelText(frog, obstacles, this);
+        viewText = new ViewText(frog, obstacles, SCREEN_SIZE, SCREEN_SIZE, modelText.getRiverStartingY());
 
         viewText.addKeyListener(keyManager);
         viewText.setFocusable(true);
@@ -70,8 +70,10 @@ public class ControllerText implements ActionListener {
             viewText.doDrawing();
         } else if (won) {
             System.out.println("\n**YOU WIN**");
+            System.exit(0);
         } else {
             System.out.println("\n**GAME OVER**");
+            System.exit(0);
         }
     }
 
@@ -116,6 +118,8 @@ public class ControllerText implements ActionListener {
             frog.setY(SCREEN_SIZE);
         }
     }
+
+
 
     private void readWorld(String path) {
         try {

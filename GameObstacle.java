@@ -21,22 +21,6 @@ public class GameObstacle extends GameObject {
         this.direction = direction;
     }
 
-    public void move(int boardWidth) {
-        if (direction == 'L') {
-            x -= DEFAULT_SPEED;
-
-            if (x < boardWidth - (boardWidth - 3)) {
-                x = boardWidth - 3;
-            }
-        } else if (direction == 'R') {
-            x += DEFAULT_SPEED;
-
-            if (x > boardWidth - 2) {
-                x = 1;
-            }
-        }
-    }
-
     //Getters
 
     public boolean isDangerous() {
@@ -51,6 +35,10 @@ public class GameObstacle extends GameObject {
 
     public char getDirection() {
         return direction;
+    }
+
+    public int getSpeed() {
+        return DEFAULT_SPEED;
     }
 
 }

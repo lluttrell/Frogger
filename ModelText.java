@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class ModelText {
-
+    private final int RIVER_STARTING_Y = 7;
     private Frog frog;
     private ControllerText controllerText;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -33,16 +33,30 @@ public class ModelText {
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
-            o.move(controllerText.getScreenSize());
+            move(controllerText.getScreenSize(), o);
+        }
+    }
+
+    private void move(int boardWidth, GameObstacle obstacle) {
+        if (obstacle.getDirection() == 'L') {
+            obstacle.setX(obstacle.getX() - obstacle.getSpeed());
+
+            if (obstacle.getX() < boardWidth - (boardWidth - 3)) {
+                obstacle.setX(boardWidth - 3);
+            }
+        } else if (obstacle.getDirection() == 'R') {
+            obstacle.setX(obstacle.getX() + obstacle.getSpeed());
+
+            if (obstacle.getX() > boardWidth - 2) {
+                obstacle.setX(1);
+            }
         }
     }
 
     /**
      * Checks if the player collides with game obstacles.
      */
-
     public void checkCollisions() {
-        int RIVER_STARTING_Y = 7;
         if (frog.getY() < RIVER_STARTING_Y) {
             boolean overLap = false;
 
@@ -75,5 +89,9 @@ public class ModelText {
             }
         }
         return false;
+    }
+
+    public int getRiverStartingY() {
+        return RIVER_STARTING_Y;
     }
 }
