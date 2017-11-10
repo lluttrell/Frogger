@@ -20,7 +20,6 @@ public class GameObject {
 
     /**
      * GameObject Constructor
-     *
      * @param xStartingLocation Integer representing initial x position of GameObject
      * @param yStartingLocation Integer representing initial y position of GameObject
      */
@@ -31,8 +30,7 @@ public class GameObject {
 
     /**
      * GameObject Constructor for text based version of GameObject
-     *
-     * @param width             Integer representing the width of the GameObject
+     * @param width Integer representing the width of the GameObject
      * @param xStartingLocation Integer representing initial x position of GameObject
      * @param yStartingLocation Integer representing initial y position of GameObject
      */
@@ -43,7 +41,6 @@ public class GameObject {
     }
 
     // Getters
-
     /**
      * Returns the x position of the GameObject
      *
