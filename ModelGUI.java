@@ -45,7 +45,6 @@ public class ModelGUI {
     /**
      * Checks if the player collides with game obstacles.
      */
-
     public void checkCollisions() {
         Rectangle player = frog.getBounds();
         int RIVER_STARTING_Y = 200;
