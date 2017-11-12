@@ -15,7 +15,7 @@ public class Frog extends GameObject {
         super(startX, startY);
         this.startX = startX;
         this.startY = startY;
-        setImage("images/frog.png");
+        setImage("res/frog.png");
         getImageDimensions();
     }
 

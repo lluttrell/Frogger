@@ -50,7 +50,8 @@ public class ControllerGUI extends JFrame implements ActionListener {
         frog = new Frog(FROG_X_START, FROG_Y_START);
         viewGUI = new ViewGUI(frog, obstacles, this);
         modelGUI = new ModelGUI(frog, obstacles, this);
-
+        //Background music
+        MediaLoader.playSound();
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);
         viewGUI.setDoubleBuffered(true);

@@ -11,7 +11,7 @@ public class ViewGUI extends JPanel {
     private ControllerGUI controllerGUI;
 
     public ViewGUI(Frog frog, ArrayList<GameObstacle> obstacles, ControllerGUI controllerGUI) {
-        background = ImageLoader.loadImage("images/background.png");
+        background = MediaLoader.loadImage("res/background.png");
         this.frog = frog;
         this.obstacles = obstacles;
         this.controllerGUI = controllerGUI;

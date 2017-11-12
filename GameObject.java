@@ -56,7 +56,7 @@ public class GameObject {
     }
 
     public void setImage(String path) {
-        image = ImageLoader.loadImage(path);
+        image = MediaLoader.loadImage(path);
     }
 
     //Setters

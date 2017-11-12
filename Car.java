@@ -8,7 +8,7 @@ public class Car extends GameObstacle {
     //GUI Constructor
     public Car(int xStartingLocation, int yStartingLocation, char direction) {
         super(xStartingLocation, yStartingLocation, direction);
-        setImage("images/asteroid.png");
+        setImage("res/asteroid.png");
         getImageDimensions();
         carInit();
     }
