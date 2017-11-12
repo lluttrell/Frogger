@@ -1,7 +1,12 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Acts as the model for GUI version.
+ * Handles moving all entities in the game and checking win or loss state.
+ */
 public class ModelGUI {
+
     private Frog frog;
     private ControllerGUI controllerGUI;
     private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
@@ -33,30 +38,13 @@ public class ModelGUI {
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
-            move(controllerGUI.getScreenSize(), o);
-        }
-    }
-
-    private void move(int boardWidth, GameObstacle obstacle) {
-        if (obstacle.getDirection() == 'L') {
-            obstacle.setX(obstacle.getX() - obstacle.getSpeed());
-
-            if (obstacle.getX() < -120) {
-                obstacle.setX(boardWidth);
-            }
-        } else if (obstacle.getDirection() == 'R') {
-            obstacle.setX(obstacle.getX() + obstacle.getSpeed());
-
-            if (obstacle.getX() > boardWidth ) {
-                obstacle.setX(0);
-            }
+            o.move();
         }
     }
 
     /**
      * Checks if the player collides with game obstacles.
      */
-
     public void checkCollisions() {
         Rectangle player = frog.getBounds();
         int RIVER_STARTING_Y = 200;

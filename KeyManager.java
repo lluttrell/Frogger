@@ -1,6 +1,9 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * KeyManager uses a boolean array where if the keys are pressed the boolean is set to true.
+ */
 public class KeyManager implements KeyListener {
 
     public boolean up, down, left, right;

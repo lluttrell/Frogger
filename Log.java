@@ -4,9 +4,16 @@
  */
 public class Log extends GameObstacle {
 
-    //GUI constructor
-    public Log(int xStartingLocation, int yStartingLocation, char direction) {
-        super(xStartingLocation, yStartingLocation, direction);
+    /**
+    * GUI constructor
+    * @param xStartingLocation Integer representing the x starting location
+    * @param xStartingLocation Integer representing the y starting location
+    * @param direction char representing the direction of movement 'L' for left
+    * 'R' for right.
+    * @param boardWidth Integer representing width of the game area
+    */
+    public Log(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+        super(xStartingLocation, yStartingLocation, direction, boardWidth);
         if (direction == 'L') {
             setImage("res/shipL.png");
         } else if (direction == 'R') {
@@ -15,9 +22,16 @@ public class Log extends GameObstacle {
         getImageDimensions();
     }
 
-    //Text constructor
-    public Log(int width, int xStartingLocation, int yStartingLocation, char direction) {
-        super(width, xStartingLocation, yStartingLocation, direction);
+    /**
+    * Text based constructor
+    * @param xStartingLocation Integer representing the x starting location
+    * @param xStartingLocation Integer representing the y starting location
+    * @param direction char representing the direction of movement 'L' for left
+    * 'R' for right.
+    * @param boardWidth Integer representing width of the game area
+    */
+    public Log(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+        super(width, xStartingLocation, yStartingLocation, direction, boardWidth);
         setSymbol('L');
     }
 }

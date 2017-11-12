@@ -10,7 +10,7 @@ public class ControllerText implements ActionListener {
     // Constants
     private final int SCREEN_SIZE = 14;
     private final int FROG_STARTING_X = 6;
-    private final int FROG_STARTING_Y = SCREEN_SIZE - 2;
+    private final int FROG_STARTING_Y = SCREEN_SIZE - 1;
     private final int DELAY = 600;
 
     private boolean running;
@@ -39,8 +39,8 @@ public class ControllerText implements ActionListener {
         keyManager = new KeyManager();
 
         frog = new Frog(1, FROG_STARTING_X, FROG_STARTING_Y);
-        viewText = new ViewText(frog, obstacles, SCREEN_SIZE, SCREEN_SIZE);
         modelText = new ModelText(frog, obstacles, this);
+        viewText = new ViewText(frog, obstacles, SCREEN_SIZE, SCREEN_SIZE, modelText.getRiverStartingY());
 
         viewText.addKeyListener(keyManager);
         viewText.setFocusable(true);
@@ -62,7 +62,7 @@ public class ControllerText implements ActionListener {
         modelText.updateObstacles();
         keyManager.tick();
         getInput();
-        move();
+        checkBounds();
         modelText.updateFrog();
         modelText.checkCollisions();
 
@@ -70,8 +70,10 @@ public class ControllerText implements ActionListener {
             viewText.doDrawing();
         } else if (won) {
             System.out.println("\n**YOU WIN**");
+            System.exit(0);
         } else {
             System.out.println("\n**GAME OVER**");
+            System.exit(0);
         }
     }
 
@@ -99,7 +101,8 @@ public class ControllerText implements ActionListener {
         }
     }
 
-    public void move() {
+    //Constrains frog to screen.
+    public void checkBounds() {
         if (frog.getX() < 1) {
             frog.setX(1);
         }
@@ -117,8 +120,11 @@ public class ControllerText implements ActionListener {
         }
     }
 
-
-
+    /**
+     * Constructs obstacles based on text file.
+     *
+     * @param path path to the text file
+     */
     private void readWorld(String path) {
         try {
             File file = new File(path);
@@ -131,7 +137,7 @@ public class ControllerText implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(width, x, y, direction));
+                    obstacles.add(new Log(width, x, y, direction, getScreenSize()));
                 }
                 int numCar = sc.nextInt();
                 for (int i = 0; i < numCar; i++) {
@@ -139,7 +145,7 @@ public class ControllerText implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(width, x, y, direction));
+                    obstacles.add(new Car(width, x, y, direction, getScreenSize()));
                 }
             }
         } catch (IOException e) {

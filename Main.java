@@ -7,6 +7,9 @@ import java.util.Scanner;
  */
 public class Main extends JFrame {
 
+    /**
+     * Constructs text or gui version based on user input.
+     */
     private Main() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter \"text\" or \"GUI\":");
