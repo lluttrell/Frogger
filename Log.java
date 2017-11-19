@@ -24,6 +24,7 @@ public class Log extends GameObstacle {
 
     /**
     * Text based constructor
+    * @param width Integer representing the number of characters wide the log is
     * @param xStartingLocation Integer representing the x starting location
     * @param xStartingLocation Integer representing the y starting location
     * @param direction char representing the direction of movement 'L' for left
