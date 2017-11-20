@@ -6,7 +6,13 @@ import java.util.ArrayList;
  * Handles moving all entities in the game and checking win or loss state.
  */
 public class ModelGUI extends Model {
-
+	
+	/**
+     * Privacy leak caused by assigning objects passed in as parameters directly 
+     * to class’s instance variables. These privacy leaks are not prevented, 
+     * because the model needs to be aware of changes made by other classes to 
+     * instance variable like frog and game obstacles.
+     */
     public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
         super(frog, obstacles, controller);
     }

@@ -4,7 +4,13 @@ public class Model {
     protected Frog frog;
     private Controller controller;
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
-
+    
+    /**
+     * Privacy leak caused by assigning objects passed in as parameters directly 
+     * to class’s instance variables. These privacy leaks are not prevented, 
+     * because the model needs to be aware of changes made by other classes to 
+     * instance variable like frog and game obstacles.
+     */
     public Model(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
         this.frog = frog;
         this.obstacles = obstacles;

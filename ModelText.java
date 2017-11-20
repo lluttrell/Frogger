@@ -8,6 +8,13 @@ import java.util.ArrayList;
 public class ModelText extends Model {
 
     private final int RIVER_STARTING_Y = 4;
+    
+    /**
+     * Privacy leak caused by assigning objects passed in as parameters directly 
+     * to class’s instance variables. These privacy leaks are not prevented, 
+     * because the model needs to be aware of changes made by other classes to 
+     * instance variable like frog and game obstacles.
+     */
 
     public ModelText(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
         super(frog, obstacles, controller);
@@ -42,7 +49,7 @@ public class ModelText extends Model {
             }
         }
     }
-
+    
     private boolean overlapsWith(GameObstacle obstacle) {
         for (int i = -1; i < obstacle.getWidth(); i++) {
             if (obstacle.getX() - i == frog.getX() && obstacle.getY() == frog.getY()) {
