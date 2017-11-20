@@ -51,10 +51,33 @@ public class ControllerGUI extends Controller {
      */
     @Override
     public void tick() {
+        checkBounds();
         super.tick();
         modelGUI.checkCollisions();
         checkGameState();
         viewGUI.repaint();
+    }
+
+    /**
+     * Constrains frog to screen.
+     */
+    @Override
+    protected void checkBounds() {
+        if (frog.getX() < 1) {
+            frog.setX(1);
+        }
+
+        if (frog.getY() == 0) {
+            frog.setY(0);
+        }
+
+        if (frog.getX() >= SCREEN_SIZE - 32) {
+            frog.setX(SCREEN_SIZE - 32);
+        }
+
+        if (frog.getY() >= SCREEN_SIZE - 32) {
+            frog.setY(SCREEN_SIZE - 32);
+        }
     }
 
    private void checkGameState() {

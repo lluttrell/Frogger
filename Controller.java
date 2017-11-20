@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Controller implements ActionListener {
+public abstract class Controller implements ActionListener {
 
     protected boolean running;
     protected boolean won = false;
@@ -43,7 +43,6 @@ public class Controller implements ActionListener {
         model.updateObstacles();
         keyManager.tick();
         getInput();
-        checkBounds();
         model.updateFrog();
     }
 
@@ -65,23 +64,7 @@ public class Controller implements ActionListener {
     /**
      * Constrains frog to screen.
      */
-    private void checkBounds() {
-        if (frog.getX() < 1) {
-            frog.setX(1);
-        }
-
-        if (frog.getY() == 0) {
-            frog.setY(0);
-        }
-
-        if (frog.getX() >= screenSize) {
-            frog.setX(screenSize);
-        }
-
-        if (frog.getY() == screenSize) {
-            frog.setY(screenSize);
-        }
-    }
+    protected abstract void checkBounds();
 
     public void setRunning(boolean running) {
         this.running = running;

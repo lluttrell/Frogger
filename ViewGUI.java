@@ -65,7 +65,7 @@ public class ViewGUI extends View {
         g2d.setFont(smallFont);
         g2d.setColor(new Color(0, 0, 0));
         s = "Lives: " + frog.getLives();
-        g2d.drawString(s, screenSize - 80, screenSize - 40);
+        g2d.drawString(s, screenSize - 60, screenSize - 10);
     }
 
     /**
