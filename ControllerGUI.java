@@ -51,36 +51,13 @@ public class ControllerGUI extends Controller {
      */
     @Override
     public void tick() {
-        checkBounds();
         super.tick();
         modelGUI.checkCollisions();
         checkGameState();
         viewGUI.repaint();
     }
 
-    /**
-     * Constrains frog to screen.
-     */
-    @Override
-    protected void checkBounds() {
-        if (frog.getX() < 1) {
-            frog.setX(1);
-        }
-
-        if (frog.getY() == 0) {
-            frog.setY(0);
-        }
-
-        if (frog.getX() >= SCREEN_SIZE - 32) {
-            frog.setX(SCREEN_SIZE - 32);
-        }
-
-        if (frog.getY() >= SCREEN_SIZE - 32) {
-            frog.setY(SCREEN_SIZE - 32);
-        }
-    }
-
-   private void checkGameState() {
+    private void checkGameState() {
         if (running) {
             viewGUI.setRunning(true);
         } else if (won) {
@@ -88,6 +65,22 @@ public class ControllerGUI extends Controller {
             viewGUI.setWon(true);
         } else {
             viewGUI.setRunning(false);
+        }
+    }
+
+    /**
+     * Handles user input.
+     */
+    @Override
+    protected void getInput() {
+        if (keyManager.up && frog.getY() > 0) {
+            frog.setY(frog.getY() - 1);
+        } else if (keyManager.down && frog.getY() < SCREEN_SIZE - 32) {
+            frog.setY(frog.getY() + 1);
+        } else if (keyManager.left && frog.getX() > 0) {
+            frog.setX(frog.getX() - 1);
+        } else if (keyManager.right && frog.getX() < SCREEN_SIZE - 32) {
+            frog.setX(frog.getX() + 1);
         }
     }
 

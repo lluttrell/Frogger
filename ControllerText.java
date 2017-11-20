@@ -48,25 +48,15 @@ public class ControllerText extends Controller implements ActionListener {
         }
     }
 
-    /**
-     * Constrains frog to screen.
-     */
-    @Override
-    protected void checkBounds() {
-        if (frog.getX() == 0) {
-            frog.setX(0);
-        }
-
-        if (frog.getY() == 0) {
-            frog.setY(0);
-        }
-
-        if (frog.getX() == SCREEN_SIZE - 1) {
-            frog.setX(SCREEN_SIZE - 1);
-        }
-
-        if (frog.getY() == SCREEN_SIZE - 1) {
-            frog.setY(SCREEN_SIZE - 1);
+    protected void getInput() {
+        if (keyManager.up && frog.getY() > 0) {
+            frog.setY(frog.getY() - 1);
+        } else if (keyManager.down && frog.getY() < SCREEN_SIZE - 1) {
+            frog.setY(frog.getY() + 1);
+        } else if (keyManager.left && frog.getX() > 0) {
+            frog.setX(frog.getX() - 1);
+        } else if (keyManager.right && frog.getX() < SCREEN_SIZE - 1) {
+            frog.setX(frog.getX() + 1);
         }
     }
 

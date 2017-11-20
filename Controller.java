@@ -46,25 +46,7 @@ public abstract class Controller implements ActionListener {
         model.updateFrog();
     }
 
-    /**
-     * Handles user input.
-     */
-    private void getInput() {
-        if (keyManager.up) {
-            frog.setY(frog.getY() - 1);
-        } else if (keyManager.down) {
-            frog.setY(frog.getY() + 1);
-        } else if (keyManager.left) {
-            frog.setX(frog.getX() - 1);
-        } else if (keyManager.right) {
-            frog.setX(frog.getX() + 1);
-        }
-    }
-
-    /**
-     * Constrains frog to screen.
-     */
-    protected abstract void checkBounds();
+    protected abstract void getInput();
 
     public void setRunning(boolean running) {
         this.running = running;

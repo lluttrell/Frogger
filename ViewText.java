@@ -65,6 +65,7 @@ public class ViewText extends View {
             for (int j = riverStartingY - 1; j >= 0; j--) {
                 screenMatrix[j][i] = '^';
             }
+            screenMatrix[0][i] = '.';
         }
     }
 
