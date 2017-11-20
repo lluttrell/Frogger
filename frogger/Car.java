@@ -1,6 +1,8 @@
+package frogger;
+
 /**
- * Handles construction of a Car object.
- * Inherits from GameObstacle.
+ * Handles construction of a frogger.Car object.
+ * Inherits from frogger.GameObstacle.
  */
 
 public class Car extends GameObstacle {
@@ -16,7 +18,7 @@ public class Car extends GameObstacle {
      */
     public Car(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation, direction, boardWidth);
-        setImage("res/asteroid.png");
+        setImage("/images/asteroid.png");
         getImageDimensions();
         carInit();
     }

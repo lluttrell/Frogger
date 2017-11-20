@@ -1,3 +1,5 @@
+package frogger.util;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -7,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * MediaLoader loads image for use in the game.
+ * frogger.util.MediaLoader loads image for use in the game.
  */
 public class MediaLoader {
 

@@ -1,3 +1,5 @@
+package frogger;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +29,7 @@ public class ControllerText extends Controller implements ActionListener {
     private void initBoard() {
         modelText = new ModelText(frog, obstacles, this);
         viewText = new ViewText(frog, SCREEN_SIZE, obstacles, modelText.getRiverStartingY());
-        readWorld("worlds/world1Text.txt");
+        readWorld("res/worlds/world1Text.txt");
         viewText.addKeyListener(keyManager);
         viewText.setFocusable(true);
         viewText.setDoubleBuffered(true);

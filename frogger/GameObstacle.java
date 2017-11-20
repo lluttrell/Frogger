@@ -1,7 +1,9 @@
+package frogger;
+
 /**
  * Handles obstacle movement and initialization.
- * Inherits from GameObject.
- * Parent to Log and Car.
+ * Inherits from frogger.GameObject.
+ * Parent to frogger.Log and frogger.Car.
  */
 public class GameObstacle extends GameObject {
     private final int DEFAULT_SPEED = 1;
@@ -65,7 +67,7 @@ public class GameObstacle extends GameObject {
     /**
      * Returns boolean value representing if the object is dangerous to the frog
      *
-     * @return true if GameObstacle is dangerous, false otherwise.
+     * @return true if frogger.GameObstacle is dangerous, false otherwise.
      */
     public boolean isDangerous() {
         return dangerous;
@@ -81,9 +83,9 @@ public class GameObstacle extends GameObject {
     }
 
     /**
-     * Returns the speed of the GameObstacle
+     * Returns the speed of the frogger.GameObstacle
      *
-     * @return Integer representing the speed of the GameObstacle
+     * @return Integer representing the speed of the frogger.GameObstacle
      */
     public int getSpeed() {
         return DEFAULT_SPEED;

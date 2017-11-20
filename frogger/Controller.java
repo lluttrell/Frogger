@@ -1,3 +1,7 @@
+package frogger;
+
+import frogger.util.KeyManager;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

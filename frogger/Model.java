@@ -1,3 +1,5 @@
+package frogger;
+
 import java.util.ArrayList;
 
 public class Model {

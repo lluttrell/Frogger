@@ -1,8 +1,10 @@
+package frogger;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Acts as the model for View version.
+ * Acts as the model for frogger.View version.
  * Handles moving all entities in the game and checking win or loss state.
  */
 public class ModelGUI extends Model {

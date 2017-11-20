@@ -1,10 +1,14 @@
+package frogger;
+
+import frogger.util.MediaLoader;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * ControllerGUI handles the main game logic and game loop.
- * Acts as Controller for View version of Frogger based on MVC model.
+ * frogger.ControllerGUI handles the main game logic and game loop.
+ * Acts as frogger.Controller for frogger.View version of Frogger based on MVC model.
  * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
  * background image obtained from https://i.imgur.com/iFW8JM4.png
  *
@@ -38,7 +42,7 @@ public class ControllerGUI extends Controller {
         frog.getImageDimensions();
         viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles);
         modelGUI = new ModelGUI(frog, obstacles, this);
-        readWorld("worlds/world1.txt");
+        readWorld("res/worlds/world1.txt");
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);
         viewGUI.setDoubleBuffered(true);

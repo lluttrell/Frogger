@@ -1,11 +1,13 @@
+package frogger;
+
 /**
- * Handles Construction of Log object
- * Inherits from GameObstacle.
+ * Handles Construction of frogger.Log object
+ * Inherits from frogger.GameObstacle.
  */
 public class Log extends GameObstacle {
 
     /**
-     * View constructor
+     * frogger.View constructor
      *
      * @param xStartingLocation Integer representing the x starting location
      * @param xStartingLocation Integer representing the y starting location
@@ -16,9 +18,9 @@ public class Log extends GameObstacle {
     public Log(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation, direction, boardWidth);
         if (direction == 'L') {
-            setImage("res/shipL.png");
+            setImage("/images/shipL.png");
         } else if (direction == 'R') {
-            setImage("res/shipR.png");
+            setImage("/images/shipR.png");
         }
         getImageDimensions();
     }

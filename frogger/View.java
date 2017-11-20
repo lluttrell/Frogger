@@ -1,3 +1,5 @@
+package frogger;
+
 import javax.swing.*;
 import java.util.ArrayList;
 

@@ -1,8 +1,12 @@
+package frogger;
+
+import frogger.util.MediaLoader;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Handles View for View version.
+ * Handles frogger.View for frogger.View version.
  * Inherits from JPanel
  */
 
@@ -15,7 +19,7 @@ public class ViewGUI extends View {
     public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles) {
         super(frog, screenSize, obstacles);
         super.setPreferredSize(new Dimension(screenSize, screenSize));
-        background = MediaLoader.loadImage("res/background.png");
+        background = MediaLoader.loadImage("/images/background.png");
     }
 
     /**

@@ -1,3 +1,5 @@
+package frogger;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,7 @@ public class ModelText extends Model {
      * Checks if the player collides with game obstacles.
      */
     public void checkCollisions() {
-        if (frog.getY() < RIVER_STARTING_Y) { //Frog on river
+        if (frog.getY() < RIVER_STARTING_Y) { //frogger.Frog on river
             boolean overLap = false;
 
             for (GameObstacle o : obstacles) {

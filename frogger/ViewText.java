@@ -1,7 +1,9 @@
+package frogger;
+
 import java.util.ArrayList;
 
 /**
- * Handles View for Text version.
+ * Handles frogger.View for Text version.
  * Inherits from JPanel for timer and keyListener.
  */
 
@@ -71,11 +73,11 @@ public class ViewText extends View {
 
     /**
      * Updates the character at a specified position in the screenMatrix to the
-     * character used to represent a GameObject
+     * character used to represent a frogger.GameObject
      *
-     * @param object GameObject moving into the position
-     * @param x      x coordinate of GameObject
-     * @param y      y coordinate of GameObject
+     * @param object frogger.GameObject moving into the position
+     * @param x      x coordinate of frogger.GameObject
+     * @param y      y coordinate of frogger.GameObject
      */
     private void setObjectOnLocation(GameObject object, int x, int y) {
         for (int i = x - object.getWidth() / 2; i <= x + object.getWidth() / 2; i++) {
