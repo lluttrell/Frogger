@@ -42,10 +42,9 @@ public class ModelTextTest {
 	@Test
     public void test_checkCollision_FrogDoesNotOverlapWithLog(){
 		
-		Frog f = new Frog(7, 5);
+		Frog f = new Frog(7, 3);
 		ControllerText ct = new ControllerText();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
-		int RIVER_STARTING_Y = 4;
 		
 		obs.add(new Log(3,5,'L', 15));
 		

@@ -40,7 +40,7 @@ public class ModelGUITest {
 	@Test
     public void test_checkCollision_FrogDoesNotOverlapWithLog(){
 		
-		Frog f = new Frog(7, 202);
+		Frog f = new Frog(7, 190);
 		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
@@ -56,11 +56,11 @@ public class ModelGUITest {
 	@Test
     public void test_checkCollision_FrogDoesNotOverlapWithCar(){
 		
-		Frog f = new Frog(4, 5);
+		Frog f = new Frog(4, 250);
 		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
-		obs.add(new Car(3,2,'L', 15));
+		obs.add(new Car(3,2,'L', 240));
 		
         ModelGUI modGUI = new ModelGUI(f, obs, ct);
         modGUI.updateObstacles(); 
@@ -72,16 +72,16 @@ public class ModelGUITest {
 	@Test
     public void test_checkCollision_FrogOverlapsWithCar(){
 		
-		Frog f = new Frog(4, 5);
+		Frog f = new Frog(2, 201);
 		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
-		obs.add(new Car(3,2,'L', 15));
+		obs.add(new Car(3,201,'L', 15));
 		
         ModelGUI modGUI = new ModelGUI(f, obs, ct);
         modGUI.updateObstacles(); 
-        f.setX(2);
-        f.setY(2);
+        f.setX(44);
+        f.setY(201);
         modGUI.checkCollisions();
         
         assertEquals("Frog's lives should be 2", 2, f.getLives(), 0.000001);
