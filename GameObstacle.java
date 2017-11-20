@@ -46,13 +46,13 @@ public class GameObstacle extends GameObject {
      */
     public void move() {
         if (getDirection() == 'L') {
-            setX(getX() - getSpeed());
+            setX(getX() - DEFAULT_SPEED);
 
             if (getX() < offScreenBuffer - 2) {
                 setX(boardWidth - (getWidth() - 1));
             }
         } else if (getDirection() == 'R') {
-            setX(getX() + getSpeed());
+            setX(getX() + DEFAULT_SPEED);
 
             if (getX() == boardWidth - 1) {
                 setX(1);

@@ -70,15 +70,15 @@ public class Controller implements ActionListener {
             frog.setX(1);
         }
 
-        if (frog.getY() < 1) {
-            frog.setY(1);
+        if (frog.getY() == 0) {
+            frog.setY(0);
         }
 
-        if (frog.getX() > screenSize) {
+        if (frog.getX() >= screenSize) {
             frog.setX(screenSize);
         }
 
-        if (frog.getY() > screenSize) {
+        if (frog.getY() == screenSize) {
             frog.setY(screenSize);
         }
     }
@@ -89,5 +89,9 @@ public class Controller implements ActionListener {
 
     public void setWon(boolean won) {
         this.won = won;
+    }
+
+    public int getScreenSize() {
+        return screenSize;
     }
 }

@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class ControllerGUI extends Controller {
 
     private static final int FROG_X_START = 225;
-    private static final int FROG_Y_START = 420;
+    private static final int FROG_Y_START = 450;
     private static final int DELAY = 10;
     private static final int SCREEN_SIZE = 480;
 
@@ -52,20 +52,21 @@ public class ControllerGUI extends Controller {
     @Override
     public void tick() {
         super.tick();
-        viewGUI.repaint();
         modelGUI.checkCollisions();
-        //checkGameState();
+        checkGameState();
+        viewGUI.repaint();
     }
 
-   /* public void checkGameState() {
+   private void checkGameState() {
         if (running) {
-            viewGUI.doDrawing();
+            viewGUI.setRunning(true);
         } else if (won) {
-            viewGUI.showEndScreen("You Win!");
+            viewGUI.setRunning(false);
+            viewGUI.setWon(true);
         } else {
-            viewGUI.showEndScreen("You Lose :(");
+            viewGUI.setRunning(false);
         }
-    }*/
+    }
 
     /**
      * Constructs obstacles based on text file.

@@ -39,15 +39,14 @@ public class Main extends JFrame {
     }
 
     private void initGUI() {
+        super.getContentPane().setLayout(new BorderLayout());
         ControllerGUI controllerGUI = new ControllerGUI();
         add(controllerGUI.getViewGUI());
-
-        setSize(480, 480);
         setResizable(false);
-
         setTitle("Frogger");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
     }
 
     private void initText() {

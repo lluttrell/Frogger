@@ -19,7 +19,7 @@ public class Model {
 
         if (frog.getY() == 0) { //Reaches end
             controller.setRunning(false);
-            controller.setWon(false);
+            controller.setWon(true);
         }
 
         if (frog.getLives() == 0) { //Runs out of lives

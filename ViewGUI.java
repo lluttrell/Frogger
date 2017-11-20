@@ -7,12 +7,14 @@ import java.util.ArrayList;
  */
 
 public class ViewGUI extends View {
+    private boolean running, won;
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
     private final Image background;
     private Graphics g;
 
     public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles) {
         super(frog, screenSize, obstacles);
+        super.setPreferredSize(new Dimension(screenSize, screenSize));
         background = MediaLoader.loadImage("res/background.png");
     }
 
@@ -25,7 +27,14 @@ public class ViewGUI extends View {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
-        doDrawing(g);
+
+        if (running) {
+            doDrawing(g);
+        } else if (won) {
+            showEndScreen(g, "You Win!");
+        } else {
+            showEndScreen(g, "You Lose!");
+        }
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -64,7 +73,7 @@ public class ViewGUI extends View {
      *
      * @param s The message inside the box.
      */
-    public void showEndScreen(String s) {
+    public void showEndScreen(Graphics g, String s) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(new Color(0, 32, 48));
@@ -78,5 +87,13 @@ public class ViewGUI extends View {
         g2d.setColor(Color.white);
         g2d.setFont(small);
         g2d.drawString(s, (screenSize - metr.stringWidth(s)) / 2, screenSize / 2);
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
     }
 }
