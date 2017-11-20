@@ -55,12 +55,21 @@ public abstract class Controller implements ActionListener {
     public void setRunning(boolean running) {
         this.running = running;
     }
+	
+	public boolean getRunning(){
+		return running;
+	}
 
     public void setWon(boolean won) {
         this.won = won;
     }
+	
+	public boolean getWon(){
+		return won;
+	}
 
     public int getScreenSize() {
         return screenSize;
     }
+	
 }
