@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -6,20 +5,16 @@ import java.util.ArrayList;
  * Inherits from JPanel for timer and keyListener.
  */
 
-public class ViewText extends JPanel {
+public class ViewText extends View {
     private final int width;
     private final int height;
     private final int riverStartingY;
     private char[][] screenMatrix;
 
-    private Frog frog;
-    private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
-
-    public ViewText(Frog frog, ArrayList<GameObstacle> obstacles, int width, int height, int riverStartingY) {
-        this.frog = frog;
-        this.obstacles = obstacles;
-        this.width = width;
-        this.height = height;
+    public ViewText(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, int riverStartingY) {
+        super(frog, screenSize, obstacles);
+        this.width = screenSize;
+        this.height = screenSize;
         this.riverStartingY = riverStartingY;
         screenMatrix = new char[this.height][this.width];
         InitScreen();
@@ -85,6 +80,5 @@ public class ViewText extends JPanel {
         for (int i = x - object.getWidth() / 2; i <= x + object.getWidth() / 2; i++) {
             screenMatrix[y][i] = object.getSymbol();
         }
-
     }
 }

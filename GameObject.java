@@ -116,7 +116,7 @@ public class GameObject {
     }
 
     /**
-     * Sets the Image used to represent GameObject in GUI based Version
+     * Sets the Image used to represent GameObject in View based Version
      *
      * @param path String containing path to the image used to represent GameObject
      */

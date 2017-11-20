@@ -2,49 +2,20 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Acts as the model for GUI version.
+ * Acts as the model for View version.
  * Handles moving all entities in the game and checking win or loss state.
  */
-public class ModelGUI {
+public class ModelGUI extends Model {
 
-    private Frog frog;
-    private ControllerGUI controllerGUI;
-    private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
-
-    public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles, ControllerGUI controllerGUI) {
-        this.frog = frog;
-        this.obstacles = obstacles;
-        this.controllerGUI = controllerGUI;
-    }
-
-    /**
-     * Move frog when the player input direction,
-     * and check frog's y-coordinate to know whether game continues.
-     */
-    public void updateFrog() {
-
-        if (frog.getY() == 1) {
-            controllerGUI.setRunningFalse();
-            controllerGUI.setWonFalse();
-        }
-
-        if (frog.getLives() == 0) {
-            controllerGUI.setRunningFalse();
-        }
-    }
-
-    /**
-     * Move cars and logs.
-     */
-    public void updateObstacles() {
-        for (GameObstacle o : obstacles) {
-            o.move();
-        }
+    public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
+        super(frog, obstacles, controller);
     }
 
     /**
      * Checks if the player collides with game obstacles.
+     * Uses Rectangles set to the image sizes of the entities.
      */
+    @Override
     public void checkCollisions() {
         Rectangle player = frog.getBounds();
         int RIVER_STARTING_Y = 200;

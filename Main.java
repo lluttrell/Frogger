@@ -12,16 +12,16 @@ public class Main extends JFrame {
      */
     private Main() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter \"text\" or \"GUI\":");
+        System.out.print("Enter \"text\" or \"View\":");
         String choice = sc.next();
-        while (!(choice.equalsIgnoreCase("text") || choice.equalsIgnoreCase("GUI"))) {
+        while (!(choice.equalsIgnoreCase("text") || choice.equalsIgnoreCase("View"))) {
             System.out.println("Incorrect input");
-            System.out.print("Enter \"text\" or \"GUI\":");
+            System.out.print("Enter \"text\" or \"View\":");
             choice = sc.next();
         }
         if (choice.equalsIgnoreCase("text")) {
             initText();
-        } else if (choice.equalsIgnoreCase("GUI")) {
+        } else if (choice.equalsIgnoreCase("View")) {
             initGUI();
         }
     }

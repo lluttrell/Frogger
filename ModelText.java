@@ -5,47 +5,18 @@ import java.util.ArrayList;
  * Handles moving all entities in the game and checking win or loss state.
  */
 
-public class ModelText {
+public class ModelText extends Model {
 
     private final int RIVER_STARTING_Y = 4;
-    private Frog frog;
-    private ControllerText controllerText;
-    private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
 
-    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles, ControllerText controllerText) {
-        this.frog = frog;
-        this.obstacles = obstacles;
-        this.controllerText = controllerText;
-    }
-
-    /**
-     * Move frog when the player input direction,
-     * and check frog's y-coordinate to know whether game continues.
-     */
-    public void updateFrog() {
-
-        if (frog.getY() == 0) { //Reaches end
-            controllerText.setRunningFalse();
-            controllerText.setWonFalse();
-        }
-
-        if (frog.getLives() == 0) { //Runs out of lives
-            controllerText.setRunningFalse();
-        }
-    }
-
-    /**
-     * Move cars and logs.
-     */
-    public void updateObstacles() {
-        for (GameObstacle o : obstacles) {
-            o.move();
-        }
+    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
+        super(frog, obstacles, controller);
     }
 
     /**
      * Checks if the player collides with game obstacles.
      */
+    @Override
     public void checkCollisions() {
         if (frog.getY() < RIVER_STARTING_Y) { //Frog on river
             boolean overLap = false;

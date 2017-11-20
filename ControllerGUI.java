@@ -1,66 +1,43 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /**
  * ControllerGUI handles the main game logic and game loop.
- * Acts as Controller for GUI version of Frogger based on MVC model.
+ * Acts as Controller for View version of Frogger based on MVC model.
  * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
  * background image obtained from https://i.imgur.com/iFW8JM4.png
  *
  * @author Iden Craven
  * @author Richard Williams
  */
-public class ControllerGUI extends JFrame implements ActionListener {
+public class ControllerGUI extends Controller {
 
     private static final int FROG_X_START = 225;
     private static final int FROG_Y_START = 420;
+    private static final int DELAY = 10;
+    private static final int SCREEN_SIZE = 480;
 
-    private final int DELAY = 10;
-    private final int SCREEN_SIZE = 480;
-
-    private boolean running;
-    private boolean won = false;
-
-    private Timer timer;
-    private Frog frog;
-    private KeyManager keyManager;
     private ViewGUI viewGUI;
     private ModelGUI modelGUI;
-
-    private ArrayList<GameObstacle> obstacles = new ArrayList<GameObstacle>();
 
     /**
      * Default constructor.
      */
     public ControllerGUI() {
-        initBoard();
+        super(SCREEN_SIZE, FROG_X_START, FROG_Y_START, DELAY);
+        //Background music
+        MediaLoader.playSound();
     }
 
     /**
      * Initializes all objects.
      */
     private void initBoard() {
-        keyManager = new KeyManager();
-
-        frog = new Frog(FROG_X_START, FROG_Y_START);
-        viewGUI = new ViewGUI(frog, obstacles, this);
+        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles);
         modelGUI = new ModelGUI(frog, obstacles, this);
-        //Background music
-        MediaLoader.playSound();
+
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);
         viewGUI.setDoubleBuffered(true);
         running = true;
 
-        readWorld("worlds/world1.txt");
-
-        timer = new Timer(DELAY, this);
-        timer.start();
     }
 
     /**
@@ -68,114 +45,18 @@ public class ControllerGUI extends JFrame implements ActionListener {
      * and check whether frog collides with obstacles
      * then repaint new objects
      */
-    public void actionPerformed(ActionEvent e) {
-        modelGUI.updateObstacles();
-        keyManager.tick();
-        getInput();
-        checkBounds();
-        modelGUI.updateFrog();
-        modelGUI.checkCollisions();
+    @Override
+    public void tick() {
         viewGUI.repaint();
     }
 
-    /**
-     * Getter for keyManager
-     *
-     * @return KeyManager the module's KeyManager
-     */
-    public KeyManager getKeyManager() {
-        return keyManager;
-    }
-
-    /**
-     * Handles user input.
-     */
-    public void getInput() {
-        if (getKeyManager().up) {
-            frog.setY(frog.getY() - 1);
-        } else if (getKeyManager().down) {
-            frog.setY(frog.getY() + 1);
-        } else if (getKeyManager().left) {
-            frog.setX(frog.getX() - 1);
-        } else if (getKeyManager().right) {
-            frog.setX(frog.getX() + 1);
+    public void checkGameState() {
+        if (running) {
+            viewGUI.doDrawing(g);
+        } else if (won) {
+            showEndScreen(g, "You Win!");
+        } else {
+            showEndScreen(g, "You Lose :(");
         }
-    }
-
-    //Constrains frog to screen.
-    public void checkBounds() {
-        if (frog.getX() < 1) {
-            frog.setX(1);
-        }
-
-        if (frog.getY() < 1) {
-            frog.setY(1);
-        }
-
-        if (frog.getX() > SCREEN_SIZE - 35) {
-            frog.setX(SCREEN_SIZE - 35);
-        }
-
-        if (frog.getY() > SCREEN_SIZE - 60) {
-            frog.setY(SCREEN_SIZE - 60);
-        }
-    }
-
-    /**
-     * Constructs obstacles based on text file.
-     *
-     * @param path path to the text file
-     */
-    private void readWorld(String path) {
-        try {
-            File file = new File(path);
-            Scanner sc = new Scanner(file);
-
-            while (sc.hasNext()) {
-                int numLog = sc.nextInt();
-                for (int i = 0; i < numLog; i++) {
-                    int x = sc.nextInt();
-                    int y = sc.nextInt();
-                    char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(x, y, direction, getScreenSize()));
-                }
-                int numCar = sc.nextInt();
-                for (int i = 0; i < numCar; i++) {
-                    int x = sc.nextInt();
-                    int y = sc.nextInt();
-                    char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(x, y, direction, getScreenSize()));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //Getters
-    public int getScreenSize() {
-        return SCREEN_SIZE;
-    }
-
-    public boolean getWon() {
-        return won;
-    }
-
-    public boolean getRunning() {
-        return running;
-    }
-
-    public ViewGUI getViewGUI() {
-        return viewGUI;
-    }
-
-    //Setters
-
-    public void setWonFalse() {
-        won = true;
-    }
-
-    public void setRunningFalse() {
-        running = false;
     }
 }

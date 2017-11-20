@@ -5,7 +5,7 @@
 public class Log extends GameObstacle {
 
     /**
-    * GUI constructor
+    * View constructor
     * @param xStartingLocation Integer representing the x starting location
     * @param xStartingLocation Integer representing the y starting location
     * @param direction char representing the direction of movement 'L' for left

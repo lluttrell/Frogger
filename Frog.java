@@ -11,7 +11,7 @@ public class Frog extends GameObject {
     private int lives = 3;
 
     /**
-     * GUI constructor for Frog Object
+     * View constructor for Frog Object
      *
      * @param startX Initial X location for Frog
      * @param startY Initial Y location for Frog

@@ -10,7 +10,7 @@ public class GameObstacle extends GameObject {
     private boolean dangerous;
     private char direction;
 
-    //GUI constructor
+    //View constructor
     public GameObstacle(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation);
         this.direction = direction;
