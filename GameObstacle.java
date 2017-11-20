@@ -10,7 +10,13 @@ public class GameObstacle extends GameObject {
     private boolean dangerous;
     private char direction;
 
-    //View constructor
+    /**
+    * GUI Constructor
+    * @param xStartingLocation Integer representing initial x position
+    * @param yStartingLocation Integer representing initial y position
+    * @param direction 'L' for objects moving left 'R' for objects moving
+    * @param boardWidth Integer representing width of board
+    */
     public GameObstacle(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation);
         this.direction = direction;
@@ -18,7 +24,14 @@ public class GameObstacle extends GameObject {
         this.boardWidth = boardWidth;
     }
 
-    //Text Constructor
+    /**
+    * Text Constructor
+    * @param width Integer representing with of obstacle (number of characters wide)
+    * @param xStartingLocation Integer representing initial x position
+    * @param yStartingLocation Integer representing initial y position
+    * @param direction 'L' for objects moving left 'R' for objects moving
+    * @param boardWidth Integer representing width of board
+    */
     public GameObstacle(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(width, xStartingLocation, yStartingLocation);
         this.direction = direction;
@@ -46,23 +59,37 @@ public class GameObstacle extends GameObject {
     }
 
     //Getters
-
+    /**
+    * Returns boolean value representing if the object is dangerous to the frog
+    * @return true if GameObstacle is dangerous, false otherwise.
+    */
     public boolean isDangerous() {
-        return dangerous;
+      return dangerous;
     }
 
-    public void setDangerous(boolean dangerous) {
-        this.dangerous = dangerous;
+    /**
+    * Returns character representing the direction of movement of the obstacle
+    * @return 'L' for obstacles moving left. 'R' for obstacles moving right
+    */
+    public char getDirection() {
+      return direction;
+    }
+
+    /**
+    * Returns the speed of the GameObstacle
+    * @return Integer representing the speed of the GameObstacle
+    */
+    public int getSpeed() {
+      return DEFAULT_SPEED;
     }
 
     //Setters
-
-    public char getDirection() {
-        return direction;
-    }
-
-    public int getSpeed() {
-        return DEFAULT_SPEED;
+    /**
+    * Sets the danger level of the obstacle
+    * @param dangerous true if object is dangerous to frog, false otherwise
+    */
+    public void setDangerous(boolean dangerous) {
+        this.dangerous = dangerous;
     }
 
 }
