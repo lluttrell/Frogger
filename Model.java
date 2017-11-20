@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Model {
+public class Model {
     protected Frog frog;
     private Controller controller;
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
@@ -35,9 +35,4 @@ public abstract class Model {
             o.move();
         }
     }
-
-    /**
-     * Checks if the player collides with game obstacles.
-     */
-    public abstract void checkCollisions();
 }

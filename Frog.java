@@ -18,24 +18,11 @@ public class Frog extends GameObject {
      */
     public Frog(int startX, int startY) {
         super(startX, startY);
-        this.startX = startX;
-        this.startY = startY;
-        setImage("res/frog.png");
-        getImageDimensions();
-    }
-
-    /**
-     * Text Constructor for frog Object
-     *
-     * @param width  width of frog (number of characters wide)
-     * @param startX Initial X location for Frog
-     * @param startY Initial Y location for Frog
-     */
-    public Frog(int width, int startX, int startY) {
-        super(width, startX, startY);
+        width = 1;
         this.startX = startX;
         this.startY = startY;
         setSymbol('F');
+        setImage("res/frog.png");
     }
 
     /**

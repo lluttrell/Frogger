@@ -5,18 +5,19 @@
  */
 public class GameObstacle extends GameObject {
     private final int DEFAULT_SPEED = 1;
-    private int boardWidth;
-    private int offScreenBuffer;
+    private final int boardWidth;
+    private final int offScreenBuffer;
     private boolean dangerous;
-    private char direction;
+    private final char direction;
 
     /**
-    * GUI Constructor
-    * @param xStartingLocation Integer representing initial x position
-    * @param yStartingLocation Integer representing initial y position
-    * @param direction 'L' for objects moving left 'R' for objects moving
-    * @param boardWidth Integer representing width of board
-    */
+     * GUI Constructor
+     *
+     * @param xStartingLocation Integer representing initial x position
+     * @param yStartingLocation Integer representing initial y position
+     * @param direction         'L' for objects moving left 'R' for objects moving
+     * @param boardWidth        Integer representing width of board
+     */
     public GameObstacle(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation);
         this.direction = direction;
@@ -25,13 +26,14 @@ public class GameObstacle extends GameObject {
     }
 
     /**
-    * Text Constructor
-    * @param width Integer representing with of obstacle (number of characters wide)
-    * @param xStartingLocation Integer representing initial x position
-    * @param yStartingLocation Integer representing initial y position
-    * @param direction 'L' for objects moving left 'R' for objects moving
-    * @param boardWidth Integer representing width of board
-    */
+     * Text Constructor
+     *
+     * @param width             Integer representing with of obstacle (number of characters wide)
+     * @param xStartingLocation Integer representing initial x position
+     * @param yStartingLocation Integer representing initial y position
+     * @param direction         'L' for objects moving left 'R' for objects moving
+     * @param boardWidth        Integer representing width of board
+     */
     public GameObstacle(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(width, xStartingLocation, yStartingLocation);
         this.direction = direction;
@@ -59,35 +61,41 @@ public class GameObstacle extends GameObject {
     }
 
     //Getters
+
     /**
-    * Returns boolean value representing if the object is dangerous to the frog
-    * @return true if GameObstacle is dangerous, false otherwise.
-    */
+     * Returns boolean value representing if the object is dangerous to the frog
+     *
+     * @return true if GameObstacle is dangerous, false otherwise.
+     */
     public boolean isDangerous() {
-      return dangerous;
+        return dangerous;
     }
 
     /**
-    * Returns character representing the direction of movement of the obstacle
-    * @return 'L' for obstacles moving left. 'R' for obstacles moving right
-    */
+     * Returns character representing the direction of movement of the obstacle
+     *
+     * @return 'L' for obstacles moving left. 'R' for obstacles moving right
+     */
     public char getDirection() {
-      return direction;
+        return direction;
     }
 
     /**
-    * Returns the speed of the GameObstacle
-    * @return Integer representing the speed of the GameObstacle
-    */
+     * Returns the speed of the GameObstacle
+     *
+     * @return Integer representing the speed of the GameObstacle
+     */
     public int getSpeed() {
-      return DEFAULT_SPEED;
+        return DEFAULT_SPEED;
     }
 
     //Setters
+
     /**
-    * Sets the danger level of the obstacle
-    * @param dangerous true if object is dangerous to frog, false otherwise
-    */
+     * Sets the danger level of the obstacle
+     *
+     * @param dangerous true if object is dangerous to frog, false otherwise
+     */
     public void setDangerous(boolean dangerous) {
         this.dangerous = dangerous;
     }

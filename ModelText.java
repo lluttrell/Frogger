@@ -16,7 +16,6 @@ public class ModelText extends Model {
     /**
      * Checks if the player collides with game obstacles.
      */
-    @Override
     public void checkCollisions() {
         if (frog.getY() < RIVER_STARTING_Y) { //Frog on river
             boolean overLap = false;

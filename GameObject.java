@@ -13,13 +13,14 @@ public class GameObject {
 
     //Instance variables.
     protected int x, y;
-    private int width;
+    protected int width;
     private int height;
     private char symbol;
     private Image image;
 
     /**
      * GameObject Constructor
+     *
      * @param xStartingLocation Integer representing initial x position of GameObject
      * @param yStartingLocation Integer representing initial y position of GameObject
      */
@@ -30,7 +31,8 @@ public class GameObject {
 
     /**
      * GameObject Constructor for text based version of GameObject
-     * @param width Integer representing the width of the GameObject
+     *
+     * @param width             Integer representing the width of the GameObject
      * @param xStartingLocation Integer representing initial x position of GameObject
      * @param yStartingLocation Integer representing initial y position of GameObject
      */
@@ -41,8 +43,10 @@ public class GameObject {
     }
 
     // Getters
+
     /**
      * Returns the x position of the GameObject
+     *
      * @return Integer representing x position of GameObject
      */
     public int getX() {
@@ -51,6 +55,7 @@ public class GameObject {
 
     /**
      * Sets the x position of the GameObject
+     *
      * @param newLocation new x location of GameObject
      */
     public void setX(int newLocation) {
@@ -59,6 +64,7 @@ public class GameObject {
 
     /**
      * Returns the y position of the GameObject
+     *
      * @return Integer representing y position of GameObject
      */
     public int getY() {
@@ -67,6 +73,7 @@ public class GameObject {
 
     /**
      * Sets the y position of the GameObject
+     *
      * @param newLocation new y location of GameObject
      */
     public void setY(int newLocation) {
@@ -75,6 +82,7 @@ public class GameObject {
 
     /**
      * Returns the width of the GameObject
+     *
      * @return Integer representing width of GameObject
      */
     public int getWidth() {
@@ -83,6 +91,7 @@ public class GameObject {
 
     /**
      * Returns char used to represent GameObject in text based version
+     *
      * @return char used to represent GameObject
      */
     public char getSymbol() {
@@ -91,6 +100,7 @@ public class GameObject {
 
     /**
      * Sets the char used to represent GameObject in text based Version
+     *
      * @param newSymbol char used to represent GameObject
      */
     public void setSymbol(char newSymbol) {
@@ -101,6 +111,7 @@ public class GameObject {
 
     /**
      * Returns the Image used to draw the GameObject
+     *
      * @return Image representing the GameObject
      */
     public Image getImage() {
@@ -109,6 +120,7 @@ public class GameObject {
 
     /**
      * Sets the Image used to represent GameObject in GUI based Version
+     *
      * @param path String containing path to the image used to represent GameObject
      */
     public void setImage(String path) {
@@ -118,6 +130,7 @@ public class GameObject {
     /**
      * Returns a Rectangle representing the boundaries of the GameObject (for
      * collision detection)
+     *
      * @return Rectangle representing the spatial boundaries of the GameObject
      */
     public Rectangle getBounds() {

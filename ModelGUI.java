@@ -15,7 +15,6 @@ public class ModelGUI extends Model {
      * Checks if the player collides with game obstacles.
      * Uses Rectangles set to the image sizes of the entities.
      */
-    @Override
     public void checkCollisions() {
         Rectangle player = frog.getBounds();
         int RIVER_STARTING_Y = 200;

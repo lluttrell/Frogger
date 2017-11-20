@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 
 public class ViewGUI extends View {
-
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
     private final Image background;
+    private Graphics g;
 
     public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles) {
         super(frog, screenSize, obstacles);
@@ -25,14 +25,14 @@ public class ViewGUI extends View {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
-
+        doDrawing(g);
         Toolkit.getDefaultToolkit().sync();
     }
 
     /**
      * Draws game entities and lives.
      */
-    private void doDrawing(Graphics g) {
+    public void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         for (GameObstacle o : obstacles) {
@@ -62,10 +62,9 @@ public class ViewGUI extends View {
     /**
      * Draws a box with a message inside it. Used to show win screen or game over.
      *
-     * @param g the graphics object
      * @param s The message inside the box.
      */
-    private void showEndScreen(Graphics g, String s) {
+    public void showEndScreen(String s) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(new Color(0, 32, 48));
