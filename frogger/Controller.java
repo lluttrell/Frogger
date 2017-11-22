@@ -23,10 +23,10 @@ public abstract class Controller implements ActionListener {
     public Controller(int screenSize, int frogXStart, int frogYStart, int delay) {
         frog = new Frog(frogXStart, frogYStart);
         this.screenSize = screenSize;
-        initBoard(frogXStart, frogYStart, delay);
+        initBoard(delay);
     }
 
-    private void initBoard(int frogXStart, int frogYStart, int delay) {
+    private void initBoard(int delay) {
         keyManager = new KeyManager();
         model = new Model(frog, obstacles, this);
         running = true;
@@ -55,21 +55,20 @@ public abstract class Controller implements ActionListener {
     public void setRunning(boolean running) {
         this.running = running;
     }
-	
-	public boolean getRunning(){
-		return running;
-	}
+
+    public boolean getRunning() {
+        return running;
+    }
 
     public void setWon(boolean won) {
         this.won = won;
     }
-	
-	public boolean getWon(){
-		return won;
-	}
+
+    public boolean getWon() {
+        return won;
+    }
 
     public int getScreenSize() {
         return screenSize;
     }
-	
 }

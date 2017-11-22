@@ -14,7 +14,6 @@ public class ViewGUI extends View {
     private boolean running, won;
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
     private final Image background;
-    private Graphics g;
 
     public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles) {
         super(frog, screenSize, obstacles);
@@ -45,7 +44,7 @@ public class ViewGUI extends View {
     /**
      * Draws game entities and lives.
      */
-    public void doDrawing(Graphics g) {
+    private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         for (GameObstacle o : obstacles) {
@@ -77,7 +76,7 @@ public class ViewGUI extends View {
      *
      * @param s The message inside the box.
      */
-    public void showEndScreen(Graphics g, String s) {
+    private void showEndScreen(Graphics g, String s) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(new Color(0, 32, 48));
