@@ -8,7 +8,6 @@ import java.util.Scanner;
  * Handles JFrame and launching the game.
  */
 public class Main extends JFrame {
-
     /**
      * Constructs text or gui version based on user input.
      */
