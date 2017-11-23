@@ -1,42 +1,34 @@
 package frogger;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Animation {
 
-    private int speed;
-    private int frames;
+    private int speed, index;
+    private long lastTime, timer;
+    private BufferedImage[] frames;
 
-    private int index = 0;
-    private int count = 0;
-
-    private BufferedImage[] images;
-    private BufferedImage currentImg;
-
-    public Animation(int speed, BufferedImage... args) {
+    public Animation(int speed, BufferedImage[] frames) {
         this.speed = speed;
-        images = new BufferedImage[args.length];
-        for (int i = 0; i < args.length; i++) {
-            images[i] = args[i];
+        this.frames = frames;
+        index = 0;
+        timer = 0;
+        lastTime = System.currentTimeMillis();
+    }
+
+    public BufferedImage getCurrentFrame() {
+        return frames[index];
+    }
+
+    public void tick() {
+        timer += System.currentTimeMillis() - lastTime;
+        lastTime = System.currentTimeMillis();
+
+        if (timer > speed) {
+            index++;
+            timer = 0;
+            if (index >= frames.length)
+                index = 0;
         }
-        frames = args.length;
-    }
-
-    public void runAnimation() {
-        index++;
-        if (index > speed) {
-            index = 0;
-            nextFrame();
-        }
-    }
-
-    private void nextFrame() {
-        currentImg = images[count % frames];
-        count++;
-    }
-
-    public void drawAnimation(Graphics g, int x, int y) {
-        g.drawImage(currentImg, x, y, null);
     }
 }

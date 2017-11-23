@@ -13,7 +13,7 @@ public class Frog extends GameObject {
     private int lives = 3;
 
     /**
-     * frogger.View constructor for frogger.Frog Object
+     * constructor for Frog object which player controls.
      *
      * @param startX Initial X location for frogger.Frog
      * @param startY Initial Y location for frogger.Frog
@@ -24,7 +24,7 @@ public class Frog extends GameObject {
         this.startX = startX;
         this.startY = startY;
         setSymbol('F');
-        setImage("/images/frog.png");
+        setImage("/images/frog_up.png");
     }
 
     /**

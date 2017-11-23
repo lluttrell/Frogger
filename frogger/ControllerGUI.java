@@ -40,7 +40,7 @@ public class ControllerGUI extends Controller {
      */
     private void initBoard() {
         frog.getImageDimensions();
-        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles);
+        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager);
         modelGUI = new ModelGUI(frog, obstacles, this);
         readWorld("res/worlds/world1.txt");
         viewGUI.addKeyListener(keyManager);
@@ -55,12 +55,17 @@ public class ControllerGUI extends Controller {
      */
     @Override
     public void tick() {
+        viewGUI.tickAnim();
         super.tick();
         modelGUI.checkCollisions();
         checkGameState();
         viewGUI.repaint();
     }
 
+    /**
+     * Checks the game's state.
+     * States include running and won.
+     */
     private void checkGameState() {
         if (running) {
             viewGUI.setRunning(true);
