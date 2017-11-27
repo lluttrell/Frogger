@@ -12,10 +12,9 @@ public class ModelTextTest {
     public void test_Constructor() {
 
         Frog f = new Frog(4, 5);
-        ControllerText ct = new ControllerText();
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
         assertEquals("Frog position", 4, f.getX(), 0.00001);
         assertEquals("Frog position", 5, f.getY(), 0.00001);
     }
@@ -25,12 +24,11 @@ public class ModelTextTest {
     public void test_checkCollision_FrogOverlapsWithLog() {
 
         Frog f = new Frog(4, 5);
-        ControllerText ct = new ControllerText();
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new Log(3, 4, 'L', 15));
+        obs.add(new Platform(3, 4, 'L', 15));
 
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
         modT.updateObstacles();
         f.setX(2);
         f.setY(4);
@@ -43,12 +41,11 @@ public class ModelTextTest {
     public void test_checkCollision_FrogDoesNotOverlapWithLog() {
 
         Frog f = new Frog(7, 3);
-        ControllerText ct = new ControllerText();
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new Log(3, 5, 'L', 15));
+        obs.add(new Platform(3, 5, 'L', 15));
 
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
         modT.updateObstacles();
         modT.checkCollisions();
 
@@ -59,12 +56,11 @@ public class ModelTextTest {
     public void test_checkCollision_FrogDoesNotOverlapWithCar() {
 
         Frog f = new Frog(4, 5);
-        ControllerText ct = new ControllerText();
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new Car(3, 2, 'L', 15));
+        obs.add(new Collidable(3, 2, 'L', 15));
 
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
         modT.updateObstacles();
         modT.checkCollisions();
 
@@ -75,12 +71,11 @@ public class ModelTextTest {
     public void test_checkCollision_FrogOverlapsWithCar() {
 
         Frog f = new Frog(4, 5);
-        ControllerText ct = new ControllerText();
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new Car(3, 2, 'L', 15));
+        obs.add(new Collidable(3, 2, 'L', 15));
 
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
         modT.updateObstacles();
         f.setX(2);
         f.setY(2);
@@ -94,12 +89,11 @@ public class ModelTextTest {
     public void test_overlapsWith_FrogOverlapsWithCar(){
 		
 		Frog f = new Frog(4, 5);
-		ControllerText ct = new ControllerText();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
-		Car c1 = new Car(3,2,'L', 15);
+		Collidable c1 = new Collidable(3,2,'L', 15);
 		
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
         f.setX(3);
         f.setY(2);
         
@@ -110,10 +104,9 @@ public class ModelTextTest {
     public void test_getRiverStartingY() {
 
         Frog f = new Frog(4, 5);
-        ControllerText ct = new ControllerText();
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        ModelText modT = new ModelText(f, obs, ct);
+        ModelText modT = new ModelText(f, obs);
 
         assertEquals("Y coordinate where river starts should be 4", 4, modT.getRiverStartingY(), 0.000001);
     }

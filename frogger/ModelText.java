@@ -11,8 +11,8 @@ public class ModelText extends Model {
 
     private final int RIVER_STARTING_Y = 4;
 
-    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
-        super(frog, obstacles, controller);
+    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles) {
+        super(frog, obstacles);
     }
 
     /**

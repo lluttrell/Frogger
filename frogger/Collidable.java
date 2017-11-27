@@ -1,11 +1,11 @@
 package frogger;
 
 /**
- * Handles construction of a frogger.Car object.
+ * Handles construction of a frogger.Collidable object.
  * Inherits from frogger.GameObstacle.
  */
 
-public class Car extends GameObstacle {
+public class Collidable extends GameObstacle {
 
     /**
      * GUI constructor
@@ -16,7 +16,7 @@ public class Car extends GameObstacle {
      *                          'R' for right.
      * @param boardWidth        Integer representing width of the game area
      */
-    public Car(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+    public Collidable(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation, direction, boardWidth);
         setImage("/images/asteroid.png");
         getImageDimensions();
@@ -33,7 +33,7 @@ public class Car extends GameObstacle {
      *                          'R' for right.
      * @param boardWidth        Integer representing width of the game area
      */
-    public Car(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+    public Collidable(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(width, xStartingLocation, yStartingLocation, direction, boardWidth);
         setSymbol('X');
         carInit();

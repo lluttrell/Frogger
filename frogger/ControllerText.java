@@ -1,5 +1,7 @@
 package frogger;
 
+import frogger.graphics.view.ViewText;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +29,7 @@ public class ControllerText extends Controller implements ActionListener {
      * Initializes all objects.
      */
     private void initBoard() {
-        modelText = new ModelText(frog, obstacles, this);
+        modelText = new ModelText(frog, obstacles);
         viewText = new ViewText(frog, SCREEN_SIZE, obstacles, modelText.getRiverStartingY());
         readWorld("res/worlds/world1Text.txt");
         viewText.addKeyListener(keyManager);
@@ -79,7 +81,7 @@ public class ControllerText extends Controller implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(width, x, y, direction, SCREEN_SIZE));
+                    obstacles.add(new Platform(width, x, y, direction, SCREEN_SIZE));
                 }
                 int numCar = sc.nextInt();
                 for (int i = 0; i < numCar; i++) {
@@ -87,7 +89,7 @@ public class ControllerText extends Controller implements ActionListener {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(width, x, y, direction, SCREEN_SIZE));
+                    obstacles.add(new Collidable(width, x, y, direction, SCREEN_SIZE));
                 }
             }
         } catch (IOException e) {

@@ -1,13 +1,13 @@
 package frogger;
 
 /**
- * Handles Construction of frogger.Log object
+ * Handles Construction of frogger.Platform object
  * Inherits from frogger.GameObstacle.
  */
-public class Log extends GameObstacle {
+public class Platform extends GameObstacle {
 
     /**
-     * frogger.View constructor
+     * frogger.graphics.view.View constructor
      *
      * @param xStartingLocation Integer representing the x starting location
      * @param yStartingLocation Integer representing the y starting location
@@ -15,7 +15,7 @@ public class Log extends GameObstacle {
      *                          'R' for right.
      * @param boardWidth        Integer representing width of the game area
      */
-    public Log(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+    public Platform(int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(xStartingLocation, yStartingLocation, direction, boardWidth);
         if (direction == 'L') {
             setImage("/images/shipL.png");
@@ -35,7 +35,7 @@ public class Log extends GameObstacle {
      *                          'R' for right.
      * @param boardWidth        Integer representing width of the game area
      */
-    public Log(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
+    public Platform(int width, int xStartingLocation, int yStartingLocation, char direction, int boardWidth) {
         super(width, xStartingLocation, yStartingLocation, direction, boardWidth);
         setSymbol('L');
     }

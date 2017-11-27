@@ -1,5 +1,6 @@
 package frogger;
 
+import frogger.graphics.view.ViewGUI;
 import frogger.util.MediaLoader;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * frogger.ControllerGUI handles the main game logic and game loop.
- * Acts as frogger.Controller for frogger.View version of Frogger based on MVC model.
+ * Acts as frogger.Controller for frogger.graphics.view.View version of Frogger based on MVC model.
  * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
  * background image obtained from https://i.imgur.com/iFW8JM4.png
  *
@@ -32,7 +33,7 @@ public class ControllerGUI extends Controller {
         super(SCREEN_SIZE, FROG_X_START, FROG_Y_START, DELAY);
         initBoard();
         //Background music
-        MediaLoader.playSound();
+        MediaLoader.playSound("res/SpaceMusic.wav");
     }
 
     /**
@@ -41,7 +42,7 @@ public class ControllerGUI extends Controller {
     private void initBoard() {
         frog.getImageDimensions();
         viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager);
-        modelGUI = new ModelGUI(frog, obstacles, this);
+        modelGUI = new ModelGUI(frog, obstacles);
         readWorld("res/worlds/world1.txt");
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);
@@ -109,14 +110,14 @@ public class ControllerGUI extends Controller {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Log(x, y, direction, SCREEN_SIZE));
+                    obstacles.add(new Platform(x, y, direction, SCREEN_SIZE));
                 }
                 int numCar = sc.nextInt();
                 for (int i = 0; i < numCar; i++) {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Car(x, y, direction, SCREEN_SIZE));
+                    obstacles.add(new Collidable(x, y, direction, SCREEN_SIZE));
                 }
             }
         } catch (IOException e) {

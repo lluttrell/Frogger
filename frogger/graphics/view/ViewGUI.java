@@ -1,5 +1,8 @@
-package frogger;
+package frogger.graphics.view;
 
+import frogger.Frog;
+import frogger.GameObstacle;
+import frogger.graphics.Animation;
 import frogger.util.KeyManager;
 import frogger.util.MediaLoader;
 
@@ -110,7 +113,7 @@ public class ViewGUI extends View {
     /**
      * Handles drawing background and drawing based on game state.
      *
-     * @param g Graphics object used to draw images.
+     * @param g graphics object used to draw images.
      */
     @Override
     public void paintComponent(Graphics g) {

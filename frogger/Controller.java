@@ -6,7 +6,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
+/**
+ * An abstract class that is a parent class to ControllerGUI and ControllerText.
+ * Implements the ActionListener interface.
+ * Handles user input and acts as an in-between for Model and View.
+ */
 public abstract class Controller implements ActionListener {
 
     protected boolean running;
@@ -20,53 +26,52 @@ public abstract class Controller implements ActionListener {
 
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
 
+    /**
+     * Constructor for Controller.
+     *
+     * @param screenSize The game's screen size.
+     * @param frogXStart The Frog object's x co-ordinate.
+     * @param frogYStart The Frog object's x co-ordinate.
+     * @param delay      Delay for the game timer.
+     */
     public Controller(int screenSize, int frogXStart, int frogYStart, int delay) {
         frog = new Frog(frogXStart, frogYStart);
         this.screenSize = screenSize;
         initBoard(delay);
     }
 
+    /**
+     * Initializes the Controllers objects.
+     *
+     * @param delay
+     */
     private void initBoard(int delay) {
         keyManager = new KeyManager();
-        model = new Model(frog, obstacles, this);
-        running = true;
+        model = new Model(frog, obstacles);
         timer = new Timer(delay, this);
         timer.start();
     }
 
     /**
-     * Change objects' locations when action happens,
-     * and check whether frog collides with obstacles
-     * then repaint new objects
+     * Is called every time timer updates.
      */
     public void actionPerformed(ActionEvent e) {
         tick();
     }
 
+    /**
+     * Handles updating the game.
+     */
     public void tick() {
         model.updateObstacles();
         keyManager.tick();
         getInput();
         model.updateFrog();
+        running = model.getRunning();
+        won = model.getWon();
     }
 
     protected abstract void getInput();
-
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
-
-    public boolean getRunning() {
-        return running;
-    }
-
-    public void setWon(boolean won) {
-        this.won = won;
-    }
-
-    public boolean getWon() {
-        return won;
-    }
 
     public int getScreenSize() {
         return screenSize;

@@ -2,15 +2,27 @@ package frogger;
 
 import java.util.ArrayList;
 
+/**
+ * Parent class to ModelGUI and ModelText.
+ * Handles game logic and updating positions.
+ */
 public class Model {
+    private int score = 3000;
     protected Frog frog;
-    private Controller controller;
+    private boolean running;
+    private boolean won = false;
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
 
-    public Model(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
+    /**
+     * Constructor for Model
+     *
+     * @param frog      The Frog object which the player controls.
+     * @param obstacles An ArrayList containing the Game Obstacles.
+     */
+    public Model(Frog frog, ArrayList<GameObstacle> obstacles) {
         this.frog = frog;
         this.obstacles = obstacles;
-        this.controller = controller;
+        running = true;
     }
 
     /**
@@ -20,12 +32,13 @@ public class Model {
     public void updateFrog() {
 
         if (frog.getY() == 0) { //Reaches end
-            controller.setRunning(false);
-            controller.setWon(true);
+            running = false;
+
+            won = true;
         }
 
         if (frog.getLives() == 0) { //Runs out of lives
-            controller.setRunning(false);
+            running = false;
         }
     }
 
@@ -36,5 +49,13 @@ public class Model {
         for (GameObstacle o : obstacles) {
             o.move();
         }
+    }
+
+    public boolean getRunning() {
+        return running;
+    }
+
+    public boolean getWon() {
+        return won;
     }
 }

@@ -4,13 +4,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Acts as the model for frogger.View version.
+ * Acts as the model for frogger.graphics.view.View version.
  * Handles moving all entities in the game and checking win or loss state.
  */
 public class ModelGUI extends Model {
 
-    public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles, Controller controller) {
-        super(frog, obstacles, controller);
+    public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles) {
+        super(frog, obstacles);
     }
 
     /**
@@ -20,6 +20,7 @@ public class ModelGUI extends Model {
     public void checkCollisions() {
         Rectangle player = frog.getBounds();
         int RIVER_STARTING_Y = 200;
+        //Checking if frog is on a platform in the river.
         if (frog.getY() < RIVER_STARTING_Y) {
             boolean overLap = false;
 
@@ -39,6 +40,7 @@ public class ModelGUI extends Model {
             }
         }
 
+        //Checking if Frog collides with a dangerous obstacle.
         for (GameObstacle o : obstacles) {
             Rectangle obs = o.getBounds();
 

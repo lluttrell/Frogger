@@ -1,9 +1,13 @@
-package frogger;
+package frogger.graphics.view;
+
+import frogger.Frog;
+import frogger.GameObject;
+import frogger.GameObstacle;
 
 import java.util.ArrayList;
 
 /**
- * Handles frogger.View for Text version.
+ * Handles frogger.graphics.view.View for Text version.
  * Inherits from JPanel for timer and keyListener.
  */
 
@@ -13,6 +17,14 @@ public class ViewText extends View {
     private final int riverStartingY;
     private char[][] screenMatrix;
 
+    /**
+     * Constructor for ViewText
+     *
+     * @param frog           The Frog object which the player controls.
+     * @param screenSize     The Display's screen size.
+     * @param obstacles      An ArrayList containing the Game Obstacles.
+     * @param riverStartingY The Y co-ordinate that the river begins at.
+     */
     public ViewText(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, int riverStartingY) {
         super(frog, screenSize, obstacles);
         this.width = screenSize;
@@ -62,6 +74,9 @@ public class ViewText extends View {
         PrintScreen();
     }
 
+    /**
+     * Prints the river to the screen with land at the far side of the river.
+     */
     private void addRiver() {
         for (int i = 0; i < width; i++) {
             for (int j = riverStartingY - 1; j >= 0; j--) {

@@ -9,10 +9,16 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * frogger.util.MediaLoader loads image for use in the game.
+ * frogger.util.MediaLoader loads media for use in the game.
  */
 public class MediaLoader {
 
+    /**
+     * Loads an image for use in the game.
+     *
+     * @param path The path to the image file.
+     * @return The image specified.
+     */
     public static Image loadImage(String path) {
         try {
             return ImageIO.read(MediaLoader.class.getResource(path));
@@ -23,9 +29,12 @@ public class MediaLoader {
         return null;
     }
 
-    public static void playSound() {
+    /**
+     * Plays game sounds.
+     */
+    public static void playSound(String path) {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("res/SpaceMusic.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();

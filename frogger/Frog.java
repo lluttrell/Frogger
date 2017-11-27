@@ -1,5 +1,7 @@
 package frogger;
 
+import frogger.util.MediaLoader;
+
 /**
  * Handles the frog.
  * Inherits from frogger.GameObject.
@@ -41,6 +43,7 @@ public class Frog extends GameObject {
      */
     public void die() {
         this.lives--;
+        MediaLoader.playSound("res/death_sound.wav");
         x = startX;
         y = startY;
     }

@@ -2,29 +2,43 @@ package frogger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
- * Handles JFrame and launching the game.
+ * Extends JFrame and handles launching the game through GUI interface.
  */
-public class Main extends JFrame {
+public class Main extends JFrame implements ActionListener {
+    private JFrame controlFrame;
+
     /**
      * Constructs text or gui version based on user input.
      */
     private Main() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter \"text\" or \"GUI\":");
-        String choice = sc.next();
-        while (!(choice.equalsIgnoreCase("text") || choice.equalsIgnoreCase("GUI"))) {
-            System.out.println("Incorrect input");
-            System.out.print("Enter \"text\" or \"GUI\":");
-            choice = sc.next();
-        }
-        if (choice.equalsIgnoreCase("text")) {
-            initText();
-        } else if (choice.equalsIgnoreCase("GUI")) {
-            initGUI();
-        }
+        controlFrame = new JFrame("Frogger");
+        controlFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
+
+        JButton textBtn = new JButton("Text Version");
+        textBtn.setActionCommand("TEXT");
+        textBtn.addActionListener(this);
+
+        JButton guiBtn = new JButton("Graphical Version");
+        guiBtn.setActionCommand("GUI");
+        guiBtn.addActionListener(this);
+
+        textBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        controlPanel.add(textBtn);
+
+        guiBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        controlPanel.add(guiBtn);
+
+        controlFrame.getContentPane().add(controlPanel);
+        controlFrame.setLocationRelativeTo(null);
+        controlFrame.pack();
+        controlFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -34,31 +48,43 @@ public class Main extends JFrame {
             public void run() {
 
                 Main game = new Main();
-                game.setVisible(true);
             }
         });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        if (event.getActionCommand().equals("TEXT")) {
+            controlFrame.dispose();
+            initText();
+        }
+
+        if (event.getActionCommand().equals("GUI")) {
+            controlFrame.dispose();
+            initGUI();
+        }
     }
 
     private void initGUI() {
         super.getContentPane().setLayout(new BorderLayout());
         ControllerGUI controllerGUI = new ControllerGUI();
-        add(controllerGUI.getViewGUI());
-        setResizable(false);
-        setTitle("Frogger");
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
+        super.add(controllerGUI.getViewGUI());
+        super.setResizable(false);
+        super.setTitle("Frogger");
+        super.setLocationRelativeTo(null);
+        super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super.pack();
+        super.setVisible(true);
     }
 
     private void initText() {
         ControllerText controllerText = new ControllerText();
-        add(controllerText.getViewText());
-
-        setSize(0, 0);
-        setResizable(false);
-
-        setTitle("Frogger");
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.add(controllerText.getViewText());
+        super.setSize(0, 0);
+        super.setResizable(false);
+        super.setTitle("Frogger");
+        super.setLocationRelativeTo(null);
+        super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super.setVisible(true);
     }
 }

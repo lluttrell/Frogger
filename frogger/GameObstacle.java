@@ -3,7 +3,7 @@ package frogger;
 /**
  * Handles obstacle movement and initialization.
  * Inherits from frogger.GameObject.
- * Parent to frogger.Log and frogger.Car.
+ * Parent to frogger.Platform and frogger.Collidable.
  */
 public class GameObstacle extends GameObject {
     private final int DEFAULT_SPEED = 1;
