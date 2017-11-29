@@ -1,12 +1,12 @@
 package frogger;
 
+import frogger.util.CountdownTimer;
 import frogger.util.KeyManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 /**
  * An abstract class that is a parent class to ControllerGUI and ControllerText.
@@ -19,10 +19,10 @@ public abstract class Controller implements ActionListener {
     protected boolean won = false;
     private final int screenSize;
 
-    private Timer timer;
     protected Frog frog;
     protected KeyManager keyManager;
     private Model model;
+    protected CountdownTimer countdownTimer;
 
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
 
@@ -43,12 +43,14 @@ public abstract class Controller implements ActionListener {
     /**
      * Initializes the Controllers objects.
      *
-     * @param delay
+     * @param delay Delay for game timer.
      */
     private void initBoard(int delay) {
         keyManager = new KeyManager();
-        model = new Model(frog, obstacles);
-        timer = new Timer(delay, this);
+        countdownTimer = new CountdownTimer();
+        model = new Model(frog, obstacles, countdownTimer);
+        Timer timer = new Timer(delay, this);
+        countdownTimer.start();
         timer.start();
     }
 

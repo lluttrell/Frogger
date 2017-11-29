@@ -1,5 +1,7 @@
 package frogger;
 
+import frogger.util.CountdownTimer;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -9,8 +11,8 @@ import java.util.ArrayList;
  */
 public class ModelGUI extends Model {
 
-    public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles) {
-        super(frog, obstacles);
+    public ModelGUI(Frog frog, ArrayList<GameObstacle> obstacles, CountdownTimer countdownTimer) {
+        super(frog, obstacles, countdownTimer);
     }
 
     /**

@@ -1,5 +1,7 @@
 package frogger;
 
+import frogger.util.CountdownTimer;
+
 import java.util.ArrayList;
 
 /**
@@ -11,8 +13,8 @@ public class ModelText extends Model {
 
     private final int RIVER_STARTING_Y = 4;
 
-    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles) {
-        super(frog, obstacles);
+    public ModelText(Frog frog, ArrayList<GameObstacle> obstacles, CountdownTimer countdownTimer) {
+        super(frog, obstacles, countdownTimer);
     }
 
     /**

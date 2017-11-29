@@ -1,4 +1,5 @@
 import frogger.*;
+import frogger.util.CountdownTimer;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,8 +12,9 @@ public class ModelTest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         f.setY(0);
         modT.updateFrog();
         Assert.assertEquals("Running Should be set to false", false, modT.getRunning());
@@ -24,8 +26,9 @@ public class ModelTest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         f.setY(8);
         modT.updateFrog();
         Assert.assertEquals("Running Should be true", true, modT.getRunning());
@@ -37,8 +40,9 @@ public class ModelTest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         f.die();
         modT.updateFrog();
         Assert.assertEquals("Running Should be true", true, modT.getRunning());
@@ -49,8 +53,9 @@ public class ModelTest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         f.die();
         f.die();
         f.die();
@@ -69,7 +74,9 @@ public class ModelTest {
         obs.add(new Platform(6, 2, 'L', 15));
         obs.add(new Collidable(8, 4, 'R', 15));
 
-        ModelText modT = new ModelText(f, obs);
+        CountdownTimer countdownTimer = new CountdownTimer();
+
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         modT.updateObstacles();
 
         Assert.assertEquals("first log position should be 2", 2, obs.get(0).getX(), 0.000001);

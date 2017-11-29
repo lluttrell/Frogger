@@ -3,6 +3,7 @@ package frogger.graphics.view;
 import frogger.Frog;
 import frogger.GameObstacle;
 import frogger.graphics.Animation;
+import frogger.util.CountdownTimer;
 import frogger.util.KeyManager;
 import frogger.util.MediaLoader;
 
@@ -22,10 +23,6 @@ public class ViewGUI extends View {
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
     private final Image background;
 
-    private BufferedImage[] frogDown;
-    private BufferedImage[] frogUp;
-    private BufferedImage[] frogLeft;
-    private BufferedImage[] frogRight;
     private BufferedImage[] frogStill;
 
     private Animation animDown;
@@ -41,8 +38,8 @@ public class ViewGUI extends View {
      * @param obstacles  an ArrayList containing all of the GameObstacles.
      * @param keyManager Used to identify which key is being pressed to update animations.
      */
-    public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, KeyManager keyManager) {
-        super(frog, screenSize, obstacles);
+    public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, KeyManager keyManager, CountdownTimer countdownTimer) {
+        super(frog, screenSize, obstacles, countdownTimer);
         super.setPreferredSize(new Dimension(screenSize, screenSize));
         this.keyManager = keyManager;
         initAnimation();
@@ -53,19 +50,19 @@ public class ViewGUI extends View {
      * Initializes all animation arrays and objects.
      */
     private void initAnimation() {
-        frogUp = new BufferedImage[2];
+        BufferedImage[] frogUp = new BufferedImage[2];
         frogUp[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_up.png");
         frogUp[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_up.png");
         animUp = new Animation(300, frogUp);
-        frogDown = new BufferedImage[2];
+        BufferedImage[] frogDown = new BufferedImage[2];
         frogDown[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_down.png");
         frogDown[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_down.png");
         animDown = new Animation(300, frogDown);
-        frogLeft = new BufferedImage[2];
+        BufferedImage[] frogLeft = new BufferedImage[2];
         frogLeft[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_left.png");
         frogLeft[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_left.png");
         animLeft = new Animation(300, frogLeft);
-        frogRight = new BufferedImage[2];
+        BufferedImage[] frogRight = new BufferedImage[2];
         frogRight[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_right.png");
         frogRight[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_right.png");
         animRight = new Animation(300, frogRight);
@@ -141,7 +138,7 @@ public class ViewGUI extends View {
         }
 
         drawLives(g2d);
-
+        drawTime(g2d);
         g2d.drawImage(getCurrentAnimationFrame(), frog.getX(), frog.getY(), this);
     }
 
@@ -158,6 +155,21 @@ public class ViewGUI extends View {
         g2d.setColor(new Color(0, 0, 0));
         s = "Lives: " + frog.getLives();
         g2d.drawString(s, screenSize - 60, screenSize - 10);
+    }
+
+    /**
+     * Draws
+     *
+     * @param g2d the 2d graphics object
+     */
+    private void drawTime(Graphics2D g2d) {
+
+        String s;
+
+        g2d.setFont(smallFont);
+        g2d.setColor(new Color(0, 0, 0));
+        s = "Time left: " + countdownTimer.getSecondsRemaining();
+        g2d.drawString(s, 10, screenSize - 10);
     }
 
     /**

@@ -1,4 +1,5 @@
 import frogger.*;
+import frogger.util.CountdownTimer;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ public class ModelTextTest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         assertEquals("Frog position", 4, f.getX(), 0.00001);
         assertEquals("Frog position", 5, f.getY(), 0.00001);
     }
@@ -27,8 +29,9 @@ public class ModelTextTest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Platform(3, 4, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         modT.updateObstacles();
         f.setX(2);
         f.setY(4);
@@ -44,8 +47,9 @@ public class ModelTextTest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Platform(3, 5, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         modT.updateObstacles();
         modT.checkCollisions();
 
@@ -59,8 +63,9 @@ public class ModelTextTest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Collidable(3, 2, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         modT.updateObstacles();
         modT.checkCollisions();
 
@@ -74,8 +79,9 @@ public class ModelTextTest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Collidable(3, 2, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
         modT.updateObstacles();
         f.setX(2);
         f.setY(2);
@@ -105,8 +111,9 @@ public class ModelTextTest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelText modT = new ModelText(f, obs);
+        ModelText modT = new ModelText(f, obs, countdownTimer);
 
         assertEquals("Y coordinate where river starts should be 4", 4, modT.getRiverStartingY(), 0.000001);
     }

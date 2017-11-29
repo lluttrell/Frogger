@@ -1,4 +1,5 @@
 import frogger.*;
+import frogger.util.CountdownTimer;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ public class ModelGUITest {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelGUI modGUI = new ModelGUI(f, obs);
+        ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         assertEquals("Frog position", 4, f.getX(), 0.00001);
         assertEquals("Frog position", 5, f.getY(), 0.00001);
     }
@@ -26,8 +28,9 @@ public class ModelGUITest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Platform(3, 200, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelGUI modGUI = new ModelGUI(f, obs);
+        ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles();
         f.setX(2);
         f.setY(200);
@@ -43,8 +46,9 @@ public class ModelGUITest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Platform(3, 200, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelGUI modGUI = new ModelGUI(f, obs);
+        ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles();
         modGUI.checkCollisions();
 
@@ -58,8 +62,9 @@ public class ModelGUITest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Collidable(3, 2, 'L', 240));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelGUI modGUI = new ModelGUI(f, obs);
+        ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles();
         modGUI.checkCollisions();
 
@@ -73,8 +78,9 @@ public class ModelGUITest {
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
         obs.add(new Collidable(3, 201, 'L', 15));
+        CountdownTimer countdownTimer = new CountdownTimer();
 
-        ModelGUI modGUI = new ModelGUI(f, obs);
+        ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles();
         f.setX(44);
         f.setY(201);

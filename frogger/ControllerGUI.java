@@ -3,8 +3,8 @@ package frogger;
 import frogger.graphics.view.ViewGUI;
 import frogger.util.MediaLoader;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -29,7 +29,7 @@ public class ControllerGUI extends Controller {
     /**
      * Default constructor.
      */
-    public ControllerGUI() {
+    public ControllerGUI() throws IOException {
         super(SCREEN_SIZE, FROG_X_START, FROG_Y_START, DELAY);
         initBoard();
         //Background music
@@ -39,14 +39,45 @@ public class ControllerGUI extends Controller {
     /**
      * Initializes all objects.
      */
-    private void initBoard() {
+    private void initBoard() throws IOException {
         frog.getImageDimensions();
-        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager);
-        modelGUI = new ModelGUI(frog, obstacles);
-        readWorld("res/worlds/world1.txt");
+        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager, countdownTimer);
+        modelGUI = new ModelGUI(frog, obstacles, countdownTimer);
+        initWorld();
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);
         viewGUI.setDoubleBuffered(true);
+    }
+
+    private void initWorld() throws IOException {
+        File worldFile = new File("res/worlds/world1.txt");
+        if (!worldFile.exists()) {
+            writeDefaultWorld(worldFile);
+        }
+        readWorld(worldFile);
+    }
+
+    private void writeDefaultWorld(File worldFile) throws IOException {
+        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(worldFile)));
+        int numLog = 6;
+
+        writer.println(numLog);
+        writer.println("0 " + "180 " + "R");
+        writer.println("480 " + "130 " + "L");
+        writer.println("32 " + "80 " + "R");
+        writer.println("480 " + "25 " + "L");
+        writer.println("-200 " + "180 " + "R");
+        writer.println("800 " + "130 " + "L");
+        writer.println();
+
+        int numCar = 3;
+        int x = 0;
+        writer.println(numCar);
+        writer.println(x + " 260 " + "L");
+        writer.println(x + " 310 " + "R");
+        writer.println(x + " 360 " + "L");
+
+        writer.close();
     }
 
     /**
@@ -97,12 +128,11 @@ public class ControllerGUI extends Controller {
     /**
      * Constructs obstacles based on text file.
      *
-     * @param path path to the text file
+     * @param worldFile The File containing world info.
      */
-    private void readWorld(String path) {
+    private void readWorld(File worldFile) throws IOException {
         try {
-            File file = new File(path);
-            Scanner sc = new Scanner(file);
+            Scanner sc = new Scanner(worldFile);
 
             while (sc.hasNext()) {
                 int numLog = sc.nextInt();
@@ -121,7 +151,11 @@ public class ControllerGUI extends Controller {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Can't access world file, generating default...");
+            writeDefaultWorld(new File("res/worlds/world1.txt"));
+        } catch (InputMismatchException e) {
+            System.out.println("World file has invalid values, generating default...");
+            writeDefaultWorld(new File("res/worlds/world1.txt"));
         }
     }
 

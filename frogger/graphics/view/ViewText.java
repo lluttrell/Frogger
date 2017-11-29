@@ -3,6 +3,7 @@ package frogger.graphics.view;
 import frogger.Frog;
 import frogger.GameObject;
 import frogger.GameObstacle;
+import frogger.util.CountdownTimer;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,8 @@ public class ViewText extends View {
      * @param obstacles      An ArrayList containing the Game Obstacles.
      * @param riverStartingY The Y co-ordinate that the river begins at.
      */
-    public ViewText(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, int riverStartingY) {
-        super(frog, screenSize, obstacles);
+    public ViewText(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, int riverStartingY, CountdownTimer countdownTimer) {
+        super(frog, screenSize, obstacles, countdownTimer);
         this.width = screenSize;
         this.height = screenSize;
         this.riverStartingY = riverStartingY;
@@ -63,6 +64,7 @@ public class ViewText extends View {
      */
     public void doDrawing() {
         System.out.println("Lives remaining:" + frog.getLives());
+        System.out.println("Time left: "  + countdownTimer.getSecondsRemaining());
         InitScreen();
 
         //Print obstacles to screen.

@@ -1,5 +1,7 @@
 package frogger;
 
+import frogger.util.CountdownTimer;
+
 import java.util.ArrayList;
 
 /**
@@ -12,6 +14,7 @@ public class Model {
     private boolean running;
     private boolean won = false;
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
+    private CountdownTimer countdownTimer;
 
     /**
      * Constructor for Model
@@ -19,9 +22,10 @@ public class Model {
      * @param frog      The Frog object which the player controls.
      * @param obstacles An ArrayList containing the Game Obstacles.
      */
-    public Model(Frog frog, ArrayList<GameObstacle> obstacles) {
+    public Model(Frog frog, ArrayList<GameObstacle> obstacles, CountdownTimer countdownTimer) {
         this.frog = frog;
         this.obstacles = obstacles;
+        this.countdownTimer = countdownTimer;
         running = true;
     }
 
@@ -38,6 +42,10 @@ public class Model {
         }
 
         if (frog.getLives() == 0) { //Runs out of lives
+            running = false;
+        }
+
+        if (countdownTimer.getSecondsRemaining() == 0) {
             running = false;
         }
     }
