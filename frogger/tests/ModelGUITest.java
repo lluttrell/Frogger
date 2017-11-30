@@ -13,10 +13,10 @@ public class ModelGUITest {
     public void test_Constructor(){
 		
 		Frog f = new Frog(4, 5);
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         assertEquals("Frog position", 4, f.getX(), 0.00001);
         assertEquals("Frog position", 5, f.getY(), 0.00001);
 	} 
@@ -26,12 +26,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(4, 200);
 		f.getImageDimensions();
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Log(3,200,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setX(2);
         modGUI.checkCollisions();
@@ -44,12 +44,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(4, 200);
 		f.getImageDimensions();
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Log(3,200,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setX(5);
         modGUI.checkCollisions();
@@ -62,12 +62,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(4, 201);
 		f.getImageDimensions();
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Log(3,200,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setY(200);
         modGUI.checkCollisions();
@@ -80,12 +80,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(4, 199);
 		f.getImageDimensions();
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Log(3,200,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setY(200);
         modGUI.checkCollisions();
@@ -98,12 +98,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(7, 100);
 		f.getImageDimensions();
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Log(3,200,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         modGUI.checkCollisions();
         
@@ -115,12 +115,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(4, 250);
 		f.getImageDimensions();
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Car(3,2,'L', 240));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         modGUI.checkCollisions();
         
@@ -132,13 +132,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(10, 250);
 		f.getImageDimensions();
-		
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Car(3,250,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setX(3);
         modGUI.checkCollisions();
@@ -151,13 +150,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(1, 250);
 		f.getImageDimensions();
-		
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Car(3,250,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setX(3);
         modGUI.checkCollisions();
@@ -170,13 +168,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(3, 249);
 		f.getImageDimensions();
-		
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Car(3,250,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles();
         f.setY(250);
         modGUI.checkCollisions();
@@ -189,13 +186,12 @@ public class ModelGUITest {
 		
 		Frog f = new Frog(2, 251);
 		f.getImageDimensions();
-		
-		ControllerGUI ct = new ControllerGUI();
 		ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 		
 		obs.add(new Car(3,250,'L', 15));
-		
-        ModelGUI modGUI = new ModelGUI(f, obs, ct);
+		CountdownTimer countdownTimer = new CountdownTimer();
+
+		ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
         modGUI.updateObstacles(); 
         f.setY(250);
         modGUI.checkCollisions();
