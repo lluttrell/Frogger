@@ -65,6 +65,8 @@ public class ViewText extends View {
     public void doDrawing() {
         System.out.println("Lives remaining:" + frog.getLives());
         System.out.println("Time left: "  + countdownTimer.getSecondsRemaining());
+        score = countdownTimer.getSecondsRemaining() * 100;
+        System.out.println("Score: " + score);
         InitScreen();
 
         //Print obstacles to screen.

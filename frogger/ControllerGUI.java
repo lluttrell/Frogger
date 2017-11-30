@@ -41,8 +41,8 @@ public class ControllerGUI extends Controller {
      */
     private void initBoard() throws IOException {
         frog.getImageDimensions();
-        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager, countdownTimer);
         modelGUI = new ModelGUI(frog, obstacles, countdownTimer);
+        viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager, countdownTimer);
         initWorld();
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);

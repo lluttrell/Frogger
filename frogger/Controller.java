@@ -1,5 +1,6 @@
 package frogger;
 
+import frogger.graphics.view.View;
 import frogger.util.CountdownTimer;
 import frogger.util.KeyManager;
 
@@ -22,6 +23,7 @@ public abstract class Controller implements ActionListener {
     protected Frog frog;
     protected KeyManager keyManager;
     private Model model;
+    private View view;
     protected CountdownTimer countdownTimer;
 
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
@@ -48,6 +50,7 @@ public abstract class Controller implements ActionListener {
     private void initBoard(int delay) {
         keyManager = new KeyManager();
         countdownTimer = new CountdownTimer();
+        view = new View(frog, screenSize, obstacles, countdownTimer);
         model = new Model(frog, obstacles, countdownTimer);
         Timer timer = new Timer(delay, this);
         countdownTimer.start();

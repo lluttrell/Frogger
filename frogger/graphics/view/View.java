@@ -16,6 +16,7 @@ public class View extends JPanel {
     protected final int screenSize;
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
     protected CountdownTimer countdownTimer;
+    int score;
 
     /**
      * Constructor for View

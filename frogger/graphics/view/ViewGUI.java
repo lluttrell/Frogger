@@ -41,6 +41,7 @@ public class ViewGUI extends View {
     public ViewGUI(Frog frog, int screenSize, ArrayList<GameObstacle> obstacles, KeyManager keyManager, CountdownTimer countdownTimer) {
         super(frog, screenSize, obstacles, countdownTimer);
         super.setPreferredSize(new Dimension(screenSize, screenSize));
+        super.setLayout(new BorderLayout());
         this.keyManager = keyManager;
         initAnimation();
         background = MediaLoader.loadImage("/images/background.png");
@@ -139,16 +140,16 @@ public class ViewGUI extends View {
 
         drawLives(g2d);
         drawTime(g2d);
+        drawScore(g2d);
         g2d.drawImage(getCurrentAnimationFrame(), frog.getX(), frog.getY(), this);
     }
 
     /**
-     * Draws a the players current lives in bottom right of screen.
+     * Draws the players current lives in bottom right of screen.
      *
      * @param g2d the 2d graphics object
      */
     private void drawLives(Graphics2D g2d) {
-
         String s;
 
         g2d.setFont(smallFont);
@@ -158,18 +159,32 @@ public class ViewGUI extends View {
     }
 
     /**
-     * Draws
+     * Draws the time remaining in the bottom left of the screen.
      *
      * @param g2d the 2d graphics object
      */
     private void drawTime(Graphics2D g2d) {
-
         String s;
 
         g2d.setFont(smallFont);
         g2d.setColor(new Color(0, 0, 0));
         s = "Time left: " + countdownTimer.getSecondsRemaining();
         g2d.drawString(s, 10, screenSize - 10);
+    }
+
+    /**
+     * Draws the player's current score in bottom left of the screen.
+     *
+     * @param g2d the 2d graphics object
+     */
+    private void drawScore(Graphics2D g2d) {
+        String s;
+
+        g2d.setFont(smallFont);
+        g2d.setColor(new Color(250, 0, 0));
+        score = countdownTimer.getSecondsRemaining() * 100;
+        s = "Score: " + score;
+        g2d.drawString(s, 10, screenSize - 20);
     }
 
     /**

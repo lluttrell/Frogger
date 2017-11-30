@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Handles game logic and updating positions.
  */
 public class Model {
-    private int score = 3000;
+    private int score;
     protected Frog frog;
     private boolean running;
     private boolean won = false;
@@ -45,9 +45,13 @@ public class Model {
             running = false;
         }
 
-        if (countdownTimer.getSecondsRemaining() == 0) {
+        if (countdownTimer.getSecondsRemaining() == 0) {//time runs out
             running = false;
         }
+    }
+
+    public void updateScore() {
+        score = countdownTimer.getSecondsRemaining() * 100;
     }
 
     /**
@@ -65,5 +69,9 @@ public class Model {
 
     public boolean getWon() {
         return won;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

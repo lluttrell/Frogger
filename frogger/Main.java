@@ -75,13 +75,12 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private void initGUI() throws IOException {
-        super.getContentPane().setLayout(new BorderLayout());
         ControllerGUI controllerGUI = new ControllerGUI();
         super.add(controllerGUI.getViewGUI());
-        super.setResizable(false);
         super.setTitle("Frogger");
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super.setResizable(false);
         super.pack();
         super.setVisible(true);
     }
