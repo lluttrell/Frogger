@@ -23,7 +23,6 @@ public abstract class Controller implements ActionListener {
     protected Frog frog;
     protected KeyManager keyManager;
     private Model model;
-    private View view;
     protected CountdownTimer countdownTimer;
 
     protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
@@ -50,7 +49,6 @@ public abstract class Controller implements ActionListener {
     private void initBoard(int delay) {
         keyManager = new KeyManager();
         countdownTimer = new CountdownTimer();
-        view = new View(frog, screenSize, obstacles, countdownTimer);
         model = new Model(frog, obstacles, countdownTimer);
         Timer timer = new Timer(delay, this);
         countdownTimer.start();
@@ -77,8 +75,4 @@ public abstract class Controller implements ActionListener {
     }
 
     protected abstract void getInput();
-
-    public int getScreenSize() {
-        return screenSize;
-    }
 }
