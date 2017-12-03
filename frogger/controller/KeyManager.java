@@ -1,10 +1,10 @@
-package frogger.util;
+package frogger.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * frogger.util.KeyManager uses a boolean array where if the keys are pressed the boolean is set to true.
+ * frogger.controller.KeyManager uses a boolean array where if the keys are pressed the boolean is set to true.
  */
 public class KeyManager implements KeyListener {
 
@@ -12,7 +12,7 @@ public class KeyManager implements KeyListener {
     private boolean[] keys;
 
     /**
-     * frogger.util.KeyManager default constructor.
+     * frogger.controller.KeyManager default constructor.
      */
     public KeyManager() {
         keys = new boolean[256];

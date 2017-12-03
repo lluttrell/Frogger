@@ -1,5 +1,8 @@
 package frogger;
 
+import frogger.controller.ControllerGUI;
+import frogger.controller.ControllerText;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -77,7 +80,7 @@ public class Main extends JFrame implements ActionListener {
     private void initGUI() throws IOException {
         ControllerGUI controllerGUI = new ControllerGUI();
         super.add(controllerGUI.getViewGUI());
-        super.setTitle("Frogger");
+        super.setTitle("Galactic Frogger");
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         super.setResizable(false);

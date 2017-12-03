@@ -1,4 +1,4 @@
-package frogger;
+package frogger.model;
 
 import frogger.util.MediaLoader;
 
@@ -23,10 +23,10 @@ public class GameObject {
     private Image image;
 
     /**
-     * frogger.GameObject Constructor
+     * GameObject Constructor for GUI version.
      *
-     * @param xStartingLocation Integer representing initial x position of frogger.GameObject
-     * @param yStartingLocation Integer representing initial y position of frogger.GameObject
+     * @param xStartingLocation Integer representing initial x position of GameObject
+     * @param yStartingLocation Integer representing initial y position of GameObject
      */
     public GameObject(int xStartingLocation, int yStartingLocation) {
         setX(xStartingLocation);
@@ -34,11 +34,11 @@ public class GameObject {
     }
 
     /**
-     * frogger.GameObject Constructor for text based version of frogger.GameObject
+     * GameObject Constructor for text based version.
      *
-     * @param width             Integer representing the width of the frogger.GameObject
-     * @param xStartingLocation Integer representing initial x position of frogger.GameObject
-     * @param yStartingLocation Integer representing initial y position of frogger.GameObject
+     * @param width             Integer representing the width of the GameObject
+     * @param xStartingLocation Integer representing initial x position of GameObject
+     * @param yStartingLocation Integer representing initial y position of GameObject
      */
     public GameObject(int width, int xStartingLocation, int yStartingLocation) {
         setX(xStartingLocation);
@@ -49,63 +49,63 @@ public class GameObject {
     // Getters
 
     /**
-     * Returns the x position of the frogger.GameObject
+     * Returns the x position of the GameObject
      *
-     * @return Integer representing x position of frogger.GameObject
+     * @return Integer representing x position of GameObject
      */
     public int getX() {
         return x;
     }
 
     /**
-     * Sets the x position of the frogger.GameObject
+     * Sets the x position of the GameObject
      *
-     * @param newLocation new x location of frogger.GameObject
+     * @param newLocation new x location of GameObject
      */
     public void setX(int newLocation) {
         x = newLocation;
     }
 
     /**
-     * Returns the y position of the frogger.GameObject
+     * Returns the y position of the GameObject
      *
-     * @return Integer representing y position of frogger.GameObject
+     * @return Integer representing y position of GameObject
      */
     public int getY() {
         return y;
     }
 
     /**
-     * Sets the y position of the frogger.GameObject
+     * Sets the y position of the GameObject
      *
-     * @param newLocation new y location of frogger.GameObject
+     * @param newLocation new y location of GameObject
      */
     public void setY(int newLocation) {
         y = newLocation;
     }
 
     /**
-     * Returns the width of the frogger.GameObject
+     * Returns the width of the GameObject
      *
-     * @return Integer representing width of frogger.GameObject
+     * @return Integer representing width of GameObject
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * Returns char used to represent frogger.GameObject in text based version
+     * Returns char used to represent GameObject in text based version
      *
-     * @return char used to represent frogger.GameObject
+     * @return char used to represent GameObject
      */
     public char getSymbol() {
         return symbol;
     }
 
     /**
-     * Sets the char used to represent frogger.GameObject in text based Version
+     * Sets the char used to represent GameObject in text based Version
      *
-     * @param newSymbol char used to represent frogger.GameObject
+     * @param newSymbol char used to represent GameObject
      */
     public void setSymbol(char newSymbol) {
         symbol = newSymbol;
@@ -114,28 +114,28 @@ public class GameObject {
     //Setters
 
     /**
-     * Returns the Image used to draw the frogger.GameObject
+     * Returns the Image used to draw the GameObject
      *
-     * @return Image representing the frogger.GameObject
+     * @return Image representing the GameObject
      */
     public Image getImage() {
         return image;
     }
 
     /**
-     * Sets the Image used to represent frogger.GameObject in GUI based Version
+     * Sets the Image used to represent GameObject in GUI based Version
      *
-     * @param path String containing path to the image used to represent frogger.GameObject
+     * @param path String containing path to the image used to represent GameObject
      */
     public void setImage(String path) {
         image = MediaLoader.loadImage(path);
     }
 
     /**
-     * Returns a Rectangle representing the boundaries of the frogger.GameObject (for
+     * Returns a Rectangle representing the boundaries of the GameObject (for
      * collision detection)
      *
-     * @return Rectangle representing the spatial boundaries of the frogger.GameObject
+     * @return Rectangle representing the spatial boundaries of the GameObject
      */
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);

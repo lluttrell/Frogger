@@ -1,4 +1,4 @@
-package frogger;
+package frogger.model;
 
 import frogger.util.CountdownTimer;
 
@@ -18,6 +18,7 @@ public class ModelGUI extends Model {
     /**
      * Checks if the player collides with game obstacles.
      * Uses Rectangles set to the image sizes of the entities.
+     * Code is duplicated due to how collisions in the GUI version use rectangles based on image size.
      */
     public void checkCollisions() {
         Rectangle player = frog.getBounds();

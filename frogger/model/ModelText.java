@@ -1,4 +1,4 @@
-package frogger;
+package frogger.model;
 
 import frogger.util.CountdownTimer;
 
@@ -19,9 +19,10 @@ public class ModelText extends Model {
 
     /**
      * Checks if the player collides with game obstacles.
+     * Code is duplicated due to how collisions in the GUI version use rectangles based on image size.
      */
     public void checkCollisions() {
-        if (frog.getY() < RIVER_STARTING_Y) { //frogger.Frog on river
+        if (frog.getY() < RIVER_STARTING_Y) { //frogger.model.Frog on river
             boolean overLap = false;
 
             for (GameObstacle o : obstacles) {
@@ -47,6 +48,12 @@ public class ModelText extends Model {
         }
     }
 
+    /**
+     * Checks if frog overlaps with a game obstacle.
+     *
+     * @param obstacle The obstacle to check if frog overlaps with.
+     * @return Returns a boolean that is true if frog overlaps with an obstacle and false if it doesn't.
+     */
     private boolean overlapsWith(GameObstacle obstacle) {
         for (int i = -1; i < obstacle.getWidth(); i++) {
             if (obstacle.getX() - i == frog.getX() && obstacle.getY() == frog.getY()) {

@@ -1,4 +1,4 @@
-package frogger;
+package frogger.model;
 
 import frogger.util.CountdownTimer;
 
@@ -13,7 +13,7 @@ public class Model {
     protected Frog frog;
     private boolean running;
     private boolean won = false;
-    protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
+    protected ArrayList<GameObstacle> obstacles;
     private CountdownTimer countdownTimer;
 
     /**
@@ -51,7 +51,7 @@ public class Model {
     }
 
     public void updateScore() {
-        score = countdownTimer.getSecondsRemaining() * 100;
+        score = countdownTimer.getSecondsRemaining() * 100 + (frog.getLives() * 100);
     }
 
     /**

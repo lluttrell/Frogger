@@ -1,7 +1,7 @@
 package frogger.graphics.view;
 
-import frogger.Frog;
-import frogger.GameObstacle;
+import frogger.model.Frog;
+import frogger.model.GameObstacle;
 import frogger.util.CountdownTimer;
 
 import javax.swing.*;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * Inherits from JPanel.
  */
 public class View extends JPanel {
+    protected int score;
     protected Frog frog;
     protected final int screenSize;
-    protected ArrayList<GameObstacle> obstacles = new ArrayList<>();
+    protected ArrayList<GameObstacle> obstacles;
     protected CountdownTimer countdownTimer;
-    int score;
 
     /**
      * Constructor for View
@@ -30,5 +30,9 @@ public class View extends JPanel {
         this.screenSize = screenSize;
         this.obstacles = obstacles;
         this.countdownTimer = countdownTimer;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

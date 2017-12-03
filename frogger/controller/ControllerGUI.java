@@ -1,6 +1,8 @@
-package frogger;
+package frogger.controller;
 
 import frogger.graphics.view.ViewGUI;
+import frogger.model.GameObstacle;
+import frogger.model.ModelGUI;
 import frogger.util.MediaLoader;
 
 import java.io.*;
@@ -8,14 +10,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * frogger.ControllerGUI handles the main game logic and game loop.
- * Acts as frogger.Controller for frogger.graphics.view.View version of Frogger based on MVC model.
- * Adapted from http://zetcode.com/tutorials/javagamestutorial/pacman/
+ * ControllerGUI handles the main game logic and game loop.
+ * Acts as Controller for GUI version of Frogger based on MVC model.
  * background image obtained from https://i.imgur.com/iFW8JM4.png
- *
- * @author Iden Craven
- * @author Richard Williams
  */
+
 public class ControllerGUI extends Controller {
 
     private static final int FROG_X_START = 225;
@@ -30,7 +29,7 @@ public class ControllerGUI extends Controller {
      * Default constructor.
      */
     public ControllerGUI() throws IOException {
-        super(SCREEN_SIZE, FROG_X_START, FROG_Y_START, DELAY);
+        super(FROG_X_START, FROG_Y_START, DELAY);
         initBoard();
         //Background music
         MediaLoader.playSound("res/SpaceMusic.wav");
@@ -81,15 +80,14 @@ public class ControllerGUI extends Controller {
     }
 
     /**
-     * Change objects' locations when action happens,
-     * and check whether frog collides with obstacles
-     * then repaint new objects
+     * tick is called everytime the gameloop is executed to update everything in the game.
      */
     @Override
     public void tick() {
         viewGUI.tickAnim();
         super.tick();
         modelGUI.checkCollisions();
+        viewGUI.setScore(super.score);
         checkGameState();
         viewGUI.repaint();
     }
@@ -110,23 +108,25 @@ public class ControllerGUI extends Controller {
     }
 
     /**
-     * Handles user input.
+     * Handles user input to move the Frog.
      */
     @Override
     protected void getInput() {
         if (keyManager.up && frog.getY() > 0) {
-            frog.setY(frog.getY() - 1);
+            frog.move(0, -1);
         } else if (keyManager.down && frog.getY() < SCREEN_SIZE - 32) {
-            frog.setY(frog.getY() + 1);
+            frog.move(0, 1);
         } else if (keyManager.left && frog.getX() > 0) {
-            frog.setX(frog.getX() - 1);
+            frog.move(-1, 0);
         } else if (keyManager.right && frog.getX() < SCREEN_SIZE - 32) {
-            frog.setX(frog.getX() + 1);
+            frog.move(1, 0);
         }
     }
 
     /**
      * Constructs obstacles based on text file.
+     * Duplicated code due to width being retrieved in the middle of the loop to be used for text constructor.
+     * Also, getImageDimensions is called for the gui version setting the dimensions for the gui obstacles.
      *
      * @param worldFile The File containing world info.
      */
@@ -135,19 +135,36 @@ public class ControllerGUI extends Controller {
             Scanner sc = new Scanner(worldFile);
 
             while (sc.hasNext()) {
-                int numLog = sc.nextInt();
-                for (int i = 0; i < numLog; i++) {
+                int numShips = sc.nextInt();
+                //Initialize ships.
+                for (int i = 0; i < numShips; i++) {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Platform(x, y, direction, SCREEN_SIZE));
+                    GameObstacle temp = new GameObstacle(x, y, direction, SCREEN_SIZE);
+
+                    if (direction == 'L') {
+                        temp.setImage("/images/shipL.png");
+                    } else if (direction == 'R') {
+                        temp.setImage("/images/shipR.png");
+                    }
+                    temp.getImageDimensions();
+
+                    obstacles.add(temp);
                 }
-                int numCar = sc.nextInt();
-                for (int i = 0; i < numCar; i++) {
+                int numAsteroids = sc.nextInt();
+                //Initialize asteroids.
+                for (int i = 0; i < numAsteroids; i++) {
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Collidable(x, y, direction, SCREEN_SIZE));
+                    GameObstacle temp = new GameObstacle(x, y, direction, SCREEN_SIZE);
+
+                    temp.setImage("/images/asteroid.png");
+                    temp.getImageDimensions();
+                    temp.setDangerous(true);
+
+                    obstacles.add(temp);
                 }
             }
         } catch (IOException e) {

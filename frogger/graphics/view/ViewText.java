@@ -1,8 +1,8 @@
 package frogger.graphics.view;
 
-import frogger.Frog;
-import frogger.GameObject;
-import frogger.GameObstacle;
+import frogger.model.Frog;
+import frogger.model.GameObject;
+import frogger.model.GameObstacle;
 import frogger.util.CountdownTimer;
 
 import java.util.ArrayList;
@@ -92,11 +92,11 @@ public class ViewText extends View {
 
     /**
      * Updates the character at a specified position in the screenMatrix to the
-     * character used to represent a frogger.GameObject
+     * character used to represent a frogger.model.GameObject
      *
-     * @param object frogger.GameObject moving into the position
-     * @param x      x coordinate of frogger.GameObject
-     * @param y      y coordinate of frogger.GameObject
+     * @param object frogger.model.GameObject moving into the position
+     * @param x      x coordinate of frogger.model.GameObject
+     * @param y      y coordinate of frogger.model.GameObject
      */
     private void setObjectOnLocation(GameObject object, int x, int y) {
         for (int i = x - object.getWidth() / 2; i <= x + object.getWidth() / 2; i++) {

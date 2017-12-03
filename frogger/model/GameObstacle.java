@@ -1,9 +1,8 @@
-package frogger;
+package frogger.model;
 
 /**
  * Handles obstacle movement and initialization.
- * Inherits from frogger.GameObject.
- * Parent to frogger.Platform and frogger.Collidable.
+ * Inherits from GameObject.
  */
 public class GameObstacle extends GameObject {
     private final int DEFAULT_SPEED = 1;
@@ -47,17 +46,17 @@ public class GameObstacle extends GameObject {
      * Handles movement of Game Obstacles.
      */
     public void move() {
-        if (getDirection() == 'L') {
-            setX(getX() - DEFAULT_SPEED);
+        if (direction == 'L') {
+            x -= DEFAULT_SPEED;
 
-            if (getX() < offScreenBuffer - 2) {
-                setX(boardWidth - (getWidth() - 1));
+            if (x < offScreenBuffer - 2) {
+                x = (boardWidth - (width - 1));
             }
-        } else if (getDirection() == 'R') {
-            setX(getX() + DEFAULT_SPEED);
+        } else if (direction == 'R') {
+            x += DEFAULT_SPEED;
 
-            if (getX() == boardWidth - 1) {
-                setX(1);
+            if (x == boardWidth - 1) {
+                x = 1;
             }
         }
     }
@@ -67,7 +66,7 @@ public class GameObstacle extends GameObject {
     /**
      * Returns boolean value representing if the object is dangerous to the frog
      *
-     * @return true if frogger.GameObstacle is dangerous, false otherwise.
+     * @return true if GameObstacle is dangerous, false otherwise.
      */
     public boolean isDangerous() {
         return dangerous;
@@ -80,15 +79,6 @@ public class GameObstacle extends GameObject {
      */
     public char getDirection() {
         return direction;
-    }
-
-    /**
-     * Returns the speed of the frogger.GameObstacle
-     *
-     * @return Integer representing the speed of the frogger.GameObstacle
-     */
-    public int getSpeed() {
-        return DEFAULT_SPEED;
     }
 
     //Setters

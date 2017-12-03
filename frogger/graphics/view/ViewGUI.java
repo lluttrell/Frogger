@@ -1,10 +1,10 @@
 package frogger.graphics.view;
 
-import frogger.Frog;
-import frogger.GameObstacle;
+import frogger.model.Frog;
+import frogger.model.GameObstacle;
 import frogger.graphics.Animation;
 import frogger.util.CountdownTimer;
-import frogger.util.KeyManager;
+import frogger.controller.KeyManager;
 import frogger.util.MediaLoader;
 
 import java.awt.*;
@@ -22,6 +22,7 @@ public class ViewGUI extends View {
     private boolean running, won;
     private final Font smallFont = new Font("Helvetica", Font.BOLD, 14);
     private final Image background;
+    private int direction = 0;
 
     private BufferedImage[] frogStill;
 
@@ -90,7 +91,6 @@ public class ViewGUI extends View {
      * @return The image that the animation is using currently.
      */
     private BufferedImage getCurrentAnimationFrame() {
-        int direction = 0;
         if (keyManager.up) {
             direction = 0;
             return animUp.getCurrentFrame();
@@ -138,10 +138,10 @@ public class ViewGUI extends View {
             g2d.drawImage(o.getImage(), o.getX(), o.getY(), this);
         }
 
+        g2d.drawImage(getCurrentAnimationFrame(), frog.getX(), frog.getY(), this);
         drawLives(g2d);
         drawTime(g2d);
         drawScore(g2d);
-        g2d.drawImage(getCurrentAnimationFrame(), frog.getX(), frog.getY(), this);
     }
 
     /**
@@ -182,9 +182,8 @@ public class ViewGUI extends View {
 
         g2d.setFont(smallFont);
         g2d.setColor(new Color(250, 0, 0));
-        score = countdownTimer.getSecondsRemaining() * 100;
         s = "Score: " + score;
-        g2d.drawString(s, 10, screenSize - 20);
+        g2d.drawString(s, 10, screenSize - 30);
     }
 
     /**

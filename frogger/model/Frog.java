@@ -1,24 +1,24 @@
-package frogger;
+package frogger.model;
 
 import frogger.util.MediaLoader;
 
 /**
  * Handles the frog.
- * Inherits from frogger.GameObject.
+ * Inherits from frogger.model.GameObject.
  * adapted from http://zetcode.com/tutorials/javagamestutorial/collision/
  */
 
 public class Frog extends GameObject {
 
-    private final int startX;
-    private final int startY;
+    private int startX;
+    private int startY;
     private int lives = 3;
 
     /**
      * constructor for Frog object which player controls.
      *
-     * @param startX Initial X location for frogger.Frog
-     * @param startY Initial Y location for frogger.Frog
+     * @param startX Initial X location for frogger.model.Frog
+     * @param startY Initial Y location for frogger.model.Frog
      */
     public Frog(int startX, int startY) {
         super(startX, startY);
@@ -27,6 +27,11 @@ public class Frog extends GameObject {
         this.startY = startY;
         setSymbol('F');
         setImage("/images/frog_up.png");
+    }
+
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
     }
 
     /**

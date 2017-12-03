@@ -1,6 +1,8 @@
-package frogger;
+package frogger.controller;
 
 import frogger.graphics.view.ViewText;
+import frogger.model.GameObstacle;
+import frogger.model.ModelText;
 
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -21,7 +23,7 @@ public class ControllerText extends Controller implements ActionListener {
      * Default constructor.
      */
     public ControllerText() throws IOException {
-        super(SCREEN_SIZE, FROG_X_START, FROG_Y_START, DELAY);
+        super(FROG_X_START, FROG_Y_START, DELAY);
         initBoard();
     }
 
@@ -62,13 +64,13 @@ public class ControllerText extends Controller implements ActionListener {
 
     protected void getInput() {
         if (keyManager.up && frog.getY() > 0) {
-            frog.setY(frog.getY() - 1);
+            frog.move(0, -1);
         } else if (keyManager.down && frog.getY() < SCREEN_SIZE - 1) {
-            frog.setY(frog.getY() + 1);
+            frog.move(0, 1);
         } else if (keyManager.left && frog.getX() > 0) {
-            frog.setX(frog.getX() - 1);
+            frog.move(-1, 0);
         } else if (keyManager.right && frog.getX() < SCREEN_SIZE - 1) {
-            frog.setX(frog.getX() + 1);
+            frog.move(1, 0);
         }
     }
 
@@ -107,6 +109,7 @@ public class ControllerText extends Controller implements ActionListener {
 
     /**
      * Constructs obstacles based on text file.
+     * Duplicated code due to width being retrieved in the middle of the loop to be used for text constructor.
      *
      * @param worldFile The File containing world info.
      */
@@ -115,21 +118,32 @@ public class ControllerText extends Controller implements ActionListener {
             Scanner sc = new Scanner(worldFile);
 
             while (sc.hasNext()) {
-                int numLog = sc.nextInt();
-                for (int i = 0; i < numLog; i++) {
+                int numPlatforms = sc.nextInt();
+                //Initialize platforms.
+                for (int i = 0; i < numPlatforms; i++) {
                     int width = sc.nextInt();
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Platform(width, x, y, direction, SCREEN_SIZE));
+                    GameObstacle temp = new GameObstacle(width, x, y, direction, SCREEN_SIZE);
+
+                    temp.setSymbol('L');
+
+                    obstacles.add(temp);
                 }
                 int numCar = sc.nextInt();
+                //Initialize collidables.
                 for (int i = 0; i < numCar; i++) {
                     int width = sc.nextInt();
                     int x = sc.nextInt();
                     int y = sc.nextInt();
                     char direction = sc.next().charAt(0);
-                    obstacles.add(new Collidable(width, x, y, direction, SCREEN_SIZE));
+                    GameObstacle temp = new GameObstacle(width, x, y, direction, SCREEN_SIZE);
+
+                    temp.setSymbol('X');
+                    temp.setDangerous(true);
+
+                    obstacles.add(temp);
                 }
             }
         } catch (IOException e) {
