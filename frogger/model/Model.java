@@ -50,18 +50,23 @@ public class Model {
         }
     }
 
+    /**
+     * Updates game score based on time left and lives left.
+     */
     public void updateScore() {
         score = countdownTimer.getSecondsRemaining() * 100 + (frog.getLives() * 100);
     }
 
     /**
-     * Move cars and logs.
+     * Move obstacles.
      */
     public void updateObstacles() {
         for (GameObstacle o : obstacles) {
             o.move();
         }
     }
+
+    //Getters
 
     public boolean getRunning() {
         return running;

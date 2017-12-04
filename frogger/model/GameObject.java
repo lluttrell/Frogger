@@ -6,15 +6,10 @@ import java.awt.*;
 
 /**
  * Handles Game objects in the game.
- * Parent to frogger.Frog and GameObstacles.
- * Adapted from https://github.com/andreirichkov/console-snake
- *
- * @author Iden Craven
- * @author Richard Williams
+ * Parent to Frog and GameObstacle.
  */
 
 public class GameObject {
-
     //Instance variables.
     protected int x, y;
     protected int width;

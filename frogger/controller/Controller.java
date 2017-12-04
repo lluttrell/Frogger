@@ -8,6 +8,7 @@ import frogger.util.CountdownTimer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,7 @@ public abstract class Controller implements ActionListener {
     protected boolean running;
     protected boolean won = false;
     protected int score;
+    protected int highScore;
 
     protected Frog frog;
     protected KeyManager keyManager;
@@ -52,6 +54,57 @@ public abstract class Controller implements ActionListener {
         Timer timer = new Timer(delay, this);
         countdownTimer.start();
         timer.start();
+        readHighScore();
+    }
+
+    protected void initWorld(String path) throws IOException {
+        File worldFile = new File(path);
+        if (!worldFile.exists()) {
+            writeDefaultWorld(worldFile);
+        }
+
+        readWorld(worldFile);
+    }
+
+    private void readHighScore() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("res/highscore.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                try {
+                    highScore = Integer.parseInt(line.trim());
+                } catch (NumberFormatException e1) {
+                    //ignore invalid scores
+                    System.out.println("ignoring invalid score: " + line);
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("High score file not found, generating a file with zero high score.");
+            writeScore(0);
+        } catch (IOException ex) {
+            System.out.println("Error reading scores from file");
+        }
+    }
+
+    protected void compareScore() {
+        if (score > highScore) {
+            highScore = score;
+        }
+        writeScore(highScore);
+    }
+
+    private void writeScore(int score) {
+        try {
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("res/highscore.txt")));
+            writer.println(score);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -76,4 +129,8 @@ public abstract class Controller implements ActionListener {
     }
 
     protected abstract void getInput();
+
+    protected abstract void writeDefaultWorld(File worldFile) throws IOException;
+
+    protected abstract void readWorld(File worldFile) throws IOException;
 }

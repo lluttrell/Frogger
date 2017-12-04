@@ -4,10 +4,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * CountdownTimer is a count down timer that counts down from 30.
+ */
 public class CountdownTimer {
     private Timer timer;
     private int countDown = 30;
 
+    /**
+     * Constructor for CountdownTimer
+     */
     public CountdownTimer() {
         timer = new Timer(1000, new ActionListener() {
             @Override

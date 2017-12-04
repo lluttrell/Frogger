@@ -8,8 +8,8 @@ import frogger.util.CountdownTimer;
 import java.util.ArrayList;
 
 /**
- * Handles frogger.graphics.view.View for Text version.
- * Inherits from JPanel for timer and keyListener.
+ * Handles display for Text version.
+ * Inherits from View.
  */
 
 public class ViewText extends View {
@@ -19,7 +19,7 @@ public class ViewText extends View {
     private char[][] screenMatrix;
 
     /**
-     * Constructor for ViewText
+     * Constructor for ViewText.
      *
      * @param frog           The Frog object which the player controls.
      * @param screenSize     The Display's screen size.
@@ -64,8 +64,9 @@ public class ViewText extends View {
      */
     public void doDrawing() {
         System.out.println("Lives remaining:" + frog.getLives());
-        System.out.println("Time left: "  + countdownTimer.getSecondsRemaining());
+        System.out.println("Time left: " + countdownTimer.getSecondsRemaining());
         score = countdownTimer.getSecondsRemaining() * 100;
+        System.out.println("High Score: " + highScore);
         System.out.println("Score: " + score);
         InitScreen();
 
@@ -92,7 +93,7 @@ public class ViewText extends View {
 
     /**
      * Updates the character at a specified position in the screenMatrix to the
-     * character used to represent a frogger.model.GameObject
+     * character used to represent a GameObject.
      *
      * @param object frogger.model.GameObject moving into the position
      * @param x      x coordinate of frogger.model.GameObject

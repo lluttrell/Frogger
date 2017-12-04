@@ -20,7 +20,7 @@ public class ControllerText extends Controller implements ActionListener {
     private ViewText viewText;
 
     /**
-     * Default constructor.
+     * Constructor for ControllerText.
      */
     public ControllerText() throws IOException {
         super(FROG_X_START, FROG_Y_START, DELAY);
@@ -33,35 +33,36 @@ public class ControllerText extends Controller implements ActionListener {
     private void initBoard() throws IOException {
         modelText = new ModelText(frog, obstacles, countdownTimer);
         viewText = new ViewText(frog, SCREEN_SIZE, obstacles, modelText.getRiverStartingY(), countdownTimer);
-        initWorld();
+        super.initWorld("res/worlds/world1Text.txt");
         viewText.addKeyListener(keyManager);
         viewText.setFocusable(true);
         viewText.setDoubleBuffered(true);
     }
 
-    private void initWorld() throws IOException {
-        File worldFile = new File("res/worlds/world1Text.txt");
-        if (!worldFile.exists()) {
-            writeDefaultWorld(worldFile);
-        }
-
-        readWorld(worldFile);
-    }
-
+    /**
+     * tick is called everytime the gameloop is executed to update everything in the game.
+     */
+    @Override
     public void tick() {
         super.tick();
         modelText.checkCollisions();
+        viewText.setHighScore(highScore);
         if (running) {
             viewText.doDrawing();
         } else if (won) {
             System.out.println("\n**YOU WIN**");
             System.exit(0);
+            super.compareScore();
         } else {
             System.out.println("\n**GAME OVER**");
             System.exit(0);
         }
     }
 
+    /**
+     * Handles user input to move the Frog.
+     */
+    @Override
     protected void getInput() {
         if (keyManager.up && frog.getY() > 0) {
             frog.move(0, -1);
@@ -74,12 +75,19 @@ public class ControllerText extends Controller implements ActionListener {
         }
     }
 
-    private void writeDefaultWorld(File worldFile) throws IOException {
+    /**
+     * Writes a default world's data to a file.
+     *
+     * @param worldFile The file that is used to write to.
+     * @throws IOException
+     */
+    @Override
+    protected void writeDefaultWorld(File worldFile) throws IOException {
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(worldFile)));
-        int numLog = 3;
+        int numPlatforms = 3;
         int width = 3;
         int x = 0;
-        writer.println(numLog);
+        writer.println(numPlatforms);
         writer.print(width + " ");
         writer.print(x + " ");
         writer.println("3 " + "R");
@@ -91,9 +99,9 @@ public class ControllerText extends Controller implements ActionListener {
         writer.println("1 " + "R");
         writer.println();
 
-        int numCar = 3;
+        int numCollidables = 3;
 
-        writer.println(numCar);
+        writer.println(numCollidables);
         writer.print(width + " ");
         writer.print(x + " ");
         writer.println("10 " + "L");
@@ -113,7 +121,8 @@ public class ControllerText extends Controller implements ActionListener {
      *
      * @param worldFile The File containing world info.
      */
-    private void readWorld(File worldFile) throws IOException {
+    @Override
+    protected void readWorld(File worldFile) throws IOException {
         try {
             Scanner sc = new Scanner(worldFile);
 

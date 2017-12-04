@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 
 public class ControllerGUI extends Controller {
-
+    //Constants
     private static final int FROG_X_START = 225;
     private static final int FROG_Y_START = 450;
     private static final int DELAY = 10;
@@ -26,7 +26,7 @@ public class ControllerGUI extends Controller {
     private ModelGUI modelGUI;
 
     /**
-     * Default constructor.
+     * Constructor for ControllerGUI.
      */
     public ControllerGUI() throws IOException {
         super(FROG_X_START, FROG_Y_START, DELAY);
@@ -42,25 +42,24 @@ public class ControllerGUI extends Controller {
         frog.getImageDimensions();
         modelGUI = new ModelGUI(frog, obstacles, countdownTimer);
         viewGUI = new ViewGUI(frog, SCREEN_SIZE, obstacles, keyManager, countdownTimer);
-        initWorld();
+        super.initWorld("res/worlds/world1.txt");
         viewGUI.addKeyListener(keyManager);
         viewGUI.setFocusable(true);
         viewGUI.setDoubleBuffered(true);
     }
 
-    private void initWorld() throws IOException {
-        File worldFile = new File("res/worlds/world1.txt");
-        if (!worldFile.exists()) {
-            writeDefaultWorld(worldFile);
-        }
-        readWorld(worldFile);
-    }
-
-    private void writeDefaultWorld(File worldFile) throws IOException {
+    /**
+     * Writes a default world's data to a file.
+     *
+     * @param worldFile The file that is used to write to.
+     * @throws IOException
+     */
+    @Override
+    protected void writeDefaultWorld(File worldFile) throws IOException {
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(worldFile)));
-        int numLog = 6;
+        int numShips = 6;
 
-        writer.println(numLog);
+        writer.println(numShips);
         writer.println("0 " + "180 " + "R");
         writer.println("480 " + "130 " + "L");
         writer.println("32 " + "80 " + "R");
@@ -69,9 +68,9 @@ public class ControllerGUI extends Controller {
         writer.println("800 " + "130 " + "L");
         writer.println();
 
-        int numCar = 3;
+        int numAsteroids = 3;
         int x = 0;
-        writer.println(numCar);
+        writer.println(numAsteroids);
         writer.println(x + " 260 " + "L");
         writer.println(x + " 310 " + "R");
         writer.println(x + " 360 " + "L");
@@ -88,6 +87,7 @@ public class ControllerGUI extends Controller {
         super.tick();
         modelGUI.checkCollisions();
         viewGUI.setScore(super.score);
+        viewGUI.setHighScore(highScore);
         checkGameState();
         viewGUI.repaint();
     }
@@ -102,6 +102,7 @@ public class ControllerGUI extends Controller {
         } else if (won) {
             viewGUI.setRunning(false);
             viewGUI.setWon(true);
+            super.compareScore();
         } else {
             viewGUI.setRunning(false);
         }
@@ -130,7 +131,8 @@ public class ControllerGUI extends Controller {
      *
      * @param worldFile The File containing world info.
      */
-    private void readWorld(File worldFile) throws IOException {
+    @Override
+    protected void readWorld(File worldFile) throws IOException {
         try {
             Scanner sc = new Scanner(worldFile);
 
