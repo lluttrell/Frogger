@@ -14,6 +14,14 @@ public class FrogTest {
     }
 
     @Test
+    public void test_move() {
+        Frog f = new Frog(1,1);
+        f.move(1,1);
+        assertEquals("Frog x position should be 2",2,f.getX());
+
+    }
+
+    @Test
     public void test_getLives_intial() {
         Frog f = new Frog(1,1);
         assertEquals("Frog objects should initially have 3 lives", 3, f.getLives());
