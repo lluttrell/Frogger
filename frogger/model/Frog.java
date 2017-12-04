@@ -4,7 +4,7 @@ import frogger.util.MediaLoader;
 
 /**
  * Handles the frog.
- * Inherits from frogger.model.GameObject.
+ * Inherits from GameObject.
  * adapted from http://zetcode.com/tutorials/javagamestutorial/collision/
  */
 
@@ -29,6 +29,12 @@ public class Frog extends GameObject {
         setImage("/images/frog_up.png");
     }
 
+    /**
+     * Moves the frog based on delta values.
+     *
+     * @param dx Change in x axis.
+     * @param dy Change in y axis.
+     */
     public void move(int dx, int dy) {
         x += dx;
         y += dy;

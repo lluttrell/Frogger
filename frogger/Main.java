@@ -10,7 +10,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
- * Extends JFrame and handles launching the game through GUI interface.
+ * Main handles launching the game through a GUI interface.
+ * Inherits JFrame and implements ActionListener for button presses.
  */
 public class Main extends JFrame implements ActionListener {
     private JFrame controlFrame;
@@ -77,6 +78,11 @@ public class Main extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Initializes the GUI version of the game
+     *
+     * @throws IOException
+     */
     private void initGUI() throws IOException {
         ControllerGUI controllerGUI = new ControllerGUI();
         super.add(controllerGUI.getViewGUI());
@@ -88,6 +94,11 @@ public class Main extends JFrame implements ActionListener {
         super.setVisible(true);
     }
 
+    /**
+     * Initializes the text version of the game
+     *
+     * @throws IOException
+     */
     private void initText() throws IOException {
         ControllerText controllerText = new ControllerText();
         super.add(controllerText.getViewText());

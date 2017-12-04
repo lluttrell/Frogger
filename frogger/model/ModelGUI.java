@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Acts as the model for frogger.graphics.view.View version.
+ * Acts as the model GUI version.
  * Handles moving all entities in the game and checking win or loss state.
  */
 public class ModelGUI extends Model {

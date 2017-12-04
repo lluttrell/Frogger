@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * frogger.util.MediaLoader loads media for use in the game.
+ * MediaLoader loads media for use in the game.
  */
 public class MediaLoader {
 

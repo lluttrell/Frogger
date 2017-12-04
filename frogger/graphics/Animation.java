@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 
 /**
  * Animation iterates through an array of buffered images to create animation.
- *
- * @author Iden Craven
  */
 public class Animation {
 

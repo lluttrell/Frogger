@@ -1,10 +1,10 @@
 package frogger.graphics.view;
 
+import frogger.controller.KeyManager;
+import frogger.graphics.Animation;
 import frogger.model.Frog;
 import frogger.model.GameObstacle;
-import frogger.graphics.Animation;
 import frogger.util.CountdownTimer;
-import frogger.controller.KeyManager;
 import frogger.util.MediaLoader;
 
 import java.awt.*;
@@ -12,9 +12,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * Handles View for GUI version of frogger game.
+ * Handles display for GUI version of frogger game.
  * Handles animations for frogger game.
- * Inherits from JPanel.
+ * Inherits from View.
  */
 
 public class ViewGUI extends View {
@@ -52,22 +52,27 @@ public class ViewGUI extends View {
      * Initializes all animation arrays and objects.
      */
     private void initAnimation() {
+        //Images for frog facing up.
         BufferedImage[] frogUp = new BufferedImage[2];
         frogUp[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_up.png");
         frogUp[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_up.png");
         animUp = new Animation(300, frogUp);
+        //Images for frog facing down.
         BufferedImage[] frogDown = new BufferedImage[2];
         frogDown[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_down.png");
         frogDown[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_down.png");
         animDown = new Animation(300, frogDown);
+        //Images for frog facing left.
         BufferedImage[] frogLeft = new BufferedImage[2];
         frogLeft[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_left.png");
         frogLeft[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_left.png");
         animLeft = new Animation(300, frogLeft);
+        //Images for frog facing right.
         BufferedImage[] frogRight = new BufferedImage[2];
         frogRight[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_right.png");
         frogRight[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_right.png");
         animRight = new Animation(300, frogRight);
+        //Images for frog being still.
         frogStill = new BufferedImage[4];
         frogStill[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_up.png");
         frogStill[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_down.png");
@@ -147,7 +152,7 @@ public class ViewGUI extends View {
     /**
      * Draws the players current lives in bottom right of screen.
      *
-     * @param g2d the 2d graphics object
+     * @param g2d the 2d graphics object used to draw.
      */
     private void drawLives(Graphics2D g2d) {
         String s;
@@ -161,7 +166,7 @@ public class ViewGUI extends View {
     /**
      * Draws the time remaining in the bottom left of the screen.
      *
-     * @param g2d the 2d graphics object
+     * @param g2d the 2d graphics object used to draw.
      */
     private void drawTime(Graphics2D g2d) {
         String s;
@@ -175,21 +180,25 @@ public class ViewGUI extends View {
     /**
      * Draws the player's current score in bottom left of the screen.
      *
-     * @param g2d the 2d graphics object
+     * @param g2d the 2d graphics object used to draw.
      */
     private void drawScore(Graphics2D g2d) {
         String s;
+        String hs;
 
         g2d.setFont(smallFont);
         g2d.setColor(new Color(250, 0, 0));
         s = "Score: " + score;
+        hs = "High Score: " + highScore;
         g2d.drawString(s, 10, screenSize - 30);
+        g2d.drawString(hs, 10, screenSize - 50);
     }
 
     /**
      * Draws a box with a message inside it. Used to show win screen or game over.
      *
      * @param s The message inside the box.
+     * @param g the graphics object used to draw.
      */
     private void showEndScreen(Graphics g, String s) {
         Graphics2D g2d = (Graphics2D) g;

@@ -9,7 +9,7 @@ public class GameObstacle extends GameObject {
     private final int boardWidth;
     private final int offScreenBuffer;
     private boolean dangerous;
-    private final char direction;
+    private char direction;
 
     /**
      * GUI Constructor
@@ -88,5 +88,4 @@ public class GameObstacle extends GameObject {
     public void setDangerous(boolean dangerous) {
         this.dangerous = dangerous;
     }
-
 }
