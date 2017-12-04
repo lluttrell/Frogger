@@ -18,7 +18,6 @@ public class Model {
 
     /**
      * Constructor for Model
-     *
      * @param frog      The Frog object which the player controls.
      * @param obstacles An ArrayList containing the Game Obstacles.
      */
