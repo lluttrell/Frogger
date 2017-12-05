@@ -18,9 +18,6 @@ public class Model {
 
     /**
      * Constructor for Model
-     * frog, obstacles, and countdownTimer are all privacy leaked.
-     * frog is privacy leaked due to its values being constantly updated and View needing direct access to those values.
-     * obstacles is also privacy leaked due to needing access to values being updated constantly.
      *
      * @param frog      The Frog object which the player controls.
      * @param obstacles An ArrayList containing the Game Obstacles.
@@ -81,9 +78,5 @@ public class Model {
 
     public int getScore() {
         return score;
-    }
-
-    public void setRunning(boolean running) {
-        this.running = running;
     }
 }
