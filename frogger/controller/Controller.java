@@ -24,7 +24,7 @@ public abstract class Controller implements ActionListener {
     protected int highScore;
 
     protected Frog frog;
-    protected KeyManager keyManager;
+    public KeyManager keyManager;
     private Model model;
     protected CountdownTimer countdownTimer;
 
@@ -43,7 +43,7 @@ public abstract class Controller implements ActionListener {
     }
 
     /**
-     * Initializes the Controllers objects.
+     * Initializes the Controller's objects.
      *
      * @param delay Delay for game timer.
      */
@@ -57,6 +57,12 @@ public abstract class Controller implements ActionListener {
         readHighScore();
     }
 
+    /**
+     * Creates world file object and calls writeDefaultWorld if the file doesn't already exist.
+     *
+     * @param path Path to the world file.
+     * @throws IOException
+     */
     protected void initWorld(String path) throws IOException {
         File worldFile = new File(path);
         if (!worldFile.exists()) {
@@ -66,6 +72,9 @@ public abstract class Controller implements ActionListener {
         readWorld(worldFile);
     }
 
+    /**
+     * Obtains highscore from highscore file, if the file does not exist a default file with zero high score is created.
+     */
     private void readHighScore() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("res/highscore.txt"));
@@ -89,6 +98,9 @@ public abstract class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Compares the current score and high score, if the current score is higher than the high score it becomes the new high score.
+     */
     protected void compareScore() {
         if (score > highScore) {
             highScore = score;
@@ -96,6 +108,11 @@ public abstract class Controller implements ActionListener {
         writeScore(highScore);
     }
 
+    /**
+     * Writes the high score to a text file.
+     *
+     * @param score The score to write to a text file.
+     */
     private void writeScore(int score) {
         try {
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("res/highscore.txt")));
@@ -105,6 +122,13 @@ public abstract class Controller implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void reset() {
+        model.setRunning(true);
+        frog.die();
+        frog.setLives(3);
+        countdownTimer.setCountDown(30);
     }
 
     /**

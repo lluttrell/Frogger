@@ -33,6 +33,11 @@ public class ViewGUI extends View {
 
     /**
      * Constructor for ViewGUI
+     * frog, obstacles, keyManager and countdownTimer are all privacy leaked.
+     * frog is privacy leaked due to its values being constantly updated and View needing direct access to those values.
+     * obstacles is also privacy leaked due to needing access to values being updated constantly.
+     * keyManager is leaked due to the need for it to be updated in the tick method in Controller.
+     * The countdown timer is privacy leaked due to the need for the time to be the same across all classes.
      *
      * @param frog       The Frog object the player controls.
      * @param screenSize The game's screen size.

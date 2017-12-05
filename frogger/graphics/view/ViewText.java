@@ -20,6 +20,10 @@ public class ViewText extends View {
 
     /**
      * Constructor for ViewText.
+     * frog, obstacles, and countdownTimer are all privacy leaked.
+     * frog is privacy leaked due to its values being constantly updated and View needing direct access to those values.
+     * obstacles is also privacy leaked due to needing access to values being updated constantly.
+     * The countdown timer is privacy leaked due to the need for the time to be the same across all classes.
      *
      * @param frog           The Frog object which the player controls.
      * @param screenSize     The Display's screen size.

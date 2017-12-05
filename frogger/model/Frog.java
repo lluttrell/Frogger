@@ -10,8 +10,8 @@ import frogger.util.MediaLoader;
 
 public class Frog extends GameObject {
 
-    private int startX;
-    private int startY;
+    private final int startX;
+    private final int startY;
     private int lives = 3;
 
     /**
@@ -47,6 +47,10 @@ public class Frog extends GameObject {
      */
     public int getLives() {
         return this.lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 
     /**

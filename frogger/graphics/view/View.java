@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- * Handles Display related actions for the game.
+ * Handles Display related actions for the text version of the game.
  * View is a Parent class to ViewText and ViewGUI
  * Inherits from JPanel.
  */
@@ -25,6 +25,7 @@ public class View extends JPanel {
      * frog, obstacles, and countdownTimer are all privacy leaked.
      * frog is privacy leaked due to its values being constantly updated and View needing direct access to those values.
      * obstacles is also privacy leaked due to needing access to values being updated constantly.
+     * The countdown timer is privacy leaked due to the need for the time to be the same across all classes.
      *
      * @param frog       The Frog object which the player controls.
      * @param screenSize The Display's screen size.
@@ -36,6 +37,8 @@ public class View extends JPanel {
         this.obstacles = obstacles;
         this.countdownTimer = countdownTimer;
     }
+
+    //Setters
 
     public void setScore(int score) {
         this.score = score;
