@@ -10,7 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * ControllerGUI handles the main game logic and game loop.
+ * ControllerGUI handles the user input and acts as an in-between for ViewGUI and ModelGUI
  * Acts as Controller for GUI version of Frogger based on MVC model.
  * background image obtained from https://i.imgur.com/iFW8JM4.png
  */
@@ -79,7 +79,7 @@ public class ControllerGUI extends Controller {
     }
 
     /**
-     * tick is called everytime the gameloop is executed to update everything in the game.
+     * tick is called every time the gameloop is executed to update everything in the game.
      */
     @Override
     public void tick() {
@@ -110,6 +110,7 @@ public class ControllerGUI extends Controller {
 
     /**
      * Handles user input to move the Frog.
+     * Code is duplicated due to the different bound checking for GUI and text version.
      */
     @Override
     protected void getInput() {
@@ -121,6 +122,8 @@ public class ControllerGUI extends Controller {
             frog.move(-1, 0);
         } else if (keyManager.right && frog.getX() < SCREEN_SIZE - 32) {
             frog.move(1, 0);
+        } else if (keyManager.restartGame) {
+            reset();
         }
     }
 

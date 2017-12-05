@@ -9,6 +9,10 @@ import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Handles the user input and acts as an in-between for ModelText and ViewText.
+ * Acts as Controller for Text version of Frogger based on MVC model.
+ */
 public class ControllerText extends Controller implements ActionListener {
     // Constants
     private static final int SCREEN_SIZE = 14;
@@ -40,7 +44,7 @@ public class ControllerText extends Controller implements ActionListener {
     }
 
     /**
-     * tick is called everytime the gameloop is executed to update everything in the game.
+     * tick is called every time the gameloop is executed to update everything in the game.
      */
     @Override
     public void tick() {
@@ -51,8 +55,8 @@ public class ControllerText extends Controller implements ActionListener {
             viewText.doDrawing();
         } else if (won) {
             System.out.println("\n**YOU WIN**");
-            System.exit(0);
             super.compareScore();
+            System.exit(0);
         } else {
             System.out.println("\n**GAME OVER**");
             System.exit(0);
@@ -61,6 +65,7 @@ public class ControllerText extends Controller implements ActionListener {
 
     /**
      * Handles user input to move the Frog.
+     * Code is duplicated due to the different bound checking for GUI and text version.
      */
     @Override
     protected void getInput() {
@@ -72,6 +77,8 @@ public class ControllerText extends Controller implements ActionListener {
             frog.move(-1, 0);
         } else if (keyManager.right && frog.getX() < SCREEN_SIZE - 1) {
             frog.move(1, 0);
+        } else if (keyManager.restartGame) {
+            reset();
         }
     }
 

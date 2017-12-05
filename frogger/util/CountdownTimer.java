@@ -35,4 +35,8 @@ public class CountdownTimer {
     public int getSecondsRemaining() {
         return countDown;
     }
+
+    public void setCountDown(int countDown) {
+        this.countDown = countDown;
+    }
 }
