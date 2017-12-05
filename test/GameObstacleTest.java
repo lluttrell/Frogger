@@ -30,6 +30,13 @@ public class GameObstacleTest {
     }
 
     @Test
+    public void test_move_left_off_board() {
+        GameObstacle g = new GameObstacle(-122,2,'L',100);
+        g.move();
+        assertEquals("Moved left off screen, object should wrap to other side", 101, g.getX());
+    }
+
+    @Test
     public void test_move_right() {
         GameObstacle g = new GameObstacle(1,1,'R',100);
         g.move();
@@ -37,10 +44,23 @@ public class GameObstacleTest {
     }
 
     @Test
-    public void test_isDangerous_setDangerous() {
+    public void test_move_right_off_board() {
+        GameObstacle g = new GameObstacle(98,2,'R',100);
+        g.move();
+        assertEquals("Moved right off screen, object should wrap to other side", 1, g.getX());
+    }
+
+    @Test
+    public void test_isDangerous_setDangerousTrue() {
         GameObstacle g = new GameObstacle(1,1,'L',100);
         g.setDangerous(true);
         assertEquals("Set danger to true", true, g.isDangerous());
     }
 
+    @Test
+    public void test_isDangerous_setDangerousFalse() {
+        GameObstacle g = new GameObstacle(1,1,'L',100);
+        g.setDangerous(false);
+        assertEquals("Set danger to false", false, g.isDangerous());
+    }
 }
