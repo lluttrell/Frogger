@@ -65,6 +65,7 @@ public class GameObstacle extends GameObject {
 
     /**
      * Returns boolean value representing if the object is dangerous to the frog
+     *
      * @return true if GameObstacle is dangerous, false otherwise.
      */
     public boolean isDangerous() {
@@ -73,6 +74,7 @@ public class GameObstacle extends GameObject {
 
     /**
      * Returns character representing the direction of movement of the obstacle
+     *
      * @return 'L' for obstacles moving left. 'R' for obstacles moving right
      */
     public char getDirection() {
@@ -83,6 +85,7 @@ public class GameObstacle extends GameObject {
 
     /**
      * Sets the danger level of the obstacle
+     *
      * @param dangerous true if object is dangerous to frog, false otherwise
      */
     public void setDangerous(boolean dangerous) {

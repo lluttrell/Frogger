@@ -50,7 +50,7 @@ public class ViewGUI extends View {
         super.setLayout(new BorderLayout());
         this.keyManager = keyManager;
         initAnimation();
-        background = MediaLoader.loadImage("/images/background.png");
+        background = MediaLoader.loadImage("/res/images/background.png");
     }
 
     /**
@@ -59,30 +59,30 @@ public class ViewGUI extends View {
     private void initAnimation() {
         //Images for frog facing up.
         BufferedImage[] frogUp = new BufferedImage[2];
-        frogUp[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_up.png");
-        frogUp[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_up.png");
+        frogUp[0] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_leap_up.png");
+        frogUp[1] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_up.png");
         animUp = new Animation(300, frogUp);
         //Images for frog facing down.
         BufferedImage[] frogDown = new BufferedImage[2];
-        frogDown[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_down.png");
-        frogDown[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_down.png");
+        frogDown[0] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_leap_down.png");
+        frogDown[1] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_down.png");
         animDown = new Animation(300, frogDown);
         //Images for frog facing left.
         BufferedImage[] frogLeft = new BufferedImage[2];
-        frogLeft[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_left.png");
-        frogLeft[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_left.png");
+        frogLeft[0] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_leap_left.png");
+        frogLeft[1] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_left.png");
         animLeft = new Animation(300, frogLeft);
         //Images for frog facing right.
         BufferedImage[] frogRight = new BufferedImage[2];
-        frogRight[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_leap_right.png");
-        frogRight[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_right.png");
+        frogRight[0] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_leap_right.png");
+        frogRight[1] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_right.png");
         animRight = new Animation(300, frogRight);
         //Images for frog being still.
         frogStill = new BufferedImage[4];
-        frogStill[0] = (BufferedImage) MediaLoader.loadImage("/images/frog_up.png");
-        frogStill[1] = (BufferedImage) MediaLoader.loadImage("/images/frog_down.png");
-        frogStill[2] = (BufferedImage) MediaLoader.loadImage("/images/frog_left.png");
-        frogStill[3] = (BufferedImage) MediaLoader.loadImage("/images/frog_right.png");
+        frogStill[0] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_up.png");
+        frogStill[1] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_down.png");
+        frogStill[2] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_left.png");
+        frogStill[3] = (BufferedImage) MediaLoader.loadImage("/res/images/frog_right.png");
     }
 
     /**
@@ -206,19 +206,22 @@ public class ViewGUI extends View {
      * @param g the graphics object used to draw.
      */
     private void showEndScreen(Graphics g, String s) {
+        String restart;
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(new Color(0, 32, 48));
-        g2d.fillRect(50, screenSize / 2 - 30, screenSize - 100, 50);
+        g2d.fillRect(50, screenSize / 2 - 30, screenSize - 100, 70);
         g2d.setColor(Color.white);
-        g2d.drawRect(50, screenSize / 2 - 30, screenSize - 100, 50);
+        g2d.drawRect(50, screenSize / 2 - 30, screenSize - 100, 70);
 
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = this.getFontMetrics(small);
+        restart = "Press x to restart";
 
         g2d.setColor(Color.white);
         g2d.setFont(small);
         g2d.drawString(s, (screenSize - metr.stringWidth(s)) / 2, screenSize / 2);
+        g2d.drawString(restart, (screenSize - metr.stringWidth(restart)) / 2, (screenSize / 2) + 20);
     }
 
     public void setRunning(boolean running) {

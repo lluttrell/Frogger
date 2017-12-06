@@ -26,7 +26,7 @@ public class Frog extends GameObject {
         this.startX = startX;
         this.startY = startY;
         setSymbol('F');
-        setImage("/images/frog_up.png");
+        setImage("/res/images/frog_up.png");
     }
 
     /**
@@ -59,6 +59,10 @@ public class Frog extends GameObject {
     public void die() {
         this.lives--;
         MediaLoader.playSound("res/death_sound.wav");
+        resetFrog();
+    }
+
+    public void resetFrog() {
         x = startX;
         y = startY;
     }

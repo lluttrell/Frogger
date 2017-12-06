@@ -149,9 +149,9 @@ public class ControllerGUI extends Controller {
                     GameObstacle temp = new GameObstacle(x, y, direction, SCREEN_SIZE);
 
                     if (direction == 'L') {
-                        temp.setImage("/images/shipL.png");
+                        temp.setImage("/res/images/shipL.png");
                     } else if (direction == 'R') {
-                        temp.setImage("/images/shipR.png");
+                        temp.setImage("/res/images/shipR.png");
                     }
                     temp.getImageDimensions();
 
@@ -165,7 +165,7 @@ public class ControllerGUI extends Controller {
                     char direction = sc.next().charAt(0);
                     GameObstacle temp = new GameObstacle(x, y, direction, SCREEN_SIZE);
 
-                    temp.setImage("/images/asteroid.png");
+                    temp.setImage("/res/images/asteroid.png");
                     temp.getImageDimensions();
                     temp.setDangerous(true);
 
