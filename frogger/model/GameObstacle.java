@@ -55,7 +55,7 @@ public class GameObstacle extends GameObject {
         } else if (direction == 'R') {
             x += DEFAULT_SPEED;
 
-            if (x == boardWidth - 1) {
+            if (x >= boardWidth - 1) {
                 x = 1;
             }
         }
@@ -65,7 +65,6 @@ public class GameObstacle extends GameObject {
 
     /**
      * Returns boolean value representing if the object is dangerous to the frog
-     *
      * @return true if GameObstacle is dangerous, false otherwise.
      */
     public boolean isDangerous() {
