@@ -36,7 +36,6 @@ public class FrogTest {
         assertEquals("Frog objects should have 2 lives after dying", 2, f.getLives());
     }
 
-
     @Test
     public void test_getX() {
         Frog f = new Frog(1, 1);
