@@ -37,6 +37,13 @@ public class GameObstacleTest {
     }
 
     @Test
+    public void test_move_left_starting_offScreen() {
+        GameObstacle g = new GameObstacle(-1000,2,'L',100);
+        g.move();
+        assertEquals("Moved left off screen, object should wrap to other side", 101, g.getX());
+    }
+
+    @Test
     public void test_move_right() {
         GameObstacle g = new GameObstacle(1,1,'R',100);
         g.move();
@@ -48,6 +55,27 @@ public class GameObstacleTest {
         GameObstacle g = new GameObstacle(98,2,'R',100);
         g.move();
         assertEquals("Moved right off screen, object should wrap to other side", 1, g.getX());
+    }
+
+    @Test
+    public void test_move_right_starting_offScreen() {
+        GameObstacle g = new GameObstacle(2000,2,'R',100);
+        g.move();
+        assertEquals("Obstacle should move back onto board", 1,g.getX());
+    }
+
+    @Test
+    public void test_move_above_screen() {
+        GameObstacle g = new GameObstacle(2,100,'R',100);
+        g.move();
+        assertEquals("Obstacle should move to x=3",3,g.getX());
+    }
+
+    @Test
+    public void test_move_below_screen() {
+        GameObstacle g = new GameObstacle(2,-1000,'R',100);
+        g.move();
+        assertEquals("Obstacle should move to x=3",3,g.getX());
     }
 
     @Test
