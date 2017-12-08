@@ -16,6 +16,7 @@ public class Frog extends GameObject {
 
     /**
      * constructor for Frog object which player controls.
+     *
      * @param startX Initial X location for frogger.model.Frog
      * @param startY Initial Y location for frogger.model.Frog
      */
@@ -30,6 +31,7 @@ public class Frog extends GameObject {
 
     /**
      * Moves the frog based on delta values.
+     *
      * @param dx Change in x axis.
      * @param dy Change in y axis.
      */
@@ -40,6 +42,7 @@ public class Frog extends GameObject {
 
     /**
      * Returns the number of lives the frog has
+     *
      * @return Integer representing the number of lives
      */
     public int getLives() {

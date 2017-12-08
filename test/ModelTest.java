@@ -1,11 +1,14 @@
 package test;
 
 import frogger.model.Frog;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-import java.util.ArrayList;
-import frogger.model.*;
+import frogger.model.GameObstacle;
+import frogger.model.ModelText;
 import frogger.util.CountdownTimer;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class ModelTest {
     @Test

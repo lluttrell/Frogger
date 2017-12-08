@@ -92,6 +92,12 @@ public class ControllerGUI extends Controller {
         viewGUI.repaint();
     }
 
+    @Override
+    protected void reset() {
+        super.reset();
+        viewGUI.setWon(false);
+    }
+
     /**
      * Checks the game's state.
      * States include running and won.

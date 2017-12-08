@@ -126,6 +126,8 @@ public abstract class Controller implements ActionListener {
 
     protected void reset() {
         model.setRunning(true);
+        model.setWon(false);
+        won = false;
         frog.resetFrog();
         frog.setLives(3);
         countdownTimer.setCountDown(30);

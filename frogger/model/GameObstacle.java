@@ -65,6 +65,7 @@ public class GameObstacle extends GameObject {
 
     /**
      * Returns boolean value representing if the object is dangerous to the frog
+     *
      * @return true if GameObstacle is dangerous, false otherwise.
      */
     public boolean isDangerous() {

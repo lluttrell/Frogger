@@ -1,15 +1,19 @@
 package test;
 
-import java.util.ArrayList;
-import frogger.model.*;
+import frogger.model.Frog;
+import frogger.model.GameObstacle;
+import frogger.model.ModelText;
 import frogger.util.CountdownTimer;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class ModelTextTest {
 
     @Test
-    public void test_Constructor(){
+    public void test_Constructor() {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
@@ -21,12 +25,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithLogFromLeft(){
+    public void test_checkCollision_FrogOverlapsWithLogFromLeft() {
 
         Frog f = new Frog(10, 4);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,4,'L', 15));
+        obs.add(new GameObstacle(3, 4, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -38,12 +42,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithLogFromRight(){
+    public void test_checkCollision_FrogOverlapsWithLogFromRight() {
 
         Frog f = new Frog(10, 4);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,4,'L', 15));
+        obs.add(new GameObstacle(3, 4, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -55,12 +59,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithLogFromBelow(){
+    public void test_checkCollision_FrogOverlapsWithLogFromBelow() {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,4,'L', 15));
+        obs.add(new GameObstacle(3, 4, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -72,12 +76,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithLogFromAbove(){
+    public void test_checkCollision_FrogOverlapsWithLogFromAbove() {
 
         Frog f = new Frog(4, 3);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,4,'L', 15));
+        obs.add(new GameObstacle(3, 4, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -89,12 +93,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogDoesNotOverlapWithLog(){
+    public void test_checkCollision_FrogDoesNotOverlapWithLog() {
 
         Frog f = new Frog(7, 3);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,5,'L', 15));
+        obs.add(new GameObstacle(3, 5, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -105,12 +109,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogDoesNotOverlapWithCar(){
+    public void test_checkCollision_FrogDoesNotOverlapWithCar() {
 
         Frog f = new Frog(4, 5);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,2,'L', 15));
+        obs.add(new GameObstacle(3, 2, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -121,12 +125,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithCarFromRight(){
+    public void test_checkCollision_FrogOverlapsWithCarFromRight() {
 
         Frog f = new Frog(10, 2);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,2,'L', 15));
+        obs.add(new GameObstacle(3, 2, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -138,12 +142,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithCarFromLeft(){
+    public void test_checkCollision_FrogOverlapsWithCarFromLeft() {
 
         Frog f = new Frog(10, 2);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,2,'L', 15));
+        obs.add(new GameObstacle(3, 2, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -155,12 +159,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithCarFromAbove(){
+    public void test_checkCollision_FrogOverlapsWithCarFromAbove() {
 
         Frog f = new Frog(2, 1);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,2,'L', 15));
+        obs.add(new GameObstacle(3, 2, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -172,12 +176,12 @@ public class ModelTextTest {
     }
 
     @Test
-    public void test_checkCollision_FrogOverlapsWithCarFromBelow(){
+    public void test_checkCollision_FrogOverlapsWithCarFromBelow() {
 
-        Frog f = new Frog(2,3);
+        Frog f = new Frog(2, 3);
         ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
 
-        obs.add(new GameObstacle(3,2,'L', 15));
+        obs.add(new GameObstacle(3, 2, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
