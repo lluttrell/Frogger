@@ -17,7 +17,7 @@ public class ModelGUITest {
     public void test_Constructor() {
 
         Frog f = new Frog(4, 5);
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelGUI modGUI = new ModelGUI(f, obs, countdownTimer);
@@ -30,7 +30,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(4, 200);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         obs.add(new GameObstacle(3, 200, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
@@ -48,7 +48,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(4, 200);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         obs.add(new GameObstacle(3, 200, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
@@ -66,7 +66,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(4, 201);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         obs.add(new GameObstacle(3, 200, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
@@ -84,7 +84,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(4, 199);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         obs.add(new GameObstacle(3, 200, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
@@ -102,7 +102,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(7, 100);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         obs.add(new GameObstacle(3, 200, 'L', 15));
         CountdownTimer countdownTimer = new CountdownTimer();
@@ -119,7 +119,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(4, 250);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         GameObstacle car = new GameObstacle(3, 2, 'L', 240);
         car.setImage("/images/asteroid.png");
@@ -140,7 +140,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(10, 250);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         GameObstacle car = new GameObstacle(3, 250, 'L', 15);
         car.setImage("/images/asteroid.png");
@@ -162,7 +162,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(1, 250);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         GameObstacle car = new GameObstacle(3, 250, 'L', 15);
         car.setImage("/images/asteroid.png");
@@ -184,7 +184,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(3, 249);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         GameObstacle car = new GameObstacle(3, 250, 'L', 15);
         car.setImage("/images/asteroid.png");
@@ -207,7 +207,7 @@ public class ModelGUITest {
 
         Frog f = new Frog(2, 251);
         f.getImageDimensions();
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         GameObstacle car = new GameObstacle(3, 250, 'L', 15);
         car.setImage("/images/asteroid.png");

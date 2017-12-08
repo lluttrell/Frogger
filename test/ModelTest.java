@@ -15,7 +15,7 @@ public class ModelTest {
     public void test_updateFrog_FrogReachedEnd() {
 
         Frog f = new Frog(4, 5);
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -29,7 +29,7 @@ public class ModelTest {
     public void test_updateFrog_FrogNotReachedEnd() {
 
         Frog f = new Frog(4, 5);
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -43,7 +43,7 @@ public class ModelTest {
     public void test_updateFrog_FrogNotDead() {
 
         Frog f = new Frog(4, 5);
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -56,7 +56,7 @@ public class ModelTest {
     public void test_updateFrog_FrogDead() {
 
         Frog f = new Frog(4, 5);
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
         CountdownTimer countdownTimer = new CountdownTimer();
 
         ModelText modT = new ModelText(f, obs, countdownTimer);
@@ -71,7 +71,7 @@ public class ModelTest {
     public void test_updateObstacles() {
 
         Frog f = new Frog(4, 5);
-        ArrayList<GameObstacle> obs = new ArrayList<GameObstacle>();
+        ArrayList<GameObstacle> obs = new ArrayList<>();
 
         obs.add(new GameObstacle(3, 2, 'L', 15));
         obs.add(new GameObstacle(3, 2, 'R', 15));
